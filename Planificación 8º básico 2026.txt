@@ -1,0 +1,883 @@
+
+
+
+Asignatura:
+Matemáticas
+Profesor/es:
+Rosa Marina Santander
+Año:
+2026
+Título de la Unidad:
+
+Números y Operatoria. Álgebra. Geometría 1
+
+N° Unidad:
+1 y 2
+Nivel:
+8º Básico
+Cantidad de h semanales:
+6
+Duración de la Unidad:
+I Trimestre 
+Mes:
+25 febrero - 22 mayo
+
+
+
+Objetivos de Aprendizaje
+
+NÚMEROS y OPERATORIA(repaso)
+1. Operaciones con números enteros
+	•	Ejecutar y justificar la adición y sustracción de números enteros en contextos reales y matemáticos.
+	•	Comprender y aplicar la multiplicación y división de números enteros.
+	•	Resolver problemas que involucren las operaciones combinadas con enteros, respetando la jerarquía de operaciones.
+2. Resolución de problemas
+	•	Modelar y resolver situaciones de la vida cotidiana que involucren cambios positivos y negativos (temperatura, ganancias/pérdidas, desplazamientos, entre otros).
+	•	Utilizar estrategias de estimación y verificación para comprobar resultados.
+3. Razonamiento y argumentación
+	•	Explicar procedimientos y justificar estrategias usadas para operar con enteros.
+	•	Interpretar resultados en el contexto del problema.
+4. Comprensión de los números racionales
+	•	Reconocer y representar números racionales en sus distintas formas: fracción, decimal y porcentaje.
+5. Operaciones con números racionales
+	•	Realizar y justificar sumas y restas de números racionales (fraccionarios y decimales).
+	•	Multiplicar y dividir números racionales, explicando procedimientos y reglas utilizadas.
+	•	Aplicar operaciones combinadas con números racionales utilizando la jerarquía de operaciones.
+6. Comprensión del concepto de potencia
+	•	Comprender la potencia como multiplicación reiterada.
+	•	Representar potencias con base y exponente en distintos contextos.
+	•	Identificar potencias de números naturales, enteros y racionales.
+7. Propiedades de las potencias
+	•	Aplicar y justificar las propiedades de las potencias con exponente entero:
+	•	Producto de potencias de igual base.
+	•	Cociente de potencias de igual base.
+	•	Potencia de una potencia.
+	•	Potencia de un producto.
+	•	Potencia de un cociente.
+	•	Potencias de exponente cero y uno.
+	•	Potencias de exponente negativo.
+8. Cálculo con potencias
+	•	Calcular potencias de números positivos y negativos.
+	•	Resolver expresiones que combinan varias potencias aplicando la jerarquía de operaciones.
+	•	Simplificar expresiones algebraicas numéricas que incluyen potencias.
+9. Notación científica
+	•	Comprender la notación científica como una forma de representar números muy grandes o pequeños.
+	•	Escribir números en notación científica y transformar números en notación científica a forma decimal.
+	•	Resolver problemas aplicando la notación científica en contextos reales (astronomía, ciencias, medidas, etc.).
+10. Comprensión del concepto de raíz cuadrada
+	•	Comprender la raíz cuadrada como la operación inversa de la potencia de exponente 2.
+	•	Interpretar la raíz cuadrada como longitud del lado de un cuadrado dada su área.
+	•	Identificar raíces exactas y no exactas.
+11. Cálculo y estimación de raíces
+	•	Calcular raíces cuadradas exactas de números perfectos.
+	•	Estimar raíces cuadradas no exactas utilizando aproximaciones y estrategias de comparación.
+12. Comprensión de porcentajes
+	•	Comprender el porcentaje como una forma de expresar proporciones o fracciones de 100.
+	•	Convertir entre fracciones, decimales y porcentajes.
+	•	Interpretar porcentajes en distintos contextos (descuentos, aumentos, rebajas, tasas, estadísticas).
+13. Cálculos con porcentajes
+	•	Calcular porcentajes de cantidades concretas.
+	•	Determinar aumentos o disminuciones porcentuales en distintos contextos.
+	•	Resolver problemas que involucren porcentajes sucesivos.
+14. Interés simple
+	•	Comprender el concepto de interés simple como una aplicación del porcentaje en contextos financieros.
+	•	Calcular el interés simple utilizando la fórmula (donde = interés, = capital, = tasa, = tiempo).
+	•	Resolver problemas prácticos de préstamos, ahorros y situaciones financieras cotidianas usando interés simple.
+15. Resolución de problemas y modelación
+	•	Aplicar porcentajes e interés simple en situaciones de la vida diaria.
+	•	Analizar y comparar resultados para tomar decisiones financieras básicas.
+	•	Estimar resultados y verificar la razonabilidad de las soluciones.
+
+ÁLGEBRA
+1. Expresiones algebraicas
+	•	Comprender el uso de letras para representar cantidades desconocidas o variables.
+	•	Traducir expresiones verbales a expresiones algebraicas y viceversa.
+	•	Identificar términos, coeficientes, variables y constantes en una expresión algebraica.
+	•	Simplificar expresiones algebraicas aplicando combinación de términos semejantes.
+	•	Simplificar expresiones algebraicas aplicando la eliminación de paréntesis.
+	•	Multiplicar expresiones algebraicas.
+2. Ecuaciones de primer grado
+	•	Resolver ecuaciones de primer grado con una incógnita utilizando distintos métodos (despeje, balance, representación).
+	•	Verificar soluciones sustituyendo en la ecuación original.
+	•	Representar ecuaciones en contextos cotidianos y modelar situaciones problemáticas.
+	•	Aplicar las ecuaciones de primer grado en la resolución de problemas.
+3. Inecuaciones de primer grado simples
+	•	Resolver inecuaciones de primer grado con una incógnita utilizando distintos métodos (despeje, balance, representación).
+	•	Verificar soluciones sustituyendo en la inecuación original.
+	•	Representar inecuaciones en contextos cotidianos y modelar situaciones problemáticas.
+
+GEOMETRÍA
+1. Comprensión de figuras tridimensionales
+	•	Identificar y describir prismas a partir de sus elementos: aristas, caras, bases, radios, alturas, diámetros y vértices.
+	•	Representar cuerpos geométricos mediante redes (desarrollos planos) y modelos.
+2. Área de superficies(prismas)
+	•	Calcular el área lateral y área total de prismas rectos utilizando fórmulas o desarrollos planos.
+	•	Relacionar unidades cuadradas con medidas reales de superficie.
+3. Volumen de cuerpos geométricos(prismas)
+	•	Calcular el volumen de prismas rectos a partir de la fórmula .
+	•	Resolver problemas que involucren volumen o capacidad en contextos reales (envases, depósitos, recipientes).
+	•	Conectar unidades cúbicas con litros y otras medidas de capacidad.
+4. Aplicación de fórmulas y modelación
+	•	Seleccionar y aplicar fórmulas apropiadas según el cuerpo geométrico.
+	•	Modelar situaciones reales usando áreas y volúmenes (revestimientos, construcción, envases, almacenamiento).
+	•	Comparar volúmenes y áreas para tomar decisiones (cuál envase almacena más, cuál requiere más material).
+
+
+
+
+
+
+
+Propósito del I Trimestre y Transversalidad
+
+El propósito de este trimestre es que los estudiantes comprendan y manejen distintos tipos de números (enteros, racionales, decimales, fracciones, porcentajes, potencias y raíces), y sean capaces de realizar operaciones, estimaciones y comparaciones en contextos reales y matemáticos.
+Se busca que los estudiantes:
+	•	Desarrollen habilidades para resolver problemas aplicando operaciones con números en situaciones de la vida cotidiana.
+	•	Comprendan las propiedades de los números y las operaciones para simplificar cálculos y justificar procedimientos.
+	•	Representen y analicen números en distintos formatos, incluyendo la recta numérica, tablas, expresiones y notación científica.
+	•	Fortalezcan su razonamiento matemático al interpretar resultados, estimar soluciones y argumentar estrategias.
+	•	Conecten conceptos numéricos con otras áreas matemáticas, como álgebra, geometría y proporcionalidad, para desarrollar un pensamiento lógico y coherente.
+	•	Comprendan y apliquen los conceptos de área y volumen en prismas rectos, utilizando estrategias geométricas y cálculos con medidas reales. A través de situaciones concretas y cercanas, los estudiantes desarrollan la capacidad de modelar objetos tridimensionales, estimar y calcular medidas, y utilizar unidades de superficie y capacidad de manera pertinente.
+
+
+	•	Promover habilidades transversales como la comunicación efectiva, el trabajo colaborativo y la reflexión sobre los resultados obtenidos.
+	•	Abordar de manera flexible y creativa la búsqueda de soluciones a problemas de la vida diaria, de la sociedad en general, o propios de otras asignaturas.
+
+	•	Demostrar interés, esfuerzo, perseverancia y rigor frente a la resolución de problemas y la búsqueda de nuevas soluciones para problemas reales.
+
+	•	Trabajar en equipo, en forma responsable y proactiva, ayudando a los otros, considerando y respetando los aportes de todos, y manifestando disposición a entender sus argumentos en las soluciones de los problemas.
+
+
+Preguntas Motivadoras o Situaciones Problemáticas
+	•	     ¿Cómo el conocimiento de los números influyó a través del tiempo en la creatividad e imaginación del hombre?
+	•	¿Cómo valoramos la utilidad de los distintos sistemas de numeración como recurso para entender diferentes disciplinas?
+	•	¿ Cómo crees que las potencias ayudan en ciencias, por ejemplo, para medir bacterias, virus o galaxias?
+	•	¿Por qué crees que en computación casi todo se organiza con potencias de 2?
+	•	¿Por qué crees que a veces es mejor expresar algo con una ecuación en vez de un texto largo?
+	•	¿Qué ventajas tiene construir objetos en forma de prisma?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Habilidades por desarrollar
+
+
+1. Comprensión numérica
+	•	Reconocer y clasificar distintos tipos de números: enteros, racionales, decimales, fracciones, porcentajes, potencias y raíces.
+	•	Representar números en la recta numérica y otras formas visuales.
+	•	Convertir entre diferentes representaciones: fracción, decimal, porcentaje y notación científica.
+2. Operaciones y cálculo
+	•	Realizar operaciones con enteros, fracciones, decimales y números racionales. Incluir la operatoria de expresiones algebraicas.
+	•	Aplicar propiedades de las operaciones (números y álgebra) para simplificar cálculos.
+	•	Resolver operaciones combinadas respetando la jerarquía de operaciones (números y álgebra).
+	•	Calcular porcentajes, aumentos, descuentos e interés simple.
+	•	Calcular áreas y volúmenes de prismas.
+3. Razonamiento y argumentación
+	•	Analizar problemas y seleccionar estrategias adecuadas para resolverlos (números, álgebra y geometría)
+	•	Explicar y justificar procedimientos matemáticos.
+	•	Comparar distintos métodos de resolución y evaluar su efectividad.
+4. Aplicación en contextos reales
+	•	Modelar situaciones cotidianas usando números y operaciones, incluyendo el cálculo de áreas y volúmenes de prismas.
+	•	Resolver problemas de la vida diaria relacionados con finanzas, medidas, escalas y magnitudes.
+	•	Interpretar resultados en contextos concretos y científicos.
+5. Pensamiento crítico y resolución de problemas
+	•	Identificar patrones numéricos y relaciones entre números.
+	•	Formular conjeturas y verificar soluciones.
+	•	Tomar decisiones basadas en análisis de datos y resultados matemáticos.
+6. Comunicación y representación
+	•	Expresar ideas y resultados usando lenguaje matemático adecuado.
+	•	Representar información numérica en tablas, gráficos y esquemas.
+	•	Interpretar representaciones matemáticas y relacionarlas con situaciones reales.
+
+
+
+Interdisciplinariedad
+
+No aplica
+
+
+
+Contenidos
+Actividades y Estrategias de Enseñanza
+Tareas de Evaluación
+Criterios de Evaluación
+
+NÚMEROS Y OPERACIONES
+OPERATORIA DE NÚMEROS(repaso)
+
+	•	Conjuntos numéricos. Diagrama de Venn.
+	•	Operatoria de números enteros. 
+	•	Operatoria de números racionales. Fracciones y decimales.
+	•	Resolución de problemas que involucren todos los conjuntos numéricos y sus operatorias.
+
+PORCENTAJES
+
+	•	Concepto de porcentaje.
+	•	Cálculo de porcentajes. Resolución de problemas
+	•	Aumentos y disminuciones porcentuales.
+	•	Interés simple.
+
+POTENCIAS
+
+	•	Potencias de base racional y exponente entero. Concepto. Propiedades.
+	•	Notación Científica
+	•	Resolución de problemas.
+
+RAÍCES
+
+	•	Concepto de raíz.
+	•	Raíces cuadradas exactas.
+
+
+
+
+
+ÁLGEBRA
+
+	•	Expresiones algebraicas. Monomios. Grado y valor numérico 
+	•	Monomios semejantes
+	•	Suma y resta de monomios. Eliminación de paréntesis
+	•	Multiplicación de monomios
+	•	Productos notables: binomio al cuadrado de una suma y una resta, suma por su diferencia.
+	•	Ecuaciones de primer grado. Resolución de problemas
+	•	Inecuaciones simples
+
+
+GEOMETRÍA
+
+Área y volumen de prismas
+
+	•	Definición de prismas
+	•	Tipos de prismas
+	•	Cálculo de área de prismas
+	•	Cálculo de volumen de prismas
+	•	Resolución de problemas aplicando el área y volumen de prismas
+
+
+
+Recordar los conjuntos numéricos estudiados en los niveles anteriores. Deducir ciertas relaciones entre ellos 
+Confeccionan un Diagrama de Venn.
+Los alumnos resuelven ejercicios del cuadernillo de actividades y texto de estudio. Repasan operatoria de números y resolución de problemas.
+
+Los alumnos resuelven ejercicios de cálculo de porcentajes del cuadernillo de actividades y texto de estudio.
+
+En grupos, los estudiantes trabajan en un proyecto sobre la resolución de problemas con porcentajes, incluyendo disminución y aumentos porcentuales.
+
+Los estudiantes resuelven ejercicios de interés simple del cuadernillo de actividades.
+
+Confeccionar una ficha resumen con las propiedades de potencias.
+Confeccionar un resumen con las raíces cuadradas hasta el 400. 
+Mostrar a los estudiantes cómo el lenguaje natural puede ser representado por expresiones algebraicas (lenguaje matemático).
+Los estudiantes construyen cuerpos geométricos con redes planas.
+Los estudiantes resuelven ejercicios de área y volumen de prismas del texto de estudio y cuadernillo de actividades. Incluyendo la resolución de problemas.
+
+________________________________
+Clases expositivas con técnica pregunta respuesta.
+Trabajos de investigación individual y grupal, guiados por el profesor.
+Uso Cuadernillo de actividades y texto de estudio.
+Actividades Plataforma Classroom
+
+
+
+	•	Aplican la operatoria de racionales en la elaboración de un Dominó.
+
+	•	Confeccionan fichas de estudio.
+
+	•	Resuelven ejercicios de forma individual y grupal.
+
+	•	Los alumnos resuelven ejercicios del Cuadernillo de actividades y texto de estudio.
+
+	•	En grupos, realizan un proyecto sobre la resolución de problemas con porcentajes.
+
+	•	Creación de tutoriales.
+
+	•	Desarrollan actividades entretenidas relacionadas con la resolución de ecuaciones (colorear, puzles).
+
+	•	Interdisciplinariedad (Ciencias y matemáticas)
+
+	•	Resuelven ejercicios de forma individual y grupal.
+
+	•	Controles escritos aplicando los conceptos aprendidos.
+
+	•	Prueba Trimestral I. 
+
+
+
+	•	Resuelven problemas que involucren la suma, resta, multiplicación y la división de números racionales.
+
+	•	Resuelven problemas cotidianos que requieren la suma, resta, multiplicación o división de números racionales.
+
+	•	Descubren, comunican y aplican las propiedades de las potencias.
+
+	•	Resuelven ejercicios rutinarios, aplicando las propiedades de potencias.
+
+	•	Relacionan porcentajes rebajados y aumentados con situaciones reales;
+por ejemplo: ofertas de venta, aumento del sueldo, inflación, etc.
+
+	•	Identifican, en expresiones de la vida diaria, los tres términos involucrados en el cálculo porcentual: el porcentaje, el valor inicial que corresponde al porcentaje y el valor que corresponde a la base.
+
+	•	Resuelven ecuaciones de 1º grado de todos los tipos e inecuaciones simples.
+
+	•	Resuelven problemas cotidianos, utilizando ecuaciones e inecuaciones.
+
+	•	Reconocen que las áreas laterales de todos los prismas rectos son rectángulos.
+
+	•	Elaboran redes de prismas rectos de diferentes bases y calculan las
+áreas de las superficies.
+
+	•	Resuelven problemas cotidianos que involucran el volumen y el área
+de prismas rectos.
+
+	•	Aplican el cálculo de áreas y volúmenes de prismas en la resolución de problemas.
+
+
+
+
+
+Recursos y Bibliografía
+
+Confección Diagrama de Venn. Dominó matemático. Ficha con propiedades de potencias. 
+Cartulinas y plumones.
+Cuadernillo de actividades y texto de estudio. 
+Equipos multimedia. Internet. Plataforma Classroom. Canva.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asignatura:
+Matemáticas
+Profesor/es:
+Rosa Marina Santander
+Año:
+2026
+Título de la Unidad:
+
+Funciones. Geometría 2
+
+N° Unidad:
+3
+Nivel:
+8º Básico
+Cantidad de h semanales:
+6
+Duración de la Unidad:
+II Trimestre 
+Mes:
+25 mayo - 11 septiembre
+
+Objetivos de Aprendizaje
+
+ FUNCIONES
+	•	Identificar y representar funciones:
+	•	Reconocer situaciones que se pueden modelar mediante funciones.
+	•	Representar funciones mediante tablas de valores.
+	•	Graficar funciones en el plano cartesiano.
+	•	Analizar relaciones entre variables:
+	•	Diferenciar entre variables dependientes e independientes.
+	•	Interpretar el comportamiento de una función a partir de su gráfica o tabla.
+	•	Determinar patrones de crecimiento o decrecimiento en una función.
+	•	Comprender tipos de funciones:
+	•	Identificar funciones lineales y afines en distintos contextos.
+	•	Analizar las características de las funciones lineales y afines: pendiente, intersección con los ejes.
+	•	Resolver problemas mediante funciones:
+	•	Plantear funciones a partir de situaciones de la vida cotidiana o problemas matemáticos.
+	•	Resolver problemas aplicando funciones y sus representaciones gráficas.
+	•	Comunicar resultados:
+	•	Interpretar y explicar resultados obtenidos a partir de funciones.
+	•	Usar lenguaje matemático adecuado para describir relaciones funcionales.
+GEOMETRÍA
+1. Comprender la proporcionalidad en triángulos
+	•	Reconocer y explicar que cuando un conjunto de rectas paralelas corta dos transversales, los segmentos correspondientes son proporcionales.
+	•	Identificar situaciones en las que se cumple la proporcionalidad y justificarla usando el Teorema de Thales.
+ 2. Aplicar el Teorema de Thales en problemas geométricos
+	•	Calcular longitudes desconocidas en triángulos y figuras compuestas aplicando relaciones de proporcionalidad derivadas del Teorema de Thales.
+	•	Resolver problemas que involucren ampliaciones o reducciones de figuras, justificando los procedimientos mediante el Teorema de Thales.
+ 3. Conectar el Teorema de Thales con la semejanza
+	•	Explicar cómo el Teorema de Thales permite establecer la semejanza de triángulos al mantener las razones de sus lados.
+	•	Utilizar triángulos semejantes para encontrar medidas y resolver problemas de la vida real (altura de objetos, sombras, distancias inaccesibles, etc.).
+4. Representar y comunicar razonamientos geométricos
+	•	Representar gráficamente relaciones de proporcionalidad con rectas paralelas y transversales.
+	•	Comunicar soluciones utilizando vocabulario geométrico adecuado: razón, proporcionalidad, segmentos correspondientes, semejanza, paralelismo.
+5. Usar el teorema en contextos reales
+	•	Resolver situaciones de la vida cotidiana que requieren medir indirectamente longitudes (por ejemplo, altura de un edificio mediante sombras).
+	•	Evaluar la pertinencia del Teorema de Thales en diferentes contextos y justificar su uso.
+
+
+Propósito del II Trimestre y Transversalidad
+
+El propósito de este trimestre es que los estudiantes comprendan la idea de función como una relación entre dos cantidades que cambian, y sean capaces de representarla, interpretarla y aplicarla en distintos contextos.
+A través de tablas, gráficas y reglas, los estudiantes desarrollan la capacidad de modelar situaciones reales, identificar patrones, describir relaciones de dependencia y tomar decisiones informadas. También se busca fortalecer el pensamiento algebraico, promoviendo la lectura e interpretación de gráficos, el uso de lenguaje matemático y la resolución de problemas donde una variable depende de otra.
+Por otro lado, se espera que los estudiantes, comprendan y apliquen el Teorema de Thales como una herramienta fundamental para el razonamiento geométrico, particularmente en la proporcionalidad y la semejanza de triángulos.
+La unidad busca desarrollar la capacidad de establecer relaciones proporcionales, calcular medidas desconocidas, y resolver problemas de la vida real mediante medición indirecta, como la altura de objetos o la comparación de figuras. 
+
+
+	•	Demostrar interés, esfuerzo, perseverancia y rigor frente a la resolución de problemas y la búsqueda de nuevas soluciones para problemas reales.
+
+	•	Mostrar una actitud crítica al evaluar las evidencias e
+informaciones matemáticas y valorar el aporte de los datos cuantitativos en la comprensión de la realidad social.
+
+	•	Usar de manera responsable y efectiva las tecnologías de la comunicación en la obtención de información, dando crédito al trabajo de otros y respetando la propiedad y la privacidad de las personas.
+
+Preguntas Motivadoras o Situaciones Problemáticas
+
+	•	¿Qué cosas en tu vida cambian dependiendo de otra cosa? (ej: mientras más estudias, mejor te va; mientras más lejos vas, más pagas).
+	•	¿Cómo podrías explicar a un compañero qué significa “dependencia” entre variables?
+	•	¿Por qué crees que las sombras pueden ayudarnos a medir objetos grandes?
+
+
+
+
+
+
+
+
+Habilidades por desarrollar
+
+
+1. Modelar situaciones
+	•	Representar relaciones entre variables usando tablas, gráficos y reglas (expresiones algebraicas).
+	•	Identificar cómo una cantidad depende de otra en situaciones reales.
+2. Interpretar y analizar gráficos
+	•	Leer información de gráficos cartesianos.
+	•	Identificar tendencias: crecimiento, disminución, constancia.
+	•	Determinar si una relación es o no una función según su representación.
+3. Razonamiento algebraico
+	•	Comprender la noción de variable y usarla correctamente.
+	•	Interpretar funciones en lenguaje cotidiano y matemático.
+4. Resolución de problemas
+	•	Resolver problemas reales donde una variable depende de otra (velocidad, costo, distancia, temperatura, etc.).
+	•	Estimar y verificar resultados usando gráficos y tablas.
+5. Comunicación
+	•	Explicar relaciones funcionales usando vocabulario adecuado (variable, dependencia, gráfico, punto, eje).
+	•	Argumentar por qué una situación representa una función.
+6. Razonar proporcionalmente
+	•	Identificar y usar razones y proporciones en contextos geométricos.
+	•	Determinar la proporcionalidad entre segmentos generados por rectas paralelas.
+7. Deducir geométricamente
+	•	Justificar la semejanza de triángulos usando el Teorema de Thales.
+	•	Explicar por qué se mantienen las proporciones en ampliaciones o reducciones de figuras.
+8. Cálculo geométrico
+	•	Calcular longitudes desconocidas a partir de proporciones.
+	•	Aplicar el Teorema de Thales para medir indirectamente (sombras, distancias, alturas).
+9. Resolución de problemas
+	•	Resolver problemas reales donde se requiere la medición indirecta.
+10. Argumentación y comunicación
+	•	Explicar procedimientos y justificar el uso del Teorema de Thales.
+	•	Utilizar vocabulario geométrico: razón, proporción, paralelismo, segmentos correspondientes, semejanza.
+
+
+Interdisciplinariedad
+
+Ciencias
+
+
+
+Contenidos
+Actividades y Estrategias de Enseñanza
+Tareas de Evaluación
+Criterios de Evaluación
+
+FUNCIONES
+
+	•	Plano cartesiano.
+	•	Concepto de relación y función.
+	•	Definición de función.
+	•	Función lineal. Gráfica.
+	•	Función afín. Gráfica.
+
+GEOMETRÍA
+
+	•	Teorema de Thales: 
+	•	Historia Thales de Mileto.
+	•	Definición de teorema.
+	•	Definición y concepto del Teorema de Thales.
+	•	Teorema de Thales en el triángulo.
+	•	Semejanza de triángulos.
+
+
+
+De una lista de situaciones, los alumnos deben identificar la variable dependiente y la independiente(tarjetas).
+En grupos, los estudiantes, entregan una tabla incompleta (por ejemplo: precio de taxis, temperatura, velocidad constante), la cual deben completar, construir el gráfico y encontrar una regla de la forma y = mx ó bien .
+Grafican funciones en papel milimetrado.
+Con materiales simples (regla, cartón, lápiz), el estudiante debe construir:
+	•	Un esquema con rectas paralelas y secantes.
+	•	Elegir medidas reales.
+	•	Calcular los segmentos desconocidos.
+	•	Presentar el proceso completo en una hoja o presentación.
+Luego, comparan estrategias entre grupos.
+Resuelven ejercicios del Cuadernillo de actividades y texto de estudio.
+_______________________________
+
+Clases expositivas con técnica pregunta respuesta.
+Clases con técnica lluvia de ideas.
+Trabajos de investigación individual y grupal, guiados por el profesor.
+Uso Cuadernillo de actividades y texto de estudio.
+Actividades Plataforma Classroom.
+
+
+
+	•	Inventar una situación de la vida real que se pueda representar con una función. Escribir la regla, hacer la tabla de valores y el gráfico correspondiente. Explicar con tus palabras cómo se relacionan las variables.
+
+	•	Resuelven ejercicios de forma individual y grupal.
+
+	•	Controles escritos aplicando los conceptos aprendidos.
+
+	•	Prueba Trimestral II. 
+
+
+
+	•	Descubren el concepto de función mediante la relación de proporcionalidad directa.
+
+	•	Representan la noción de función de manera concreta (utilizando
+metáforas de máquinas), pictórica o simbólica.
+
+	•	Elaboran las tablas de valores y gráficos correspondientes, basados en ecuaciones de funciones lineales y afines.
+
+	•	Identifican la pendiente del gráfico 
+
+	•	Modelan situaciones de la vida cotidiana o de ciencias con funciones lineales y afines.
+
+	•	Elaboran, basados en los gráficos, la ecuación de la función afín y lineal:
+f(x) = a • x + b, f(x) = a • x 
+	•	Reconocen que cuando dos o más rectas paralelas son cortadas por rectas secantes, se generan segmentos proporcionales.
+
+	•	Identifican correctamente las condiciones necesarias para que se aplique el Teorema de Thales (paralelismo, secantes que se intersectan)
+
+	•	Distinguen situaciones donde sí se puede aplicar Thales y situaciones donde no corresponde.
+
+	•	Establecen correctamente razones y proporciones entre segmentos homólogos generados por rectas paralelas.
+
+
+
+Recursos y Bibliografía
+
+Confección de fichas de resúmenes y mapas conceptuales.
+Tarjetas, papel milimetrado.
+Cuadernillo de actividades y texto de estudio.
+Internet. Plataforma Classroom. Canva. Geogebra.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Asignatura:
+Matemáticas
+Profesor/es:
+Rosa Marina Santander
+Año:
+2026
+Título de la Unidad:
+
+Estadística y Probabilidades. Geometría 3
+
+Nº Unidad:
+4 y 5
+Nivel:
+8º Básico
+Cantidad de hr semanales:
+6
+Duración de la Unidad:
+III Trimestre 
+Mes:
+21 septiembre- 16 diciembre
+
+Objetivos de Aprendizaje
+
+
+1. Recolección y organización de datos
+	•	Recopilar datos de manera sistemática y organizada a partir de encuestas, experimentos o fuentes secundarias.
+	•	Clasificar y agrupar datos en tablas de frecuencia y categorías relevantes.
+2. Representación de datos
+	•	Representar datos utilizando gráficos adecuados: barras, histogramas, pictogramas, diagramas de sectores (pastel).
+	•	Interpretar y analizar la información presentada en diferentes tipos de gráficos y tablas.
+3. Análisis de datos
+	•	Calcular medidas de tendencia central: media, mediana y moda.
+	•	Identificar medidas de dispersión básica: rango.
+	•	Reconocer patrones y relaciones entre los datos.
+4. Interpretación y comunicación
+	•	Describir los resultados obtenidos a partir de gráficos y medidas estadísticas, utilizando lenguaje matemático preciso.
+	•	Argumentar conclusiones basadas en evidencia numérica, gráficas o tablas.
+ 5. Aplicación en contextos reales
+	•	Resolver problemas de la vida cotidiana que impliquen recopilación, organización y análisis de datos.
+	•	Evaluar la pertinencia de distintos tipos de gráficos y medidas según el contexto del problema.
+6. Comprender conceptos básicos de probabilidad
+	•	Identificar y explicar eventos, resultados, espacios muestrales y la probabilidad de un evento.
+7. Calcular probabilidades en situaciones simples
+	•	Determinar la probabilidad de eventos simples (equipo, dado, moneda, sorteos) usando fracciones, decimales o porcentajes.
+8. Comprender conceptos fundamentales de geometría
+	•	Reconocer y definir los diferentes tipos de ángulos asociados a una circunferencia: ángulo central, ángulo inscrito y ángulos formados por cuerdas, tangentes y secantes.
+	•	Identificar los elementos de la circunferencia: radio, cuerda, arco y diámetro, y su relación con los ángulos.
+9. Aplicar propiedades de los ángulos
+	•	Aplicar la propiedad que relaciona ángulo central y arco correspondiente.
+	•	Aplicar la propiedad que establece que el ángulo inscrito es la mitad del ángulo central que abarca el mismo arco.
+	•	Resolver problemas que involucren la relación entre cuerdas, tangentes, secantes y ángulos en la circunferencia.
+10. Representación y comunicación
+	•	Dibujar circunferencias con ángulos indicados correctamente.
+	•	Comunicar razonamientos y soluciones usando el lenguaje geométrico preciso: arco, ángulo central, ángulo inscrito, cuerda, tangente, secante.
+11. Aplicación en contextos reales
+	•	Aplicar las propiedades de los ángulos en la circunferencia para resolver problemas de la vida cotidiana o de construcción geométrica.
+	•	Reconocer la utilidad de estas propiedades en diseño, ingeniería y ciencias aplicadas
+
+
+
+Propósito del III Trimestre y Transversalidad
+ 
+
+El propósito de este trimestre es que los estudiantes desarrollen la capacidad de interpretar, organizar y representar datos estadísticos de manera efectiva.
+
+En el caso de probabilidades, el propósito es que los estudiantes desarrollen la capacidad de analizar, calcular e interpretar probabilidades de distintos eventos, aplicando conceptos matemáticos a situaciones cotidianas, juegos y experimentos simples. 
+
+También deben comprender y aplicar las propiedades de los ángulos en la circunferencia. A través de estas competencias, los alumnos podrán analizar información cuantitativa y resolver problemas geométricos relacionados con ángulos y figuras circulares, fortaleciendo el razonamiento lógico, la argumentación matemática y la toma de decisiones fundamentadas en datos.
+
+	•	Demostrar curiosidad, interés por resolver desafíos matemáticos, con confianza en las propias capacidades, incluso cuando no se consigue un resultado inmediato.
+
+	•	Demostrar interés, esfuerzo, perseverancia y rigor frente a la resolución de problemas y la búsqueda de nuevas soluciones para problemas reales.
+
+	•	Trabajar en equipo, en forma responsable y proactiva, ayudando a los otros, considerando y respetando los aportes de todos, y manifestando disposición a entender sus argumentos en las soluciones de los problemas.
+
+
+
+Preguntas Motivadoras o Situaciones Problemáticas
+
+	•	¿Cómo podemos usar los datos para tomar decisiones más inteligentes en la vida cotidiana?
+	•	¿Se puede usar la probabilidad para tomar decisiones en juegos, sorteos o apuestas de manera más inteligente?
+	•	¿Puedes imaginar algún objeto en tu entorno donde el conocimiento de los ángulos en la circunferencia sea útil?
+
+
+
+
+
+
+
+
+
+
+
+Habilidades por desarrollar
+
+
+
+1. Comprensión y análisis
+	•	Interpretar tablas de frecuencia, gráficos de barras, circulares y de líneas.
+	•	Identificar tendencias, comportamientos y patrones en conjuntos de datos.
+	•	Diferenciar entre datos cualitativos y cuantitativos.
+2. Representación
+	•	Recopilar datos mediante encuestas o registros.
+	•	Organizar datos en tablas de frecuencia simples y acumuladas.
+	•	Construir gráficos estadísticos (barras, sectores, líneas).
+3. Cálculo
+	•	Calcular medidas de tendencia central: media, mediana y moda.
+4. Comprensión conceptual
+	•	Reconocer la probabilidad como una medida que indica qué tan posible es un evento.
+	•	Distinguir entre eventos seguros, probables, improbables e imposibles.
+6.  Cálculo
+	•	Calcular probabilidades simples utilizando la fórmula:
+
+	•	Determinar probabilidades en experimentos aleatorios: dados, monedas, ruletas, urnas.
+7. Modelación
+	•	Representar situaciones de azar mediante diagramas de árbol, tablas o listas sistemáticas.
+
+8. Conceptos básicos geometría
+	•	Reconocer y describir partes de la circunferencia: centro, radio, diámetro, arco.
+	•	Identificar ángulos inscritos, centrales, interiores y exteriores.
+9. Cálculo
+	•	Calcular medidas de ángulos inscritos a partir de ángulos centrales y viceversa.
+	•	Resolver problemas en que intervienen arcos y ángulos relacionados.
+	•	Aplicar propiedades de la circunferencia:
+	•	El ángulo inscrito es la mitad del ángulo central.
+	•	Ángulos inscritos que abarcan el mismo arco son congruentes.
+
+
+Interdisciplinariedad
+No aplica
+
+
+Contenidos
+Actividades y estrategias de enseñanza
+Tareas de Evaluación
+Criterios de Evaluación
+
+
+ESTADÍSTICA Y PROBABILIDADES
+
+ESTADÍSTICA
+
+	•	Repaso conceptos básicos. Parámetros de tendencia central
+	•	Intervalos. Amplitud de un intervalo. Marca de clase de un intervalo
+	•	Tablas de frecuencia con datos agrupados en intervalos
+	•	Media aritmética, mediana y moda para datos agrupados en intervalos
+	•	Cuartiles. Percentiles
+	•	Diagrama de caja y bigotes
+
+PROBABILIDADES
+
+	•	Conceptos básicos.
+	•	Principio multiplicativo
+	•	Diagrama de árbol
+
+
+GEOMETRÍA
+	•	La circunferencia: definición y elementos de una circunferencia.
+	•	Ángulos en la circunferencia 
+	•	Relaciones métricas en la circunferencia.
+
+
+
+
+
+
+
+Construyen tablas y gráficos a partir de información en datos individuales y por intervalos.
+
+Interpretan y analizan diferentes gráficas.
+
+Resuelven ejercicios del libro de estudios y cuadernillo de actividades.
+
+Realizan pequeños estudios estadísticos dentro de la clase o colegio. Lo aplican en la asignatura de inglés, elaborando trabajos.
+
+Realizan diferentes problemas cotidianos de probabilidades aplicando en su solución el diagrama de árbol.
+
+Actividad introductoria:
+Materiales: 1 dado, 10 fichas rojas y 10 azules, una moneda. Actividad:
+	•	Los estudiantes predicen qué es más probable: sacar rojo o azul, cara o sello, un número del dado.
+	•	Después experimentan y registran 10 resultados.
+	•	Comparan predicción con resultado real.
+Propósito: comprender la idea de “caso favorable / caso posible”.
+
+En geogebra, manipular una circunferencia donde los estudiantes arrastran puntos para observar cómo cambian los ángulos.
+En geogebra, comparar el ángulo central y el inscrito modificando el arco.
+En geogebra, explorar qué ocurre con un ángulo inscrito cuando el punto se mueve alrededor de la circunferencia.
+
+Los alumnos resuelven ejercicios del libro digital y cuaderno de ejercicios.
+
+_____________________________
+
+Clases expositivas con técnica pregunta respuesta.
+Clases con técnica lluvia de ideas.
+Trabajos de investigación individual y grupal, guiados por el profesor.
+
+Actividades Plataforma Classroom.
+
+
+	•	 Realizan un estudio estadístico.
+
+	•	 Confeccionan un folleto que entregue información tabulada sobre un tema de actualidad para los adolescentes (prevención de drogas, mal uso de las redes sociales, dieta saludable, etc.) 
+
+	•	Los alumnos explican a sus compañeros diferentes problemas de aplicación.
+
+	•	Resuelven ejercicios de formas individual y grupal.
+
+	•	Controles escritos aplicando los conceptos aprendidos
+
+	•	Prueba Trimestral III.
+
+
+
+	•	Organizan y agrupan datos en tablas o esquemas para formar distribuciones de frecuencias.
+
+	•	Calculan, describen e interpretan las medidas de posición (cuartiles
+y percentiles)
+
+	•	Representan las medidas de posición por medio de diagramas de cajón.
+
+	•	Reconocen cuándo es adecuado utilizar alguna de las medidas para
+analizar una muestra.
+
+	•	Comparan muestras de poblaciones, utilizando algunas de las medidas
+de tendencia.
+
+	•	Comparan información recolectada con su respectivo gráfico y hacen
+inferencias a partir de ella.
+
+	•	Explican la elección de tipos de gráficos para representar determinada información.
+
+	•	Simulan experimentos que involucran elecciones al azar equiprobables reiteradas (de pocos pasos) y describen pictóricamente los resultados,
+vía árboles, por ejemplo: en situaciones como componer menús o tenidas mediante elecciones sucesivas equiprobables de platos y prendas de ropa.
+
+
+
+
+
+
+Recursos y Bibliografía
+
+Material concreto de cuerpos geométricos para facilitar la comprensión de los alumnos.
+Redes de cuerpos geométricos. Cartulinas, plumones, tijeras y pegamento.
+Papel milimetrado
+Reglas, trasportador y compás.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

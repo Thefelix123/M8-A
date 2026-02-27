@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conjuntos Numéricos - Matemáticas 8º Básico</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f0fdf4;
+            border-radius: 6px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 6px;
+            border: 2px solid #f0fdf4;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none h-screen w-screen flex flex-col bg-slate-50">
+
+    <div class="h-4 w-full bg-emerald-800 shrink-0"></div>
+
+    <div id="slide-container" class="flex-1 relative w-full overflow-hidden">
+
+        <!-- SLIDE 1: PORTADA -->
+        <div class="slide active p-10 bg-slate-50">
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-20">
+                <i data-lucide="network" class="w-40 h-40 text-emerald-800 opacity-90"></i>
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center">
+                    El Universo de los Números
+                </h1>
+                <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center">
+                    Construyendo la Realidad Numérica
+                </p>
+
+                <div
+                    class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-emerald-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md">
+                    <div>
+                        <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-emerald-800 uppercase tracking-wider">SEK CHILE • 8º BÁSICO
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: INTRODUCCIÓN Y PROBLEMA FÍSICO -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="thermometer-snowflake" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl md:text-6xl font-bold text-slate-800">El Límite del Conteo</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
+                <div class="space-y-8 h-full flex flex-col justify-center pr-4">
+                    <p class="text-4xl font-light text-slate-700 leading-relaxed">
+                        Durante milenios usamos un único conjunto para <strong>contar</strong> cosas exactas:
+                        <br><strong class="text-emerald-700">Los Naturales ($\mathbb{N}$)</strong>.
+                    </p>
+                    <div class="glass-card p-6 rounded-xl border-l-8 border-rose-600">
+                        <h3 class="text-3xl font-bold text-rose-700 mb-4 flex items-center gap-3">
+                            <i data-lucide="alert-triangle" class="w-8 h-8"></i> El Problema:
+                        </h3>
+                        <p class="text-3xl text-slate-700 leading-snug">
+                            ¿Cómo representamos una deuda de 5 mil pesos, o cuando dividimos 3 pizzas rectangulares
+                            entre 4 amigos?
+                        </p>
+                    </div>
+                    <button onclick="revelarElemento('concepto-fallo'); revelarElemento('expansion-svg')"
+                        class="mt-4 px-8 py-4 bg-slate-800 text-white rounded-xl text-2xl font-bold hover:bg-slate-700 transition shadow-md w-max">
+                        <i data-lucide="eye" class="inline-block w-6 h-6 mr-2 mb-1"></i> Ver Solución Matemática
+                    </button>
+
+                    <div id="concepto-fallo" class="hidden mt-4 bg-emerald-50 border border-emerald-200 p-6 rounded-xl">
+                        <p class="text-2xl text-emerald-900 leading-relaxed font-bold">
+                            Para poder medir la realidad, los matemáticos tuvieron que inventar nuevos conjuntos que
+                            "engloban" a los anteriores.
+                        </p>
+                    </div>
+                </div>
+
+                <div
+                    class="h-full w-full flex items-center justify-center bg-slate-50 rounded-2xl border-2 border-slate-200 p-4">
+                    <div id="expansion-svg" class="hidden w-full h-full flex flex-col justify-center space-y-6">
+
+                        <div class="w-full flex items-center gap-6 p-4">
+                            <div
+                                class="h-24 w-24 bg-white rounded-full flex items-center justify-center text-5xl font-bold text-slate-800 shadow border-4 border-slate-300">
+                                $\mathbb{N}$
+                            </div>
+                            <div
+                                class="flex-1 bg-white p-4 font-mono text-3xl text-center rounded-xl border border-slate-200 shadow-sm flex flex-col justify-center items-center">
+                                <span>$\{1, 2, 3, 100, 500\}$</span>
+                                <span
+                                    class="text-slate-600 font-sans font-bold text-xl mt-2 tracking-wide uppercase">Contar</span>
+                            </div>
+                        </div>
+
+                        <div class="w-12 h-12 mx-auto"><i data-lucide="arrow-down-circle"
+                                class="w-full h-full text-indigo-400"></i></div>
+
+                        <div
+                            class="w-full flex items-center gap-6 p-4 bg-indigo-50 border-2 border-indigo-200 rounded-2xl">
+                            <div
+                                class="h-24 w-24 bg-indigo-100 rounded-full flex items-center justify-center text-5xl font-bold text-indigo-800 shadow border-4 border-indigo-300">
+                                $\mathbb{Z}$
+                            </div>
+                            <div
+                                class="flex-1 bg-white p-4 font-mono text-3xl text-center rounded-xl border border-indigo-200 shadow-sm flex flex-col justify-center items-center">
+                                <span>$\{-5, 0, 1\}$</span>
+                                <span
+                                    class="text-indigo-600 font-sans font-bold text-xl mt-2 tracking-wide uppercase">Deuda
+                                    / Cero</span>
+                            </div>
+                        </div>
+
+                        <div class="w-12 h-12 mx-auto">
+                            <i data-lucide="arrow-down-circle" class="w-full h-full text-cyan-400"></i>
+                        </div>
+
+                        <div class="w-full flex items-center gap-6 p-4 bg-cyan-50 border-2 border-cyan-200 rounded-2xl">
+                            <div
+                                class="h-24 w-24 bg-cyan-100 rounded-full flex items-center justify-center text-5xl font-bold text-cyan-800 shadow border-4 border-cyan-300">
+                                $\mathbb{Q}$
+                            </div>
+                            <div
+                                class="flex-1 bg-white p-4 font-mono text-3xl text-center rounded-xl border border-cyan-200 shadow-sm flex flex-col justify-center items-center">
+                                <span>$\{\frac{3}{4}, -0.5, 0.\overline{3}\}$</span>
+                                <span
+                                    class="text-cyan-600 font-sans font-bold text-xl mt-2 tracking-wide uppercase">Fracción</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: DIAGRAMA DE RESTRICCIÓN R (VENN) -->
+        <div class="slide bg-slate-50 p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="pie-chart" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Arquitectura de Conjuntos: Contención Universal</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 mt-6">
+                <!-- DEFINITION RULES -->
+                <div class="h-full flex flex-col justify-center space-y-4">
+                    <div class="bg-emerald-50 p-5 rounded-2xl border-l-8 border-emerald-600 shadow-sm">
+                        <p class="text-2xl text-emerald-900 font-bold mb-1 flex items-center gap-2">$\mathbb{N}$:
+                            Naturales
+                        </p>
+                        <p class="text-xl text-slate-700 leading-tight">Positivos exactos. Para contar objetos.</p>
+                        <p class="text-xl font-mono text-emerald-800 font-bold mt-2">Ej: $\{1, 15, 300\}$
+                        </p>
+                    </div>
+
+                    <div class="bg-indigo-50 p-5 rounded-2xl border-l-8 border-indigo-600 shadow-sm">
+                        <p class="text-2xl text-indigo-900 font-bold mb-1 flex items-center gap-2">$\mathbb{Z}$: Enteros
+                        </p>
+                        <p class="text-xl text-slate-700 leading-tight">Agrega el $0$ y los negativos (para deudas).
+                            Contiene a los Naturales ($\mathbb{N} \subset \mathbb{Z}$).</p>
+                        <p class="text-xl font-mono text-indigo-800 font-bold mt-2">Ej: $\{-5, 0, 15\}$</p>
+                    </div>
+
+                    <div class="bg-cyan-50 p-5 rounded-2xl border-l-8 border-cyan-500 shadow-sm">
+                        <p class="text-2xl text-cyan-900 font-bold mb-1 flex items-center gap-2">$\mathbb{Q}$:
+                            Racionales
+                        </p>
+                        <p class="text-xl text-slate-700 leading-tight">Cualquier número escribible como <strong
+                                class="font-mono">fracción</strong>. Decimales finitos o periódicos. ($\mathbb{Z}
+                            \subset \mathbb{Q}$).
+                        </p>
+                        <p class="text-xl font-mono text-cyan-800 font-bold mt-2">Ej: $\{-1.5, \, \frac{3}{4}, \,
+                            1.\overline{3}, \, 5\}$</p>
+                    </div>
+
+                    <div class="bg-purple-50 p-5 rounded-2xl border-l-8 border-purple-600 shadow-sm">
+                        <p class="text-2xl text-purple-900 font-bold mb-1 flex items-center gap-2">$\mathbb{I}$:
+                            Irracionales</p>
+                        <p class="text-xl text-slate-700 leading-tight">Decimales infinitos <strong
+                                class="text-purple-700">sin patrón</strong>. No pueden ser fracción. Aislados del resto.
+                        </p>
+                        <p class="text-xl font-mono text-purple-800 font-bold mt-2">Ej: $\{\pi, \, 1.41421...\}$</p>
+                    </div>
+
+                    <div class="bg-slate-200 p-5 rounded-2xl border-l-8 border-slate-800 shadow-md">
+                        <p class="text-2xl text-slate-900 font-bold mb-1 flex items-center gap-2">$\mathbb{R}$: Reales
+                        </p>
+                        <p class="text-xl text-slate-700 leading-tight">La unión de todos. $\mathbb{R} = \mathbb{Q} \cup
+                            \mathbb{I}$</p>
+                    </div>
+                </div>
+
+                <!-- SVG DIAGRAM Reworked -->
+                <div
+                    class="h-full w-full flex items-center justify-center bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-md overflow-visible relative">
+                    <img src="./diagrama_venn_gemini.png" alt="Diagrama de Venn Conjuntos Numéricos (Gemini)"
+                        class="w-full h-full object-contain max-h-[550px]" />
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: ANÁLISIS GUIADO (MODELAJE PROFESOR) -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-100 pb-2 shrink-0">
+                <i data-lucide="brain-circuit" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Análisis Guiado: Simplificar antes de clasificar</h2>
+            </div>
+
+            <div
+                class="flex flex-col gap-4 mt-8 bg-slate-50 p-8 rounded-3xl border-2 border-slate-200 shrink-0 shadow-sm">
+                <p class="text-3xl font-medium text-slate-800 leading-relaxed border-l-8 border-slate-400 pl-6 mx-4">
+                    <strong>Regla de Oro PAES:</strong> Resuelve siempre la operación a su forma más simple antes de
+                    decidir a qué conjunto pertenece el número. Expresa a qué conjuntos <strong>NO</strong> pertenece
+                    ($\notin$).
+                </p>
+
+                <div class="flex justify-around items-center pt-8">
+                    <button onclick="revelarElemento('trampa-1')"
+                        class="px-8 py-5 bg-emerald-800 text-white rounded-xl text-3xl font-bold hover:bg-emerald-900 transition shadow flex flex-col items-center gap-2">
+                        <span>A) $\displaystyle 1.5 - 3.5$</span>
+                        <span class="text-lg font-sans text-emerald-200 uppercase tracking-widest">Revelar
+                            Respuesta</span>
+                    </button>
+                    <button onclick="revelarElemento('trampa-2')"
+                        class="px-8 py-5 bg-cyan-700 text-white rounded-xl text-3xl font-bold hover:bg-cyan-800 transition shadow flex flex-col items-center gap-2">
+                        <span>B) $\displaystyle \frac{-8}{-2}$</span>
+                        <span class="text-lg font-sans text-cyan-200 uppercase tracking-widest">Revelar Respuesta</span>
+                    </button>
+                    <button onclick="revelarElemento('trampa-3')"
+                        class="px-8 py-5 bg-purple-700 text-white rounded-xl text-3xl font-bold hover:bg-purple-800 transition shadow flex flex-col items-center gap-2">
+                        <span>C) $\displaystyle 3 + \pi$</span>
+                        <span class="text-lg font-sans text-purple-200 uppercase tracking-widest">Revelar
+                            Respuesta</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 flex-1 mt-8 pb-10">
+                <!-- TRAMPA 1 -->
+                <div id="trampa-1"
+                    class="hidden flex-col gap-6 bg-white border-2 border-emerald-300 rounded-3xl p-8 shadow-md">
+                    <div class="text-5xl text-center font-bold font-mono text-slate-800">
+                        $$ 1.5 - 3.5 $$
+                    </div>
+                    <div class="flex-1 space-y-4 text-3xl text-slate-700 font-mono text-center pt-4">
+                        <p>Operación Decimal</p>
+                        <p>$\rightarrow -2$</p>
+                    </div>
+                    <div class="p-4 bg-emerald-50 border-2 border-emerald-400 rounded-xl text-center space-y-2">
+                        <p class="text-lg text-slate-800 font-bold uppercase tracking-wider">Respuesta Ejercicio A</p>
+                        <p class="text-4xl font-bold text-emerald-800">$$ \therefore -2 \in \mathbb{Z} $$</p>
+                        <p class="text-2xl text-rose-600 font-bold">$$ -2 \notin \mathbb{N} $$</p>
+                    </div>
+                </div>
+
+                <!-- TRAMPA 2 -->
+                <div id="trampa-2"
+                    class="hidden flex-col gap-6 bg-white border-2 border-cyan-300 rounded-3xl p-8 shadow-md">
+                    <div class="text-5xl text-center font-bold font-mono text-slate-800">
+                        $$ \frac{-8}{-2} $$
+                    </div>
+                    <div class="flex-1 space-y-4 text-3xl text-slate-700 font-mono text-center pt-4">
+                        <p>$\rightarrow -8 \div -2$</p>
+                        <p>$\rightarrow 4$</p>
+                    </div>
+                    <div class="p-4 bg-cyan-50 border-2 border-cyan-400 rounded-xl text-center space-y-2">
+                        <p class="text-lg text-slate-800 font-bold uppercase tracking-wider">Respuesta Ejercicio B</p>
+                        <p class="text-4xl font-bold text-cyan-800">$$ \therefore 4 \in \mathbb{N} $$</p>
+                        <p class="text-xl text-slate-600 font-medium pt-2 border-t border-cyan-200 mt-2">Al ser
+                            $\mathbb{N}$, hereda su pertenencia a $\mathbb{Z, Q, R}$.</p>
+                    </div>
+                </div>
+
+                <!-- TRAMPA 3 -->
+                <div id="trampa-3"
+                    class="hidden flex-col gap-6 bg-white border-2 border-purple-300 rounded-3xl p-8 shadow-md">
+                    <div class="text-5xl text-center font-bold font-mono text-slate-800">
+                        $$ 3 + \pi $$
+                    </div>
+                    <div class="flex-1 space-y-4 text-3xl text-slate-700 font-mono text-center pt-4">
+                        <p>$\rightarrow 3 + 3.14159\dots$</p>
+                        <p class="text-2xl font-sans mt-4">Un racional + Un irracional genera otro irracional.</p>
+                    </div>
+                    <div class="p-4 bg-purple-50 border-2 border-purple-400 rounded-xl text-center space-y-2">
+                        <p class="text-lg text-slate-800 font-bold uppercase tracking-wider">Respuesta Ejercicio C</p>
+                        <p class="text-4xl font-bold text-purple-800">$$ \therefore \in \mathbb{I} $$</p>
+                        <p class="text-2xl text-rose-600 font-bold">$$ \notin \mathbb{N}, \mathbb{Z}, \mathbb{Q} $$</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: PRÁCTICA INDEPENDIENTE 18 PREGUNTAS (1 A 18) -->
+        <div class="slide bg-slate-50 p-8 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
+                <i data-lucide="edit-3" class="w-12 h-12 text-emerald-800"></i>
+                <h2 class="text-4xl font-bold text-slate-800">Desarrollo M1: Conjuntos y Expresiones</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 mt-4">
+                <div class="bg-white p-4 rounded-xl border-2 border-slate-200 shadow-sm shrink-0 mb-4 mx-4">
+                    <p class="text-2xl font-medium text-slate-800 text-center">
+                        <strong class="text-emerald-700">Instrucción:</strong> Resuelve a la mínima expresión. Determina
+                        su <strong>conjunto más restrictivo</strong> ($\mathbb{N, Z, Q, I}$) e indica textualmente a
+                        cuál <strong>no pertenece</strong> ($\notin$).
+                    </p>
+                </div>
+
+                <!-- Envoltura para garantizar el scroll -->
+                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-max px-4">
+                        <!-- NIVEL 1 -->
+                        <div class="md:col-span-3 mt-2 mb-2">
+                            <div class="w-full h-2 bg-emerald-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">1</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle -23 $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">2</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 0 $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">1</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 0 $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">2</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle -15 $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">3</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 24 $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">4</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle -3 + 5
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">5</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 10 - 18
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">6</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 0.\overline{5}
+                                $</span>
+                        </div>
+
+                        <!-- NIVEL 2 -->
+                        <div class="md:col-span-3 mt-6 mb-2">
+                            <div class="w-full h-2 bg-amber-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">7</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle \frac{1}{4}
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">8</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle -0.5
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">9</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 0.\overline{3}
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">10</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle \frac{1}{2} +
+                                \frac{1}{2}
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">11</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle \frac{3}{4} -
+                                \frac{1}{4} $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">12</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle -2.5 + 1.5
+                                $</span>
+                        </div>
+
+                        <!-- NIVEL 3 -->
+                        <div class="md:col-span-3 mt-6 mb-2">
+                            <div class="w-full h-2 bg-rose-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">13</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 0.\overline{3}
+                                + 0.\overline{6}
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">14</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle 1 - 0.25 \cdot
+                                2
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">15</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle \frac{2}{3}
+                                \cdot \frac{3}{2} $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-white">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">16</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle \frac{10}{0}
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-white">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">17</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle -(-4) - 7
+                                $</span>
+                        </div>
+                        <div
+                            class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-white">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">18</span>
+                            <span class="text-4xl font-mono text-slate-800 font-bold py-2">$\displaystyle
+                                \frac{1}{2} \div \frac{1}{4} $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DESAFÍO FINAL TIPO PAES (TICKET DE SALIDA) -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="award" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Desafío Estilo PAES (M1)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
+                <div class="space-y-8 pr-4">
+                    <div class="p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl relative shadow-md">
+                        <p class="text-3xl font-medium text-slate-800 leading-relaxed mt-2">
+                            Considere el número resultante de la siguiente operación matemática:
+                        </p>
+                        <div
+                            class="text-5xl font-mono text-center font-bold my-8 bg-white py-4 rounded-xl border border-slate-200">
+                            $$ \frac{15}{5} - 6 $$
+                        </div>
+                        <p class="text-2xl font-medium text-slate-800">
+                            De acuerdo a las clasificaciones conjuntas, es <strong>CORRECTO</strong> afirmar que dicho
+                            resultado:
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-3xl font-bold text-slate-700 pl-4 font-mono leading-tight">
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            A) Pertenece solo a los Irracionales ($\mathbb{I}$).</p>
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            B) Pertenece a $\mathbb{N}, \mathbb{Z}, \mathbb{Q}, \text{y } \mathbb{R}$.</p>
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            C) Pertenece a $\mathbb{Z}, \mathbb{Q}, \text{y } \mathbb{R}$, pero NO a $\mathbb{N}$.
+                        </p>
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            D) No pertenece a ningún conjunto real.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col h-full justify-center space-y-6">
+                    <button onclick="revelarElemento('respuesta-paes')"
+                        class="px-8 py-6 bg-emerald-800 text-white rounded-2xl text-4xl font-bold hover:bg-emerald-900 transition shadow-lg w-full">
+                        Comprobar Resolución
+                    </button>
+
+                    <div id="respuesta-paes"
+                        class="hidden flex-1 glass-card p-10 rounded-3xl border-4 border-emerald-500 bg-emerald-50 text-center flex flex-col justify-center shadow-lg">
+                        <div
+                            class="text-3xl text-slate-800 space-y-6 font-mono bg-white p-8 rounded-2xl border-2 border-emerald-200 shadow-sm text-left">
+                            <p
+                                class="text-emerald-700 font-bold border-b border-slate-200 pb-4 flex items-center justify-between">
+                                Desarrollo del Desafío:
+                                <i data-lucide="brain-circuit" class="w-10 h-10 text-emerald-600"></i>
+                            </p>
+                            <p class="pl-8 pt-2 text-4xl">$$ 3 - 6 = -3 $$</p>
+                            <p class="mt-6 font-sans text-2xl text-slate-700 font-bold pt-4 leading-relaxed">
+                                El resultado numérico es -3.<br><br>
+                                Al tratar de un entero negativo, <span
+                                    class="text-rose-600 font-extrabold uppercase line-through">nula es su pertenencia a
+                                    los Naturales ($\mathbb{N}$)</span>.
+                                Sin embargo, sí mantiene membresía estructural dentro de los conjuntos $\mathbb{Z}$,
+                                $\mathbb{Q}$, y $\mathbb{R}$.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVEGACIÓN INFERIOR (ESTRICTA LDI/F2 FORMAT) -->
+    <div
+        class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 z-50 fixed bottom-0">
+        <div class="text-slate-500 font-bold text-2xl tracking-widest uppercase">
+            Matemáticas • Clase 1 • Conjuntos Numéricos
+        </div>
+        <div class="flex gap-6">
+            <button onclick="changeSlide(-1)"
+                class="p-5 rounded-full bg-slate-100 border-2 border-slate-300 shadow-sm hover:bg-slate-200 transition-all cursor-pointer">
+                <i data-lucide="chevron-left" class="w-10 h-10 text-slate-800"></i>
+            </button>
+            <button onclick="changeSlide(1)"
+                class="p-5 rounded-full bg-emerald-800 text-white shadow-md hover:bg-emerald-900 transition-all cursor-pointer">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === currentSlide) s.classList.add('active');
+            });
+        }
+
+        function changeSlide(d) {
+            const n = currentSlide + d;
+            if (n >= 0 && n < slides.length) { currentSlide = n; updateSlide(); }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowRight', 'Space', 'Enter'].includes(e.key)) changeSlide(1);
+            if (['ArrowLeft', 'Backspace'].includes(e.key)) changeSlide(-1);
+        });
+
+        function revelarElemento(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                if (el.classList.contains('hidden')) {
+                    el.classList.remove('hidden');
+                    if (window.MathJax) {
+                        MathJax.typesetPromise([el]).catch((err) => console.log(err.message));
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

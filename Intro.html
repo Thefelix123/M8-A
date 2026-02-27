@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción - Matemáticas 8º Básico</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+        .slide { display: none; height: 100vh; width: 100vw; animation: fadeIn 0.5s ease-out; flex-direction: column;; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch;} 
+        .slide.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Efecto de cristal minimalista */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.95); 
+            border: 1px solid #e2e8f0; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none">
+
+    <div class="h-3 w-full bg-teal-800 shrink-0 absolute top-0 z-50"></div>
+
+    <div id="slide-container" class="relative w-full h-full">
+
+        <div class="slide active items-center justify-center text-center space-y-8 bg-slate-50">
+            <div class="mb-2">
+                <i data-lucide="blocks" class="w-28 h-28 text-teal-800 mx-auto opacity-90"></i>
+            </div>
+            <div class="space-y-4">
+                <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                    MATEMÁTICAS<br>8º BÁSICO
+                </h1>
+                <p class="text-3xl md:text-4xl text-slate-500 font-light tracking-wide">
+                    Construyendo tu base lógica
+                </p>
+            </div>
+            <div class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-teal-800 text-left w-3/4 max-w-4xl mx-auto flex justify-between items-end">
+                <div>
+                    <p class="text-3xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    <p class="text-xl text-slate-500 mt-2">Ciencias Exactas</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xl font-bold text-teal-800 uppercase tracking-wider">SEK CHILE • 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide justify-start px-16 py-16 bg-white">
+            <div class="flex items-center gap-6 mb-12 border-b-2 border-slate-100 pb-6 shrink-0">
+                <i data-lucide="target" class="w-10 h-10 text-teal-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Objetivo del Curso</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16 h-full items-center pb-16">
+                <div class="space-y-8">
+                    <p class="text-3xl font-light text-slate-700 leading-relaxed">
+                        Este año daremos el paso más importante de su etapa escolar: dejaremos de ver solo números y aprenderemos el lenguaje universal del <span class="font-semibold text-teal-800">Álgebra y la Geometría</span>.
+                    </p>
+                    <div class="p-6 bg-teal-50 border-l-4 border-teal-500 rounded-r-xl">
+                        <p class="text-2xl text-slate-700 leading-relaxed italic">
+                            "La matemática no trata de adivinar el resultado, trata de saber argumentar el camino. Si mantienen el orden, respetan las normas y practican en clase, construirán una base indestructible para la Enseñanza Media."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6">
+                    <div class="glass-card p-6 rounded-xl flex items-center gap-6 border-l-4 border-cyan-500">
+                        <div class="p-4 bg-cyan-50 rounded-full"><i data-lucide="binary" class="w-8 h-8 text-cyan-600"></i></div>
+                        <p class="text-2xl font-semibold text-slate-800">Transición al Pensamiento Abstracto</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex items-center gap-6 border-l-4 border-teal-600">
+                        <div class="p-4 bg-teal-50 rounded-full"><i data-lucide="shapes" class="w-8 h-8 text-teal-700"></i></div>
+                        <p class="text-2xl font-semibold text-slate-800">Visualización Geométrica</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl flex items-center gap-6 border-l-4 border-slate-700">
+                        <div class="p-4 bg-slate-100 rounded-full"><i data-lucide="message-square-dashed" class="w-8 h-8 text-slate-700"></i></div>
+                        <p class="text-2xl font-semibold text-slate-800">Argumentación de Procedimientos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide justify-start px-16 py-16 bg-slate-50">
+            <div class="flex items-center gap-6 mb-12 border-b-2 border-slate-200 pb-6 shrink-0">
+                <i data-lucide="map" class="w-10 h-10 text-teal-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Estructura Académica Anual</h2>
+            </div>
+
+            <div class="grid grid-cols-3 gap-8 h-full pb-16">
+                <div class="glass-card p-8 rounded-2xl flex flex-col border-t-4 border-t-cyan-500">
+                    <div class="text-cyan-700 font-bold text-lg uppercase mb-2 tracking-wider">Trimestre 1</div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">Números y Álgebra</h3>
+                    <ul class="space-y-4 text-xl text-slate-600 flex-1">
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 shrink-0"></i> Potencias y Raíces.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 shrink-0"></i> Porcentajes e Interés Simple.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 shrink-0"></i> Expresiones Algebraicas.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-cyan-400 shrink-0"></i> Ecuaciones e Inecuaciones.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl flex flex-col border-t-4 border-t-teal-600">
+                    <div class="text-teal-700 font-bold text-lg uppercase mb-2 tracking-wider">Trimestre 2</div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">Funciones y Geometría</h3>
+                    <ul class="space-y-4 text-xl text-slate-600 flex-1">
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-teal-400 shrink-0"></i> Función Lineal y Afín.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-teal-400 shrink-0"></i> Teorema de Thales y Semejanza.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-teal-400 shrink-0"></i> Circunferencia y Ángulos.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-teal-400 shrink-0"></i> Áreas y Volúmenes de Prismas.</li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-8 rounded-2xl flex flex-col border-t-4 border-t-slate-800">
+                    <div class="text-slate-700 font-bold text-lg uppercase mb-2 tracking-wider">Trimestre 3</div>
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">Datos y Azar</h3>
+                    <ul class="space-y-4 text-xl text-slate-600 flex-1">
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-slate-400 shrink-0"></i> Probabilidad Simple.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-slate-400 shrink-0"></i> Tablas de Doble Entrada.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-slate-400 shrink-0"></i> Diagramas de Cajón.</li>
+                        <li class="flex gap-3"><i data-lucide="chevron-right" class="w-6 h-6 text-slate-400 shrink-0"></i> Análisis crítico de Gráficos.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide justify-start px-16 py-16 bg-white">
+            <div class="flex items-center gap-6 mb-12 border-b-2 border-slate-100 pb-6 shrink-0">
+                <i data-lucide="bar-chart-3" class="w-10 h-10 text-teal-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Sistema de Evaluación Trimestral</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16 h-full pb-16 items-center">
+                <div class="space-y-8">
+                    <div class="glass-card p-8 rounded-2xl border-l-8 border-slate-800 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-slate-100 px-4 py-2 rounded-bl-xl font-bold text-slate-600 text-xl">60%</div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-4">Prueba Sumativa Final</h3>
+                        <p class="text-xl text-slate-600">Evaluación integral al cierre del trimestre. Medirá el desarrollo lógico, la argumentación de respuestas y el cálculo correcto.</p>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-2xl border-l-8 border-teal-600 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-teal-50 px-4 py-2 rounded-bl-xl font-bold text-teal-700 text-xl">40%</div>
+                        <h3 class="text-3xl font-bold text-slate-800 mb-4">Evaluación de Proceso</h3>
+                        <ul class="space-y-3 text-xl text-slate-600">
+                            <li class="flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-teal-500"></div> Controles periódicos.</li>
+                            <li class="flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-teal-500"></div> Guías de trabajo en clase (Portafolio).</li>
+                            <li class="flex items-center gap-3"><div class="w-2 h-2 rounded-full bg-teal-500"></div> Participación y resolución en pizarra.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-center bg-slate-50 rounded-2xl p-10 border border-slate-200">
+                    <div class="w-16 h-16 bg-teal-100 text-teal-700 rounded-full flex items-center justify-center mb-6">
+                        <i data-lucide="info" class="w-8 h-8"></i>
+                    </div>
+                    <p class="text-2xl text-slate-700 leading-relaxed mb-6">
+                        El 40% del proceso es el premio al esfuerzo diario. En matemáticas, el error es parte del aprendizaje, pero no trabajar en clase no es opción. Asegurar buenas notas en el proceso garantiza llegar a la prueba del 60% con tranquilidad.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide justify-start px-16 py-16 bg-slate-50">
+            <div class="flex items-center gap-6 mb-12 border-b-2 border-slate-200 pb-6 shrink-0">
+                <i data-lucide="scale" class="w-10 h-10 text-teal-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Acuerdos de Convivencia</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16 h-full pb-16 items-center">
+                <div class="space-y-6">
+                    <p class="text-2xl font-light text-slate-700 leading-relaxed">
+                        El respeto por el tiempo propio y el de los demás es intransable. Toda acción que interrumpa el aprendizaje será considerada una falta.
+                    </p>
+                    
+                    <div class="bg-white border border-slate-200 p-8 rounded-xl shadow-sm">
+                        <h4 class="text-xl font-bold text-slate-800 mb-4 uppercase tracking-wide">Clasificación de Faltas:</h4>
+                        <ul class="space-y-4 text-xl text-slate-600">
+                            <li class="flex items-start gap-3"><i data-lucide="alert-circle" class="w-6 h-6 text-rose-500 shrink-0"></i> Inasistencias y/o atrasos no justificados.</li>
+                            <li class="flex items-start gap-3"><i data-lucide="alert-circle" class="w-6 h-6 text-rose-500 shrink-0"></i> Faltas de respeto hacia compañeros o el profesor.</li>
+                            <li class="flex items-start gap-3"><i data-lucide="alert-circle" class="w-6 h-6 text-rose-500 shrink-0"></i> Incumplimiento de la presentación personal.</li>
+                            <li class="flex items-start gap-3"><i data-lucide="alert-circle" class="w-6 h-6 text-rose-500 shrink-0"></i> Conductas que interfieran con la clase.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card p-10 rounded-2xl h-full flex flex-col justify-center bg-white">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-8 text-center border-b border-slate-100 pb-4">Procedimiento Formativo</h3>
+                    <div class="space-y-8">
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-yellow-100 text-yellow-700 flex items-center justify-center text-xl font-bold shrink-0">1</div>
+                            <p class="text-xl text-slate-700"><strong>Primer llamado de atención.</strong> Instancia de advertencia y corrección de la conducta.</p>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-700 flex items-center justify-center text-xl font-bold shrink-0">2</div>
+                            <p class="text-xl text-slate-700"><strong>Segundo llamado de atención.</strong> Instancia final de advertencia dentro del aula.</p>
+                        </div>
+                        <div class="flex items-center gap-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+                            <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xl font-bold shrink-0">!</div>
+                            <p class="text-xl text-slate-800"><strong>Medida Administrativa.</strong> Registro en el informe de conducta y evaluación de los beneficios del estudiante.</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-400 mt-8 text-center italic">* Las normas podrán actualizarse a fin de proteger el rendimiento óptimo del curso.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide justify-start px-16 py-16 bg-white">
+            <div class="flex items-center gap-6 mb-12 border-b-2 border-slate-100 pb-6 shrink-0">
+                <i data-lucide="users" class="w-10 h-10 text-teal-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Responsabilidad y Comunidad</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16 h-full pb-16 items-center">
+                <div class="space-y-8">
+                    <p class="text-3xl font-light text-slate-700 leading-snug">
+                        El aula debe ser un espacio donde el desafío de aprender se disfrute, asumiendo este proceso con compromiso y compañerismo.
+                    </p>
+                    <div class="flex items-center justify-center p-8 bg-teal-50 rounded-xl">
+                        <i data-lucide="quote" class="w-16 h-16 text-teal-200 absolute opacity-50 -ml-12 -mt-8"></i>
+                        <p class="text-2xl text-slate-700 italic relative z-10 text-center">
+                            "Se espera que el estudiante se sienta genuinamente motivado a participar en la convivencia y a potenciar el aprendizaje colectivo de sus pares."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-card p-6 rounded-xl flex gap-6 items-start border-l-4 border-slate-400">
+                        <div class="p-3 bg-slate-100 rounded-lg shrink-0"><i data-lucide="check-square" class="w-6 h-6 text-slate-700"></i></div>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-1">Preparación Personal</h4>
+                            <p class="text-lg text-slate-600">Llegar preparado implica disponer del cuaderno cuadriculado, regla, materiales y haber ido al baño antes de iniciar la sesión.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-6 rounded-xl flex gap-6 items-start border-l-4 border-slate-400">
+                        <div class="p-3 bg-slate-100 rounded-lg shrink-0"><i data-lucide="handshake" class="w-6 h-6 text-slate-700"></i></div>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-1">Apoyo Mutuo</h4>
+                            <p class="text-lg text-slate-600">Es deber del estudiante brindar ayuda académica a sus pares si ya terminó un ejercicio, así como solicitarla cuando no comprenda.</p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-xl flex gap-6 items-start border-l-4 border-slate-400">
+                        <div class="p-3 bg-slate-100 rounded-lg shrink-0"><i data-lucide="message-square" class="w-6 h-6 text-slate-700"></i></div>
+                        <div>
+                            <h4 class="text-xl font-bold text-slate-800 mb-1">Comunicación Ética</h4>
+                            <p class="text-lg text-slate-600">Informar al profesor cualquier situación que interfiera con la concentración del curso, en un marco de responsabilidad por el bien común.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide justify-start px-16 py-16 bg-slate-50">
+            <div class="flex items-center gap-6 mb-12 border-b-2 border-slate-200 pb-6 shrink-0">
+                <i data-lucide="library" class="w-10 h-10 text-teal-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Material de Trabajo</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-16 h-full pb-16">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-8 uppercase tracking-wide border-l-4 border-teal-600 pl-4">Textos Guía</h3>
+                    <ul class="space-y-6">
+                        <li class="glass-card p-6 rounded-xl flex items-center gap-6">
+                            <i data-lucide="book-open" class="w-10 h-10 text-teal-700 shrink-0"></i>
+                            <div>
+                                <p class="text-2xl font-bold text-slate-800">Matemática 8º Básico</p>
+                                <p class="text-xl text-slate-600 mt-1">Texto del Estudiante (MINEDUC)</p>
+                            </div>
+                        </li>
+                        <li class="glass-card p-6 rounded-xl flex items-center gap-6">
+                            <i data-lucide="file-text" class="w-10 h-10 text-cyan-700 shrink-0"></i>
+                            <div>
+                                <p class="text-2xl font-bold text-slate-800">Cuaderno de Ejercicios</p>
+                                <p class="text-xl text-slate-600 mt-1">Práctica en casa y en aula</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800 mb-8 uppercase tracking-wide border-l-4 border-slate-800 pl-4">Recursos Digitales</h3>
+                    <ul class="space-y-6">
+                        <li class="glass-card p-6 rounded-xl flex items-center gap-6">
+                            <i data-lucide="shapes" class="w-10 h-10 text-indigo-600 shrink-0"></i>
+                            <div>
+                                <p class="text-2xl font-bold text-slate-800">GeoGebra</p>
+                                <p class="text-xl text-slate-600 mt-1">Herramienta para visualizar Geometría</p>
+                            </div>
+                        </li>
+                        <li class="glass-card p-6 rounded-xl flex items-center gap-6">
+                            <i data-lucide="youtube" class="w-10 h-10 text-red-600 shrink-0"></i>
+                            <div>
+                                <p class="text-2xl font-bold text-slate-800">Khan Academy</p>
+                                <p class="text-xl text-slate-600 mt-1">Videos y ejercicios de refuerzo</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fixed bottom-0 left-0 w-full p-8 flex justify-between items-end pointer-events-none z-50">
+        <div class="text-slate-400 font-bold text-sm tracking-widest pl-4 pb-2 hidden md:block uppercase">Matemáticas • 8º Básico</div>
+        <div class="flex gap-4 pointer-events-auto pr-4 pb-2">
+            <button onclick="changeSlide(-1)" class="p-4 rounded-full bg-white border border-slate-200 shadow-sm hover:bg-slate-50 hover:shadow-md transition-all"><i data-lucide="chevron-left" class="w-8 h-8 text-slate-700"></i></button>
+            <button onclick="changeSlide(1)" class="p-4 rounded-full bg-teal-800 text-white shadow-md hover:bg-teal-900 hover:shadow-lg transition-all"><i data-lucide="chevron-right" class="w-8 h-8"></i></button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function updateSlide() { 
+            slides.forEach((s, i) => { 
+                s.classList.remove('active'); 
+                if(i===currentSlide) s.classList.add('active'); 
+            }); 
+        }
+        
+        function changeSlide(d) { 
+            const n = currentSlide + d; 
+            if(n>=0 && n<slides.length) { currentSlide = n; updateSlide(); } 
+        }
+        
+        document.addEventListener('keydown', (e) => { 
+            if(['ArrowRight','Space','Enter'].includes(e.key)) changeSlide(1);
+            if(['ArrowLeft','Backspace'].includes(e.key)) changeSlide(-1);
+        });
+    </script>
+</body>
+</html>

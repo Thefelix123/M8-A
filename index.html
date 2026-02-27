@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Repositorio - M8-A SEK Chile</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+            startup: { typeset: true }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: #f8fafc;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Patrón de fondo sutil (estilo cuaderno cuadriculado matemático) */
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, #e2e8f0 1px, transparent 1px), linear-gradient(to bottom, #e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center top;
+        }
+
+        /* Tarjetas de clase premium */
+        .class-card {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #e2e8f0;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
+        }
+
+        /* Resplandor superior en la tarjeta al pasar el mouse */
+        .class-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .class-card.active-class:hover::before {
+            background: #0f766e;
+        }
+
+        /* Teal-700 */
+        .class-card.intro:hover::before {
+            background: #334155;
+        }
+
+        /* Slate-700 */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 5px;
+            border: 2px solid #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none flex flex-col min-h-screen bg-grid-pattern relative">
+
+    <div class="fixed top-0 left-0 h-2 w-full bg-teal-800 z-50 shadow-md"></div>
+
+    <header class="w-full bg-slate-900 text-white pt-20 pb-16 px-6 relative overflow-hidden shadow-xl">
+        <i data-lucide="blocks"
+            class="absolute -right-10 -top-10 w-96 h-96 text-slate-800 opacity-50 transform rotate-12"></i>
+
+        <div
+            class="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <div class="space-y-4">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-900/50 border border-teal-700 text-teal-200 text-sm font-bold tracking-widest uppercase mb-2">
+                    <div class="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></div>
+                    Plataforma Activa
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-tight">
+                    Matemáticas<br><span class="text-teal-500">8º Básico</span>
+                </h1>
+                <p class="text-xl md:text-3xl text-slate-300 font-light tracking-wide max-w-2xl">
+                    Repositorio académico.
+                </p>
+            </div>
+
+            <div
+                class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 text-left md:text-right shrink-0">
+                <p class="text-2xl md:text-3xl font-bold text-white">Prof. Luis Quezada</p>
+                <p class="text-lg md:text-xl font-medium text-teal-300 tracking-widest uppercase mt-2">SEK CHILE • 8º
+                    BÁSICO</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-16 z-10 relative">
+
+        <div class="mb-16">
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-12 h-12 rounded-xl bg-slate-200 flex items-center justify-center shrink-0">
+                    <i data-lucide="compass" class="w-6 h-6 text-slate-700"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-slate-900 tracking-tight">Presentación del Curso</h2>
+                    <p class="text-slate-500 text-lg">Lineamientos fundamentales y metodología de trabajo.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="Intro.html" class="class-card intro group block no-underline text-inherit cursor-pointer">
+                    <div class="p-8 h-full flex flex-col">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="p-4 bg-slate-100 rounded-xl group-hover:bg-slate-800 transition-colors duration-300">
+                                <i data-lucide="book-open"
+                                    class="w-8 h-8 text-slate-700 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-slate-100 text-slate-500 font-bold uppercase tracking-wider text-xs rounded-full">Clase
+                                00</span>
+                        </div>
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-slate-800 mb-4 group-hover:text-slate-900 transition-colors">
+                            Introducción Institucional</h3>
+                        <p class="text-lg text-slate-600 flex-1 leading-relaxed">Daremos el paso más importante de su
+                            etapa escolar: dejaremos de ver solo números y aprenderemos el lenguaje universal del
+                            Álgebra y la Geometría.</p>
+                        <div
+                            class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-slate-700 font-bold text-lg group-hover:text-slate-900">
+                            <span>Ingresar a la clase</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-slate-100 transition-colors">
+                                <i data-lucide="arrow-right"
+                                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div>
+            <div class="flex items-center gap-4 mb-8">
+                <div
+                    class="w-12 h-12 rounded-xl bg-teal-100 flex items-center justify-center shrink-0 border border-teal-200">
+                    <i data-lucide="binary" class="w-6 h-6 text-teal-700"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-4xl font-bold text-slate-900 tracking-tight">Unidad I: Números y Álgebra
+                    </h2>
+                    <p class="text-slate-500 text-lg">El puente fundamental desde la intuición aritmética hacia la
+                        formalidad analítica.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="Clase1_Conjuntos_Numericos.html"
+                    class="class-card active-class group block no-underline text-inherit cursor-pointer">
+                    <div class="p-8 h-full flex flex-col relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-6">
+                            <div
+                                class="p-4 bg-teal-100 rounded-xl group-hover:bg-teal-800 transition-colors duration-300">
+                                <i data-lucide="layers"
+                                    class="w-8 h-8 text-teal-700 group-hover:text-white transition-colors duration-300"></i>
+                            </div>
+                            <span
+                                class="px-3 py-1 bg-teal-100 text-teal-700 font-bold uppercase tracking-wider text-xs rounded-full">Clase
+                                01</span>
+                        </div>
+                        <h3
+                            class="text-2xl md:text-3xl font-bold text-slate-800 mb-4 group-hover:text-slate-900 transition-colors">
+                            Conjuntos Numéricos</h3>
+                        <p class="text-lg text-slate-600 flex-1 leading-relaxed">Progresión desde el límite del conteo
+                            de los Naturales hasta el inabarcable continuo de los Números Reales.</p>
+                        <div
+                            class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-teal-700 font-bold text-lg group-hover:text-teal-900">
+                            <span>Ingresar a la clase</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-teal-50 flex items-center justify-center group-hover:bg-teal-100 transition-colors">
+                                <i data-lucide="arrow-right"
+                                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="w-full bg-white border-t border-slate-200 py-8 mt-auto z-10 relative">
+        <div
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 font-medium">
+            <p>Departamento de Matemáticas y Física • SEK Chile</p>
+            <p class="text-sm tracking-widest uppercase">Año Académico 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar los iconos de Lucide
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
