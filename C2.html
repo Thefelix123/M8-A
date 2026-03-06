@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clausura de los Conjuntos - Matemáticas 8º Básico</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-y: hidden;
+            overflow-x: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: #f8fafc;
+            /* slate-50 */
+        }
+
+        #slide-container {
+            height: calc(100vh - 6rem - 1rem);
+            /* 6rem footer, 1rem top bar */
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.4s ease-out;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide.active {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            backdrop-filter: blur(10px);
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f0fdf4;
+            border-radius: 6px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 6px;
+            border: 2px solid #f0fdf4;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+
+        /* Elegante focus visual a las clausuras */
+        .reveal-cell {
+            transition: all 0.5s ease-in-out;
+        }
+
+        .reveal-cell.highlight-pulse {
+            animation: pulse-emerald 1.5s ease-out;
+        }
+
+        @keyframes pulse-emerald {
+            0% {
+                background-color: #a7f3d0;
+                border-color: #10b981;
+                transform: scale(1.02);
+            }
+
+            100% {
+                background-color: transparent;
+                border-color: #e2e8f0;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-rose {
+            0% {
+                background-color: #fecdd3;
+                border-color: #f43f5e;
+                transform: scale(1.02);
+            }
+
+            100% {
+                background-color: transparent;
+                border-color: #e2e8f0;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none">
+
+    <!-- TOP BAR M8 (Emerald/Teal identity) -->
+    <div class="h-4 w-full bg-emerald-800 shrink-0"></div>
+
+    <div id="slide-container">
+
+        <!-- SLIDE 1: PORTADA (1 min) -->
+        <div class="slide active p-10 bg-slate-50">
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-10">
+                <div class="relative w-48 h-48 flex items-center justify-center">
+                    <i data-lucide="merge" class="w-full h-full text-emerald-800 opacity-90 absolute"></i>
+                </div>
+                <h1
+                    class="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight">
+                    La Estructura<br>de las Operaciones
+                </h1>
+                <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center">
+                    Propiedades y Clausura Analítica
+                </p>
+
+                <div
+                    class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-emerald-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md">
+                    <div>
+                        <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-emerald-800 uppercase tracking-wider">SEK CHILE • 8º BÁSICO
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: MOTIVACIÓN (Gancho) (5 min) - EL PROBLEMA DE LA CLAUSURA -->
+        <div class="slide p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="shield-alert" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">El Escape del Conjunto</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 flex-1 min-h-0">
+                <div class="space-y-8 flex flex-col pt-4">
+                    <p class="text-3xl font-medium text-slate-700 leading-relaxed border-l-4 border-slate-300 pl-4">
+                        Si tomamos dos números del conjunto de los <strong class="text-emerald-700">Naturales
+                            ($\mathbb{N}$)</strong> y los operamos, esperaríamos lógicamente que el resultado siga
+                        perteneciendo al mismo conjunto.
+                    </p>
+
+                    <div
+                        class="bg-white p-8 rounded-3xl border-2 border-slate-200 shadow-sm flex flex-col justify-center gap-6 items-center">
+                        <p
+                            class="text-2xl text-slate-500 uppercase font-bold tracking-widest border-b-2 border-slate-100 pb-2">
+                            El Conflicto Matemático</p>
+                        <div class="text-7xl font-mono font-black text-slate-800 text-center tracking-widest mt-4">
+                            $5 - 8 = \ ?$
+                        </div>
+                        <button id="btn-reveal-gancho"
+                            onclick="revelarElemento('resultado-gancho'); document.getElementById('btn-reveal-gancho').classList.add('hidden')"
+                            class="mt-6 px-8 py-5 bg-slate-800 text-white rounded-xl text-3xl font-bold hover:bg-slate-700 transition shadow-lg w-max flex items-center gap-4">
+                            <i data-lucide="eye" class="w-8 h-8"></i> Revelar Paradoja Histórica
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6 justify-center">
+                    <div id="resultado-gancho" class="hidden h-full">
+                        <div
+                            class="glass-card rounded-3xl p-10 shadow-xl relative overflow-hidden h-full flex flex-col justify-center border-l-[12px] border-rose-600 border-r-2 border-y-2 border-slate-200">
+                            <div class="absolute right-[-10%] bottom-[-10%] opacity-5 w-96 h-96">
+                                <i data-lucide="circle-dashed" class="w-full h-full text-rose-900"></i>
+                            </div>
+
+                            <h3
+                                class="text-6xl font-mono font-black text-center text-rose-600 mb-8 border-b-2 border-rose-100 pb-6">
+                                $-3$</h3>
+                            <p class="text-3xl text-slate-700 font-medium leading-relaxed relative z-10">
+                                La operación <strong class="text-slate-900 bg-slate-100 px-2 rounded">Resta</strong>
+                                <em>rompió</em> la barrera de los Naturales ($\mathbb{N}$).
+                                <br><br>
+                                Históricamente, este choque forzó a la humanidad a descubrir los Enteros ($\mathbb{Z}$)
+                                para poder contener el nuevo número.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: FORMALIZACIÓN (Teoría) (10 min) -->
+        <div class="slide p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="library" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Propiedad de Clausura (o Cierre)</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 h-full gap-8">
+                <div
+                    class="bg-indigo-50 border-2 border-indigo-200 rounded-3xl p-8 shrink-0 relative overflow-hidden shadow-sm">
+                    <div class="absolute right-10 top-1/2 -translate-y-1/2 opacity-10"><i data-lucide="lock"
+                            class="w-48 h-48 text-indigo-900"></i></div>
+                    <p class="text-4xl text-indigo-900 leading-snug font-medium italic relative z-10 w-4/5">
+                        "Un conjunto es <strong>Clausurado</strong> bajo una operación si al operar dos de sus elementos
+                        usando dicha operación, el resultado pertenece invariablemente a ese mismo conjunto original."
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 flex-1">
+                    <!-- Ejemplo que SI clausura -->
+                    <div class="bg-white rounded-3xl p-8 shadow-md border-t-8 border-emerald-500 flex flex-col">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-emerald-100 text-emerald-700 rounded-full p-4"><i data-lucide="shield-check"
+                                    class="w-10 h-10"></i></div>
+                            <h3 class="text-3xl font-bold text-slate-800 uppercase tracking-wide">Conjunto Clausurado
+                            </h3>
+                        </div>
+                        <p class="text-2xl text-slate-600 flex-1 leading-relaxed">
+                            <strong>Suma de Enteros ($\mathbb{Z}$):</strong>
+                            <br>Si sumas dos números enteros negativos o positivos, jamás obtendrás una fracción o un
+                            decimal periódico. El conjunto los <em>atrapa</em> perfectamente.
+                        </p>
+                        <div
+                            class="mt-4 bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center shadow-inner">
+                            <span class="text-4xl font-mono text-emerald-800 font-bold">$ -5 + (-12) = -17 \in
+                                \mathbb{Z} $</span>
+                        </div>
+                    </div>
+
+                    <!-- Ejemplo que NO clausura -->
+                    <div class="bg-white rounded-3xl p-8 shadow-md border-t-8 border-rose-500 flex flex-col">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="bg-rose-100 text-rose-700 rounded-full p-4"><i data-lucide="shield-x"
+                                    class="w-10 h-10"></i></div>
+                            <h3 class="text-3xl font-bold text-slate-800 uppercase tracking-wide">Conjunto No Clausurado
+                            </h3>
+                        </div>
+                        <p class="text-2xl text-slate-600 flex-1 leading-relaxed">
+                            <strong>División de Enteros ($\mathbb{Z}$):</strong>
+                            <br>Si divides dos números enteros perfectos, el resultado puede "escaparse" y generar un
+                            número con decimales que ya no pertenece a $\mathbb{Z}$.
+                        </p>
+                        <div class="mt-4 bg-rose-50 border border-rose-200 rounded-xl p-6 text-center shadow-inner">
+                            <span class="text-4xl font-mono text-rose-800 font-bold">$ 3 \div 2 = 1.5 \notin \mathbb{Z}
+                                $</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: YO HAGO (Modelaje Docente - 5 min) -->
+        <div class="slide p-10 pb-32">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="microscope" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Laboratorio de Aislación Conjuntista</h2>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-4 gap-12 flex-1 min-h-0">
+                <div class="col-span-1 flex flex-col gap-6 h-full justify-between">
+                    <div class="bg-white p-8 rounded-3xl border-2 border-slate-200 shadow-sm">
+                        <p
+                            class="text-xl font-bold text-slate-500 uppercase tracking-widest border-b-2 border-slate-100 pb-3 mb-6">
+                            Comprobación de Fronteras</p>
+                        <p class="text-2xl text-slate-700 leading-relaxed font-medium">
+                            Determinaremos si el conjunto es capaz de <strong>contener</strong> rigurosamente todos los
+                            resultados posibles bajo la operación exigida.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-slate-800 text-white p-8 rounded-3xl shadow-xl flex-1 flex flex-col justify-center space-y-6 shrink-0">
+                        <p
+                            class="text-xl font-bold text-emerald-400 uppercase tracking-widest border-b border-slate-600 pb-3">
+                            <i data-lucide="wand-2" class="inline w-6 h-6 mb-1 mr-2"></i> Controlador Docente
+                        </p>
+                        <p class="text-lg text-slate-300">Resuelve el contraejemplo y revela interactivamente si el
+                            conjunto resiste la operación analítica.</p>
+                        <div class="flex flex-col gap-4 mt-auto">
+                            <button onclick="resolverClausura(0, false)"
+                                class="py-4 bg-slate-600 text-white font-bold text-xl rounded-xl hover:bg-slate-500 transition">Test
+                                1: $\mathbb{N}$ bajo Resta</button>
+                            <button onclick="resolverClausura(1, true)"
+                                class="py-4 bg-slate-600 text-white font-bold text-xl rounded-xl hover:bg-slate-500 transition">Test
+                                2: $\mathbb{Z}$ bajo Multiplicación</button>
+                            <button onclick="resolverClausura(2, false)"
+                                class="py-4 bg-slate-600 text-white font-bold text-xl rounded-xl hover:bg-slate-500 transition">Test
+                                3: $\mathbb{Z}$ bajo División</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-3 h-full">
+                    <div
+                        class="bg-white border-2 border-slate-300 rounded-3xl shadow-lg h-full flex flex-col overflow-hidden">
+                        <table class="w-full text-center text-3xl flex-1 table-fixed">
+                            <thead class="bg-slate-100 text-slate-600 font-sans border-b-4 border-slate-300 h-24">
+                                <tr>
+                                    <th class="border-r border-slate-300 w-1/4 uppercase tracking-widest p-4">Conjunto
+                                        Base</th>
+                                    <th class="border-r border-slate-300 w-1/4 uppercase tracking-widest bg-slate-200">
+                                        Operación</th>
+                                    <th class="border-r border-slate-300 w-1/4 uppercase tracking-widest">Ejemplo
+                                        Analítico</th>
+                                    <th class="w-1/4 uppercase tracking-widest bg-slate-800 text-white">¿Es Clausurado?
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-slate-800 font-mono">
+                                <!-- Test 1 -->
+                                <tr class="border-b border-slate-200 h-1/3 tr-test" id="row-test-0">
+                                    <td class="p-4 border-r border-slate-200 font-bold text-5xl">$\mathbb{N}$</td>
+                                    <td
+                                        class="p-4 border-r border-slate-200 bg-slate-50 text-slate-500 font-sans text-2xl font-bold uppercase tracking-widest">
+                                        Resta</td>
+                                    <td class="p-4 border-r border-slate-200 font-medium">
+                                        <div class="flex flex-col items-center">
+                                            <span>$4 - 10$</span>
+                                            <span class="text-rose-600 font-bold opacity-0 reveal-result mt-2 text-2xl"
+                                                id="res-test-0">$= -6$</span>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 font-sans font-black text-4xl opacity-0 transform translate-x-10 reveal-veredicto transition-all duration-500"
+                                        id="verd-test-0">
+                                        <div class="flex items-center justify-center gap-2 text-rose-600">
+                                            <i data-lucide="x-circle" class="w-12 h-12"></i> NO
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Test 2 -->
+                                <tr class="border-b border-slate-200 h-1/3 tr-test" id="row-test-1">
+                                    <td class="p-4 border-r border-slate-200 font-bold text-5xl">$\mathbb{Z}$</td>
+                                    <td
+                                        class="p-4 border-r border-slate-200 bg-slate-50 text-slate-500 font-sans text-2xl font-bold uppercase tracking-widest">
+                                        Multiplicación</td>
+                                    <td class="p-4 border-r border-slate-200 font-medium">
+                                        <div class="flex flex-col items-center">
+                                            <span>$-3 \cdot -7$</span>
+                                            <span
+                                                class="text-emerald-700 font-bold opacity-0 reveal-result mt-2 text-2xl"
+                                                id="res-test-1">$= 21$</span>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 font-sans font-black text-4xl opacity-0 transform translate-x-10 reveal-veredicto transition-all duration-500"
+                                        id="verd-test-1">
+                                        <div class="flex items-center justify-center gap-2 text-emerald-600">
+                                            <i data-lucide="check-circle-2" class="w-12 h-12"></i> SÍ
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- Test 3 -->
+                                <tr class="h-1/3 tr-test" id="row-test-2">
+                                    <td class="p-4 border-r border-slate-200 font-bold text-5xl">$\mathbb{Z}$</td>
+                                    <td
+                                        class="p-4 border-r border-slate-200 bg-slate-50 text-slate-500 font-sans text-2xl font-bold uppercase tracking-widest">
+                                        División</td>
+                                    <td class="p-4 border-r border-slate-200 font-medium">
+                                        <div class="flex flex-col items-center">
+                                            <span>$5 \div 2$</span>
+                                            <span class="text-rose-600 font-bold opacity-0 reveal-result mt-2 text-2xl"
+                                                id="res-test-2">$= 2.5 \notin \mathbb{Z}$</span>
+                                        </div>
+                                    </td>
+                                    <td class="p-4 font-sans font-black text-4xl opacity-0 transform translate-x-10 reveal-veredicto transition-all duration-500"
+                                        id="verd-test-2">
+                                        <div class="flex items-center justify-center gap-2 text-rose-600">
+                                            <i data-lucide="x-circle" class="w-12 h-12"></i> NO
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4.5: TEORÍA DE CLAUSURAS (Añadido) -->
+        <div class="slide p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="book-open" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">El Diccionario de las Clausuras</h2>
+            </div>
+
+            <p class="text-2xl text-slate-600 mb-6 border-l-4 border-emerald-500 pl-4 mx-2">
+                Resumen de qué operaciones están cerradas absolutamente en cada nivel de nuestro universo numérico.
+            </p>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 min-h-0 overflow-y-auto pr-4 scrollable-content">
+                <!-- Naturales -->
+                <div class="bg-white p-8 rounded-3xl border-2 border-emerald-200 shadow-sm flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="h-16 w-16 bg-emerald-100 rounded-full flex items-center justify-center text-3xl font-bold text-emerald-800">
+                            $\mathbb{N}$</div>
+                        <h3 class="text-3xl font-bold text-slate-800">Naturales</h3>
+                    </div>
+                    <p class="text-2xl text-slate-600">Clausurados bajo: <strong class="text-emerald-700">Suma y
+                            Multiplicación</strong>.</p>
+                    <p class="text-xl text-slate-500 italic">No clausuran en resta (da negativos) ni división (da
+                        decimales).</p>
+                </div>
+
+                <!-- Enteros -->
+                <div class="bg-white p-8 rounded-3xl border-2 border-indigo-200 shadow-sm flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="h-16 w-16 bg-indigo-100 rounded-full flex items-center justify-center text-3xl font-bold text-indigo-800">
+                            $\mathbb{Z}$</div>
+                        <h3 class="text-3xl font-bold text-slate-800">Enteros</h3>
+                    </div>
+                    <p class="text-2xl text-slate-600">Clausurados bajo: <strong class="text-indigo-700">Suma, Resta y
+                            Multiplicación</strong>.</p>
+                    <p class="text-xl text-slate-500 italic">No clausuran en división (generan decimales).</p>
+                </div>
+
+                <!-- Racionales -->
+                <div class="bg-white p-8 rounded-3xl border-2 border-cyan-200 shadow-sm flex flex-col gap-4">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="h-16 w-16 bg-cyan-100 rounded-full flex items-center justify-center text-3xl font-bold text-cyan-800">
+                            $\mathbb{Q}$</div>
+                        <h3 class="text-3xl font-bold text-slate-800">Racionales</h3>
+                    </div>
+                    <p class="text-2xl text-slate-600">Clausurados bajo: <strong class="text-cyan-700">Suma, Resta,
+                            Multiplicación y División</strong> (salvo por 0).</p>
+                    <p class="text-xl text-slate-500 italic">Es un cuerpo numérico casi perfecto.</p>
+                </div>
+
+                <!-- Reales e Irracionales -->
+                <div class="bg-slate-800 p-8 rounded-3xl shadow-md flex flex-col gap-4 text-white">
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="h-16 w-16 bg-slate-700 border border-slate-600 rounded-full flex items-center justify-center text-3xl font-bold text-white">
+                            $\mathbb{I, R}$</div>
+                        <h3 class="text-3xl font-bold">Irracionales y Reales</h3>
+                    </div>
+                    <p class="text-2xl text-slate-300">$\mathbb{I}$ <strong class="text-rose-400">NO</strong> es
+                        clausurado en ninguna operación básica (raíces pueden cancelarse y dar enteros).</p>
+                    <p class="text-2xl text-slate-300 mt-2">$\mathbb{R}$ <strong class="text-white">contiene TODO</strong>. Clausura suprema.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: ELLOS HACEN (Práctica Independiente - 30 min) -->
+        <div class="slide bg-slate-50 p-8 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
+                <i data-lucide="edit-3" class="w-12 h-12 text-emerald-800"></i>
+                <h2 class="text-4xl font-bold text-slate-800">Laboratorio de Práctica</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 mt-4">
+                <div class="bg-white p-4 rounded-xl border-2 border-slate-200 shadow-sm shrink-0 mb-4 mx-4">
+                    <p class="text-2xl font-medium text-slate-800 text-center">
+                        <strong class="text-emerald-700">Instrucción:</strong> Determine el conjunto más pequeño al que pertenecen los términos de la operación. Verifique si se satisface o no la propiedad de clausura. Comprueba esto resolviendo la operación matemática e identificando a qué conjuntos pertenece el resultado.
+                    </p>
+                </div>
+
+                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-max px-4">
+
+                        
+<!-- Ejercicio 1 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-emerald-600 text-xl font-mono">1</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle 20 + 15$</span>
+</div>
+
+<!-- Ejercicio 2 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-emerald-600 text-xl font-mono">2</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle 8 - 14$</span>
+</div>
+
+<!-- Ejercicio 3 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-emerald-600 text-xl font-mono">3</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle -7 - (-7)$</span>
+</div>
+
+<!-- Ejercicio 4 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-emerald-600 text-xl font-mono">4</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle (-5) \cdot 4$</span>
+</div>
+
+<!-- Ejercicio 5 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-emerald-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-emerald-600 text-xl font-mono">5</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle -36 \div 4$</span>
+</div>
+
+<!-- Ejercicio 6 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">6</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle 18 \div -5$</span>
+</div>
+
+<!-- Ejercicio 7 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">7</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle -0.25 - 0.5$</span>
+</div>
+
+<!-- Ejercicio 8 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">8</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle -2.\overline{5} \cdot -9$</span>
+</div>
+
+<!-- Ejercicio 9 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">9</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle \frac{5}{2} + 0.5$</span>
+</div>
+
+<!-- Ejercicio 10 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-amber-400 relative">
+    <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">10</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8">$\displaystyle 1.\overline{2} \div 1.1$</span>
+</div>
+
+<!-- Ejercicio 11 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+    <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">11</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8 text-center">$\displaystyle 4 \cdot (1.\overline{3} - \frac{4}{3})$</span>
+</div>
+
+<!-- Ejercicio 12 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+    <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">12</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8 text-center">$\displaystyle -\frac{5}{2} - (\frac{-3}{2} \cdot \frac{2}{3})$</span>
+</div>
+
+<!-- Ejercicio 13 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+    <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">13</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8 text-center">$\displaystyle \frac{0.25 - \frac{1}{4}}{-0.\overline{6}}$</span>
+</div>
+
+<!-- Ejercicio 14 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+    <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">14</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8 text-center">$\displaystyle 10 - \left[ e \div 2\right]$</span>
+</div>
+
+<!-- Ejercicio 15 -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-center items-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30">
+    <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">15</span>
+    <span class="text-4xl font-mono text-slate-800 font-bold py-8 text-center">$\displaystyle \frac{(2 - 0.\overline{9})}{-0.5}$</span>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DESAFÍO FINAL TIPO PAES (TICKET DE SALIDA) -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="target" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Desafío Estilo PAES (M1)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
+                <div class="space-y-8 pr-4">
+                    <div class="p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl relative shadow-md">
+                        <p class="text-3xl font-medium text-slate-800 leading-relaxed mt-2">
+                            Considere la expresión fraccionaria anidada que modela el comportamiento térmico de un
+                            reactor, conformada por los números racionales $p, q$ y $z$:
+                        </p>
+                        <div
+                            class="text-5xl font-mono text-center font-bold my-8 bg-white py-6 rounded-xl border border-slate-200">
+                            $$ \frac{\left(\frac{1}{2} - p\right)}{q} + z $$
+                        </div>
+                        <p class="text-2xl font-medium text-slate-800">
+                            Si se sabe que $p=0.5$, $\;q=0.\overline{3}$ y $\;z$ es un <strong>Entero Negativo</strong>.
+                            De acuerdo a las reglas de clausura, ¿A qué conjunto(s) pertenece
+                            <strong>estrictamente</strong> el resultado de toda la expresión?
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-3xl font-bold text-slate-700 pl-4 font-mono leading-tight">
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            A) Pertenece solo a los Naturales ($\mathbb{N}$).</p>
+                        <p class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors"
+                            id="correct-opt-paes">B) Pertenece a $\mathbb{Z, Q, \text{y } R}$, pero NO a $\mathbb{N}$.
+                        </p>
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            C) Al haber decimales, solo pertenece a los Racionales ($\mathbb{Q}$).</p>
+                        <p
+                            class="cursor-pointer hover:bg-slate-100 p-4 rounded border border-transparent hover:border-slate-300 transition-colors">
+                            D) La división por un periódico destruye la clausura del conjunto $\mathbb{R}$.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col h-full justify-center space-y-6">
+                    <button
+                        onclick="revelarElemento('respuesta-paes'); document.getElementById('correct-opt-paes').classList.add('bg-emerald-100', 'border-emerald-500')"
+                        class="px-8 py-6 bg-emerald-800 text-white rounded-2xl text-4xl font-bold hover:bg-emerald-900 transition shadow-lg w-full">
+                        Comprobar Resolución Analítica
+                    </button>
+
+                    <div id="respuesta-paes"
+                        class="hidden flex-1 glass-card p-10 rounded-3xl border-4 border-emerald-500 bg-emerald-50 text-center flex flex-col justify-center shadow-lg">
+                        <div
+                            class="text-3xl text-slate-800 space-y-6 font-mono bg-white p-8 rounded-2xl border-2 border-emerald-200 shadow-sm text-left">
+                            <p
+                                class="text-emerald-700 font-bold border-b border-slate-200 pb-4 flex items-center justify-between">
+                                Desarrollo del Desafío:
+                                <i data-lucide="brain-circuit" class="w-10 h-10 text-emerald-600"></i>
+                            </p>
+                            <div class="pl-8 pt-2 text-3xl space-y-4 text-center pb-4 border-b border-slate-100">
+                                $$ \frac{(0.5 - 0.5)}{0.\overline{3}} + z $$
+                                $$ \frac{0}{0.\overline{3}} + z \;\; \Rightarrow \;\; 0 + z = z $$
+                            </div>
+                            <p
+                                class="mt-6 font-sans text-2xl text-slate-700 font-bold pt-2 leading-relaxed text-justify">
+                                ¡El gran bloque de los Racionales se anula a cero en el numerador!<br><br>
+                                Sobrevive únicamente el término $z$. Como el enunciado decreta que $z$ es un
+                                <strong>Entero Negativo</strong>, entonces el resultado final del reactor es un Entero Negativo
+                                (Ej: -5, -10). Por definición, dichos números pertenecen estructuralmente a
+                                $\mathbb{Z}$, $\mathbb{Q}$, y $\mathbb{R}$, <span class="text-rose-600 line-through">mas
+                                    no a $\mathbb{N}$.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVEGACIÓN INFERIOR (ESTRICTA LDI/F2 FORMAT) -->
+    <div
+        class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 z-50 fixed bottom-0">
+        <div class="text-slate-500 font-bold text-2xl tracking-widest uppercase">
+            Matemáticas • Clase 2 • Operaciones y Clausuras
+        </div>
+        <div class="flex gap-6">
+            <button onclick="changeSlide(-1)"
+                class="p-5 rounded-full bg-slate-100 border-2 border-slate-300 shadow-sm hover:bg-slate-200 transition-all cursor-pointer">
+                <i data-lucide="chevron-left" class="w-10 h-10 text-slate-800"></i>
+            </button>
+            <button onclick="changeSlide(1)"
+                class="p-5 rounded-full bg-emerald-800 text-white shadow-md hover:bg-emerald-900 transition-all cursor-pointer">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === currentSlide) s.classList.add('active');
+            });
+        }
+
+        function changeSlide(d) {
+            const n = currentSlide + d;
+            if (n >= 0 && n < slides.length) { currentSlide = n; updateSlide(); }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowRight', 'Space', 'Enter'].includes(e.key)) changeSlide(1);
+            if (['ArrowLeft', 'Backspace'].includes(e.key)) changeSlide(-1);
+        });
+
+        function revelarElemento(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                if (el.classList.contains('hidden')) {
+                    el.classList.remove('hidden');
+                    if (window.MathJax) {
+                        MathJax.typesetPromise([el]).catch((err) => console.log(err.message));
+                    }
+                }
+            }
+        }
+
+        function revelarRespuestaG(element) {
+            const resp = element.querySelector('.respuesta-ejercicio');
+            if (resp) {
+                resp.classList.remove('hidden');
+                element.classList.remove('cursor-pointer');
+            }
+        }
+
+        function resolverClausura(index, isClosed) {
+            const resId = `res-test-${index}`;
+            const verdId = `verd-test-${index}`;
+            const rowId = `row-test-${index}`;
+
+            const resEl = document.getElementById(resId);
+            const verdEl = document.getElementById(verdId);
+            const rowEl = document.getElementById(rowId);
+
+            if (resEl && verdEl) {
+                resEl.classList.remove('opacity-0');
+
+                setTimeout(() => {
+                    verdEl.classList.remove('opacity-0', 'translate-x-10');
+                    verdEl.classList.add('translate-x-0');
+
+                    if (isClosed) {
+                        rowEl.classList.add('highlight-pulse');
+                        rowEl.style.animationName = 'pulse-emerald';
+                    } else {
+                        rowEl.classList.add('highlight-pulse');
+                        rowEl.style.animationName = 'pulse-rose';
+                    }
+                }, 800);
+            }
+        }
+
+        function revelarRespuestasTabla() {
+            document.querySelectorAll('.tapa-respuesta').forEach(tapa => {
+                tapa.style.opacity = 0;
+                tapa.style.pointerEvents = 'none';
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porcentajes y Proporcionalidad - Matemáticas 8º Básico</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+
+        #main-container {
+            width: 100vw;
+            height: calc(100vh - 6rem);
+            /* Space for bottom nav and top bar */
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.4s ease-out;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide.active {
+            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            border-radius: 1rem;
+        }
+
+        .slide::-webkit-scrollbar,
+        .scrollable-content::-webkit-scrollbar {
+            width: 14px;
+        }
+
+        .slide::-webkit-scrollbar-track,
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .slide::-webkit-scrollbar-thumb,
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border-radius: 8px;
+            border: 3px solid #f1f5f9;
+        }
+
+        .slide::-webkit-scrollbar-thumb:hover,
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none">
+
+    <div class="h-4 w-full bg-emerald-800 shrink-0"></div>
+
+    <div id="main-container">
+
+        <!-- SLIDE 1: PORTADA -->
+        <div class="slide active p-10 bg-slate-50">
+            <div
+                class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-10 relative overflow-hidden">
+                <div class="absolute inset-0 opacity-[0.03] z-0 flex items-center justify-center">
+                    <i data-lucide="percent" class="w-[800px] h-[800px] text-emerald-900"></i>
+                </div>
+
+                <div
+                    class="relative w-48 h-48 flex items-center justify-center z-10 transition-transform hover:scale-110 duration-500">
+                    <i data-lucide="pie-chart" class="w-full h-full text-emerald-800 opacity-90 absolute"></i>
+                </div>
+                <h1
+                    class="text-6xl md:text-8xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight z-10">
+                    Dinámica de<br>Porcentajes
+                </h1>
+                <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center z-10">
+                    Proporcionalidad y Análisis Cuantitativo
+                </p>
+
+                <div
+                    class="mt-16 p-8 glass-card border-l-8 border-emerald-800 text-left w-full max-w-5xl flex justify-between items-end z-10 transition-shadow hover:shadow-xl">
+                    <div>
+                        <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-emerald-800 uppercase tracking-wider">SEK CHILE • 8º BÁSICO
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: INTRODUCCIÓN CON PROBLEMA -->
+        <div class="slide p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="trending-up" class="w-16 h-16 text-emerald-800 animate-pulse"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Una Ilusión Matemática</h2>
+            </div>
+
+            <div class="grid grid-cols-2 gap-12 flex-1 min-h-0">
+                <div class="space-y-8 flex flex-col pt-4">
+                    <p
+                        class="text-3xl font-medium text-slate-700 leading-relaxed border-l-4 border-slate-300 pl-4 bg-slate-50 p-6 rounded-r-2xl">
+                        Una tienda aplica a un producto un <strong class="text-emerald-700">aumento del 20%</strong> un
+                        mes, y al mes siguiente aplica un <strong class="text-rose-600">descuento del 20%</strong> sobre
+                        el nuevo precio.
+                    </p>
+
+                    <div class="glass-card p-8 flex flex-col justify-center gap-6 items-center flex-1">
+                        <p
+                            class="text-2xl text-slate-500 uppercase font-bold tracking-widest border-b-2 border-slate-100 pb-2">
+                            La Paradoja Comercial
+                        </p>
+                        <p class="text-4xl font-medium text-slate-800 text-center leading-snug">
+                            ¿El precio final vuelve a ser exactamente igual al precio original?
+                        </p>
+                        <button id="btn-reveal-intro" onclick="revelarIntro()"
+                            class="mt-6 px-8 py-5 bg-slate-800 text-white rounded-xl text-3xl font-bold hover:bg-emerald-700 transition-all shadow flex items-center gap-4 transform hover:scale-105 active:scale-95">
+                            <i data-lucide="play" class="w-8 h-8"></i> Iniciar Simulación
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-6 ">
+                    <div id="resultado-intro"
+                        class="hidden h-full flex flex-col glass-card p-6 overflow-hidden relative shadow-lg">
+                        <div class="flex items-center justify-between border-b-2 border-slate-100 pb-4 mb-4">
+                            <h3 class="text-4xl font-bold text-slate-800">Simulación del Valor Relativo</h3>
+                            <i data-lucide="activity" class="text-emerald-600 w-10 h-10"></i>
+                        </div>
+                        <div class="flex-1 w-full bg-slate-50 border border-slate-200 rounded-xl relative overflow-hidden shadow-inner"
+                            id="canvas-container">
+                            <canvas id="anim-canvas" class="w-full h-full absolute inset-0"></canvas>
+                        </div>
+                        <div
+                            class="mt-6 text-2xl text-slate-700 font-medium leading-relaxed bg-rose-50 p-6 border-l-4 border-rose-500 rounded-xl text-justify shadow-sm transition-all">
+                            <strong class="text-rose-700 font-black">El precio disminuye.</strong> Si partimos con
+                            \$100, al subir 20% llegamos a \$120. Luego, el 20% de descuento se aplica sobre \$120 (que
+                            es \$24), por lo que el precio final cae a <strong
+                                class="text-slate-900 font-black">\$96</strong>. ¡El porcentaje siempre depende de su
+                            base de cálculo temporal!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: TEORÍA 1 -->
+        <div class="slide bg-slate-50 p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="book-open" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Definición Estructural</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 h-full gap-8">
+                <div
+                    class="bg-white border-2 border-slate-200 rounded-3xl p-10 shrink-0 shadow-md flex items-center gap-8 group hover:border-emerald-300 transition-colors">
+                    <div class="flex-1">
+                        <p class="text-4xl text-slate-800 leading-snug font-medium">
+                            Un porcentaje es estrictamente una <strong class="text-emerald-700">razón
+                                matemática</strong> o proporción que compara una cantidad con una base de 100 partes
+                            exactas. Funciona como un operador de escalado universal.
+                        </p>
+                    </div>
+                    <div
+                        class="bg-emerald-50 border border-emerald-200 rounded-2xl p-8 flex flex-col items-center justify-center transform group-hover:scale-105 transition-transform">
+                        <span class="text-5xl font-mono text-emerald-900 font-bold tracking-widest">
+                            $$ a\% = \frac{a}{100} = a \cdot 0.01 $$
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-8 flex-1">
+                    <div
+                        class="glass-card p-10 flex flex-col items-center text-center justify-center border-t-8 border-emerald-600 hover:-translate-y-2 transition-transform shadow-md">
+                        <span class="text-6xl font-mono text-emerald-900 font-black mb-6">50%</span>
+                        <div class="bg-emerald-100 p-4 rounded-full w-24 h-24 flex items-center justify-center mb-6">
+                            <span class="text-4xl font-mono text-emerald-800 font-bold">$$ \frac{1}{2} $$</span>
+                        </div>
+                        <p class="text-2xl text-slate-600 font-medium tracking-wide">La mitad exacta de la base.</p>
+                    </div>
+                    <div
+                        class="glass-card p-10 flex flex-col items-center text-center justify-center border-t-8 border-cyan-600 hover:-translate-y-2 transition-transform shadow-md">
+                        <span class="text-6xl font-mono text-cyan-900 font-black mb-6">25%</span>
+                        <div class="bg-cyan-100 p-4 rounded-full w-24 h-24 flex items-center justify-center mb-6">
+                            <span class="text-4xl font-mono text-cyan-800 font-bold">$$ \frac{1}{4} $$</span>
+                        </div>
+                        <p class="text-2xl text-slate-600 font-medium tracking-wide">La cuarta parte matemática.</p>
+                    </div>
+                    <div
+                        class="glass-card p-10 flex flex-col items-center text-center justify-center border-t-8 border-indigo-600 hover:-translate-y-2 transition-transform shadow-md">
+                        <span class="text-6xl font-mono text-indigo-900 font-black mb-6">20%</span>
+                        <div class="bg-indigo-100 p-4 rounded-full w-24 h-24 flex items-center justify-center mb-6">
+                            <span class="text-4xl font-mono text-indigo-800 font-bold">$$ \frac{1}{5} $$</span>
+                        </div>
+                        <p class="text-2xl text-slate-600 font-medium tracking-wide">La quinta parte proporcional.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4: TEORÍA 2 (Operaciones) -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-100 pb-2 shrink-0">
+                <i data-lucide="function-square" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Mecanismos de Cálculo</h2>
+            </div>
+
+            <p
+                class="text-3xl text-slate-600 font-medium mb-10 mt-6 border-l-8 border-emerald-500 pl-6 mx-4 bg-slate-50 py-4 rounded-r-2xl">
+                El cálculo numérico siempre es una relación multiplicativa entre la <strong class="text-slate-900">tasa
+                    porcentual</strong> y la <strong class="text-slate-900">cantidad base</strong> ($C$).
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 flex-1 px-4 pb-10">
+                <div
+                    class="flex flex-col gap-6 bg-slate-50 border border-slate-200 rounded-3xl p-10 shadow-md relative overflow-hidden group hover:shadow-xl transition-shadow w-full">
+                    <div
+                        class="absolute right-[-10%] bottom-[-10%] opacity-5 w-64 h-64 transform group-hover:scale-110 transition-transform duration-700">
+                        <i data-lucide="percent" class="w-full h-full text-slate-900"></i>
+                    </div>
+                    <h3
+                        class="text-4xl font-bold text-emerald-800 border-b border-emerald-200 pb-4 z-10 flex items-center gap-3">
+                        <i data-lucide="arrow-right-circle" class="w-8 h-8"></i> Cálculo Directo
+                    </h3>
+                    <p class="text-2xl text-slate-700 z-10 flex-1">Para calcular directamente el $x\%$ de una cantidad
+                        $C$, multiplicamos sus componentes algebraicamente:</p>
+                    <div
+                        class="text-[1.8rem] text-center font-mono text-slate-800 bg-white p-6 rounded-xl border border-emerald-100 shadow-sm z-10">
+                        $$ x\% \text{ de } C = \left(\frac{x}{100}\right) \cdot C $$
+                    </div>
+                    <p
+                        class="text-xl text-slate-600 font-mono mt-auto z-10 text-center bg-slate-100 py-3 rounded-lg border border-slate-200">
+                        Ejemplo: 30% de 500 = 0.30 $\cdot$ 500 = 150</p>
+                </div>
+
+                <div
+                    class="flex flex-col gap-6 bg-slate-50 border border-slate-200 rounded-3xl p-10 shadow-md relative overflow-hidden group hover:shadow-xl transition-shadow w-full">
+                    <div
+                        class="absolute right-[-10%] bottom-[-10%] opacity-5 w-64 h-64 transform group-hover:scale-110 transition-transform duration-700">
+                        <i data-lucide="calculator" class="w-full h-full text-slate-900"></i>
+                    </div>
+                    <h3
+                        class="text-4xl font-bold text-indigo-800 border-b border-indigo-200 pb-4 z-10 flex items-center gap-3">
+                        <i data-lucide="arrow-up-down" class="w-8 h-8"></i> Aumentos y Descuentos
+                    </h3>
+                    <p class="text-2xl text-slate-700 z-10 flex-1">El <strong>factor multiplicativo directo</strong>
+                        fusiona el porcentaje con su base y simplifica el cálculo en un solo paso algebraico, acelerando
+                        la evaluación.</p>
+                    <div
+                        class="text-[1.5rem] text-center font-mono text-slate-800 bg-white p-6 rounded-xl border border-indigo-100 shadow-sm z-10 space-y-8">
+                        <div>
+                            <span
+                                class="text-emerald-700 text-xl font-sans uppercase font-bold tracking-widest block mb-2">Aumento
+                                de $x\%$</span>
+                            $$ C \cdot \left(1 + \frac{x}{100}\right) $$
+                        </div>
+                        <div class="border-t border-slate-100 pt-6">
+                            <span
+                                class="text-rose-700 text-xl font-sans uppercase font-bold tracking-widest block mb-2">Descuento
+                                de $x\%$</span>
+                            $$ C \cdot \left(1 - \frac{x}{100}\right) $$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5: EJEMPLO PRÁCTICO / ANÁLISIS VISUAL -->
+        <div class="slide p-10 pb-32">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="line-chart" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Disección de una Magnitud</h2>
+            </div>
+
+            <div class="glass-card p-10 rounded-3xl flex flex-col flex-1 shadow-lg border-t-[12px] border-emerald-700">
+                <p
+                    class="text-3xl font-medium text-slate-700 border-l-8 border-slate-400 pl-6 mb-10 bg-slate-50 py-6 rounded-r-2xl shadow-sm">
+                    Sabiendo que estrictamente el $\mathbf{15\%}$ de una cantidad desconocida $X$ equivale exactamente a
+                    $\mathbf{45}$. Determine rigurosamente el valor correspondiente al $\mathbf{20\%}$ de dicha cantidad
+                    $X$.
+                </p>
+
+                <div class="grid grid-cols-2 gap-12 flex-1 relative">
+                    <div class="absolute left-1/2 top-10 bottom-10 w-1 bg-slate-200 -translate-x-1/2 rounded z-0"></div>
+                    <div class="h-full flex flex-col justify-center z-10">
+                        <button id="btn-demo1" onclick="revelarElemento('demo-step1'); this.classList.add('hidden')"
+                            class="w-full py-6 bg-slate-800 text-white hover:bg-slate-700 rounded-2xl text-2xl font-bold transition shadow-lg flex justify-center items-center gap-3 uppercase tracking-wider">
+                            Fase 1: Aislar Variable Base <i data-lucide="unlock" class="w-6 h-6"></i>
+                        </button>
+
+                        <div id="demo-step1" class="hidden h-full">
+                            <div
+                                class="bg-white p-8 h-full flex flex-col justify-center items-center text-center rounded-2xl border border-slate-200 shadow-md">
+                                <span
+                                    class="text-2xl font-bold text-slate-500 mb-6 uppercase tracking-wider bg-slate-100 px-4 py-2 rounded-full">Recuperando
+                                    la base original ($X$)</span>
+                                <span class="text-[2.2rem] font-mono font-bold text-slate-800 space-y-4">
+                                    $$ \frac{15}{100} \cdot X = 45 $$
+                                    $$ X = \frac{45 \cdot 100}{15} $$
+                                    <div class="bg-emerald-50 border border-emerald-200 p-4 mt-4 rounded-xl">
+                                        $$ X = 300 $$
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="h-full flex flex-col justify-center z-10">
+                        <button id="btn-demo2" onclick="revelarElemento('demo-step2'); this.classList.add('hidden')"
+                            class="w-full py-6 bg-emerald-700 text-white hover:bg-emerald-800 rounded-2xl text-2xl font-bold transition shadow-lg flex justify-center items-center gap-3 uppercase tracking-wider">
+                            Fase 2: Interceptar Objetivo <i data-lucide="crosshair" class="w-6 h-6"></i>
+                        </button>
+
+                        <div id="demo-step2" class="hidden h-full">
+                            <div
+                                class="bg-white p-8 h-full flex flex-col justify-center items-center text-center rounded-2xl border border-slate-200 shadow-md border-b-8 border-emerald-500">
+                                <span
+                                    class="text-2xl font-bold text-emerald-700 mb-6 uppercase tracking-wider bg-emerald-50 px-4 py-2 rounded-full">Calculando
+                                    el vector de salida</span>
+                                <span class="text-[2.2rem] font-mono font-bold text-slate-800 space-y-4">
+                                    $$ \text{20\% de } 300 $$
+                                    $$ \frac{20}{100} \cdot 300 $$
+                                    <div class="bg-emerald-800 text-white p-4 mt-4 rounded-xl shadow-inner">
+                                        $$ = 60 $$
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: PRÁCTICA AUTÓNOMA -->
+        <div class="slide bg-slate-50 p-8 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
+                <i data-lucide="edit-3" class="w-12 h-12 text-emerald-800"></i>
+                <h2 class="text-4xl font-bold text-slate-800">Laboratorio de Trazado Independiente</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 mt-4">
+                <div class="bg-white p-5 rounded-2xl border-2 border-slate-200 shadow-sm shrink-0 mb-6 mx-4">
+                    <p class="text-2xl font-medium text-slate-800 text-center flex items-center justify-center gap-3">
+                        <i data-lucide="alert-circle" class="text-emerald-700 w-8 h-8"></i> Resuelva los siguientes
+                        modelos usando las ecuaciones fraccionarias de proporcionalidad. La dificultad se intensifica
+                        progresivamente.
+                    </p>
+                </div>
+
+                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2 scrollable-content">
+                    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 auto-rows-max px-4">
+
+                        <!-- Verdes (Directos) -->
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow">
+                            <span
+                                class="absolute -top-3 -left-3 bg-emerald-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white">1</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify">Calcula directamente
+                                el 35% de la magnitud 800 usando la forma de multiplicación analítica simplificada.</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow">
+                            <span
+                                class="absolute -top-3 -left-3 bg-emerald-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white">2</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify">Si la magnitud
+                                escalada 40 corresponde con exactitud al 25% de un hipervolumen original $X$. ¿Cuál es
+                                el valor total del hipervolumen $X$?</p>
+                        </div>
+
+                        <!-- Amarillos (Aplicación Media) -->
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-amber-400 relative hover:shadow-md transition-shadow">
+                            <span
+                                class="absolute -top-3 -left-3 bg-amber-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white">3</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify">El precio de una
+                                zapatilla era de $\$$35.000. En liquidación tiene un 30% de descuento. Si se paga con
+                                tarjeta, se añade un 5% de recargo sobre el <strong
+                                    class="text-slate-900 border-b-2 border-amber-300">precio de la
+                                    liquidación</strong>. ¿Cuál es la cantidad neta final a pagar?</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-amber-400 relative hover:shadow-md transition-shadow">
+                            <span
+                                class="absolute -top-3 -left-3 bg-amber-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white">4</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify">En un colegio hay 1200
+                                alumnos enrolados. El 45% del total son hombres. Del espectro estadístico de mujeres, el
+                                20% participa activamente en talleres deportivos extraprogramáticos. Formule la
+                                operación y calcule cuántas mujeres asisten a talleres.</p>
+                        </div>
+
+                        <!-- Naranjas (Análisis Complejo) -->
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-orange-500 relative hover:shadow-md transition-shadow">
+                            <span
+                                class="absolute -top-3 -left-3 bg-orange-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white">5</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify">Si el área geométrica
+                                bidimensional de un rectángulo original se deforma expandiendo su base en un 20% y
+                                comprimiendo su altura en un 20%. Exprese algebraicamente: ¿Qué porcentaje del área
+                                original representa su nueva área calculada?</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-orange-500 relative hover:shadow-md transition-shadow">
+                            <span
+                                class="absolute -top-3 -left-3 bg-orange-500 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white">6</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify">Sabiendo
+                                matemáticamente que el 12,5% de un número $B$ equivale a una constante 150. Modele y
+                                calcule el valor numérico correspondiente estructuralmente al 75% de la <strong
+                                    class="text-slate-900 border-b-2 border-orange-300">mitad geométrica</strong> de
+                                dicho número $B$.</p>
+                        </div>
+
+                        <!-- Rojos (Desafío Fuerte) -->
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-rose-600 relative overflow-hidden group hover:shadow-md transition-shadow">
+                            <div
+                                class="absolute right-0 top-0 bottom-0 w-32 bg-rose-50 -z-10 group-hover:bg-rose-100 transition-colors">
+                            </div>
+                            <span
+                                class="absolute -top-3 -left-3 bg-rose-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white z-10">7</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify relative z-10">Un
+                                instrumento financiero reporta utilidades aumentando un 10% el primer año. Al segundo
+                                año, ocurre una recesión sistémica y el fondo se reduce un 10% respecto al saldo del año
+                                anterior. Si la lectura actual arroja $\$$99.000 en la cuenta, halle, revirtiendo el
+                                tiempo, la inyección primaria de dinero.</p>
+                        </div>
+                        <div
+                            class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-rose-600 relative overflow-hidden group hover:shadow-md transition-shadow">
+                            <div
+                                class="absolute right-0 top-0 bottom-0 w-32 bg-rose-50 -z-10 group-hover:bg-rose-100 transition-colors">
+                            </div>
+                            <span
+                                class="absolute -top-3 -left-3 bg-rose-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold text-xl shadow-md border-2 border-white z-10">8</span>
+                            <p class="text-2xl text-slate-700 font-medium py-2 pl-4 text-justify relative z-10">Del
+                                costo fiscal de importación de una supercomputadora, el 30% cubre seguros logísticos de
+                                transporte. Del remanente, el estado grava exactamente el 40% como impuesto aduanero. Si
+                                el archivo contable de aduanas acusa $\$$84.000 pagados por dicho impuesto, determine
+                                velozmente el costo bruto original de importación total.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7: TICKET DE SALIDA (ESTILO PAES IMPLÍCITO) -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="award" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Evaluación de Proporcionalidad</h2>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12 flex-1 items-stretch relative">
+                <div class="flex flex-col space-y-8 pr-4 h-full">
+                    <div
+                        class="p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl relative shadow-md flex-1 overflow-hidden group">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-[100px] z-0 transition-all group-hover:scale-110">
+                        </div>
+                        <p class="text-3xl font-medium text-slate-800 leading-relaxed text-justify mt-4 relative z-10">
+                            En un laboratorio cinético, se ha descubierto matemáticamente que una variable dependiente
+                            $\mathbf{M}$ se define como el resultado consecutivo de multiplicar la fracción que
+                            representa al $\mathbf{15\%}$, por el equivalente fraccionario del $\mathbf{40\%}$, operando
+                            finalmente de forma escalonada sobre la variable independiente térmica $\mathbf{P}$.
+                            <br><br>
+                            Sometiéndose incondicionalmente a las leyes de la cancelación fraccionaria contemporánea, es
+                            concluyentemente correcto y analítico asegurar que la variable $\mathbf{M}$ equivale con
+                            certeza formal a:
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-3xl font-bold text-slate-700 pl-4 font-mono leading-tight">
+                        <p
+                            class="opt-btn p-5 rounded-xl border border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            A) El $55\%$ empírico del valor de $P$.</p>
+                        <p class="opt-btn p-5 rounded-xl border border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer"
+                            id="correct-opt">B) El $6\%$ matemático del valor de $P$.</p>
+                        <p
+                            class="opt-btn p-5 rounded-xl border border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            C) El $25\%$ relacional del valor de $P$.</p>
+                        <p
+                            class="opt-btn p-5 rounded-xl border border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            D) La fracción racional $\frac{3}{50}$ unida a la inversa de $P$.</p>
+                        <p
+                            class="opt-btn p-5 rounded-xl border border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            E) El diferencial $\frac{3}{50}$ porciento respecto al vector transitorio $P$.</p>
+                    </div>
+                </div>
+
+                <div class="relative w-full h-full flex flex-col justify-end xl:justify-center">
+                    <button id="btn-reveal-paes" onclick="revelarCierre()"
+                        class="px-8 py-8 bg-emerald-800 text-white rounded-3xl text-4xl font-extrabold hover:bg-emerald-700 transition-all shadow-xl w-full absolute inset-0 m-auto h-[120px] z-20 flex items-center justify-center gap-4 hover:scale-105 active:scale-95">
+                        <i data-lucide="shield-check" class="w-10 h-10"></i> Comprobar Condición de Integridad Lógica
+                    </button>
+
+                    <div id="respuesta-paes" class="absolute inset-0 z-10 hidden w-full h-full">
+                        <div
+                            class="h-full w-full bg-white p-10 rounded-3xl border-4 border-emerald-500 flex flex-col text-left shadow-2xl relative overflow-y-auto">
+                            <p
+                                class="text-emerald-800 text-3xl font-extrabold border-b-4 border-emerald-100 pb-4 flex items-center justify-between mb-8 shrink-0 uppercase tracking-widest">
+                                Procedimiento de Reducción Exacta
+                                <i data-lucide="calculator"
+                                    class="w-10 h-10 text-emerald-600 bg-emerald-50 p-2 rounded-lg box-content"></i>
+                            </p>
+
+                            <div
+                                class="text-3xl text-slate-800 space-y-6 font-mono font-medium pl-6 tracking-wide mb-8">
+                                <p class="text-slate-500 font-sans font-bold uppercase tracking-widest text-xl mb-2">
+                                    Paso 1: Ecuación Algebraica Inicial</p>
+                                <div
+                                    class="bg-slate-50 p-6 border-l-8 border-slate-300 rounded-r-xl my-4 text-center shadow-inner">
+                                    $$ M = \frac{15}{100} \cdot \left( \frac{40}{100} \cdot P \right) $$
+                                </div>
+                                <p
+                                    class="text-slate-500 font-sans font-bold uppercase tracking-widest text-xl mb-2 mt-8">
+                                    Paso 2: Simplificación Vectorial en Cascada</p>
+                                <div
+                                    class="bg-emerald-50 p-6 border-l-8 border-emerald-400 rounded-r-xl my-4 text-center shadow-inner">
+                                    $$ M = \frac{3}{20} \cdot \frac{2}{5} \cdot P \implies \frac{6}{100} \cdot P $$
+                                </div>
+                            </div>
+
+                            <p
+                                class="mt-auto font-sans text-3xl text-emerald-900 font-bold bg-emerald-100 p-8 rounded-2xl border-2 border-emerald-300 self-center w-full text-center leading-relaxed">
+                                Tras ejecutar la minimización del bloque operatorio, la equivalencia forjada es la
+                                fracción base de <strong
+                                    class="text-slate-900 bg-white px-4 py-1 rounded inline-block shadow-sm">6%</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVEGACIÓN INFERIOR --->
+    <div
+        class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 fixed bottom-0 z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+        <div
+            class="text-slate-400 font-extrabold text-2xl tracking-widest uppercase truncate max-w-[60%] flex gap-4 items-center">
+            <span class="text-emerald-700">M8</span>
+            <span class="text-slate-300">|</span>
+            <span>Clase 4</span>
+            <span class="text-slate-300">|</span>
+            <span>Porcentajes</span>
+        </div>
+        <div class="flex gap-6">
+            <button onclick="changeSlide(-1)"
+                class="p-5 rounded-full bg-slate-50 border-2 border-slate-200 shadow-sm hover:bg-slate-200 hover:border-slate-300 transition-all cursor-pointer focus:outline-none flex items-center justify-center text-slate-600">
+                <i data-lucide="chevron-left" class="w-10 h-10"></i>
+            </button>
+            <button onclick="changeSlide(1)"
+                class="p-5 rounded-full bg-emerald-800 text-white shadow-md hover:bg-emerald-700 hover:shadow-lg transition-all cursor-pointer focus:outline-none flex items-center justify-center transform hover:scale-105 active:scale-95 border-2 border-emerald-800">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === currentSlide) {
+                    s.classList.add('active');
+                    s.scrollTop = 0;
+                }
+            });
+        }
+
+        function changeSlide(d) {
+            const n = currentSlide + d;
+            if (n >= 0 && n < slides.length) {
+                currentSlide = n;
+                updateSlide();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (['Space', 'Enter'].includes(e.code) && document.activeElement.tagName !== 'BUTTON') {
+                e.preventDefault();
+            }
+        });
+
+        function revelarElemento(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                if (el.classList.contains('hidden')) {
+                    el.classList.remove('hidden');
+                    if (window.MathJax) {
+                        try {
+                            MathJax.typesetPromise([el]).catch((err) => console.log(err.message));
+                        } catch (e) { }
+                    }
+                }
+            }
+        }
+
+        function revelarCierre() {
+            const btn = document.getElementById('btn-reveal-paes');
+            const target = document.getElementById('respuesta-paes');
+
+            btn.classList.add('hidden');
+            target.classList.remove('hidden');
+
+            const correctOpt = document.getElementById('correct-opt');
+            correctOpt.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-black', 'shadow-md');
+            correctOpt.classList.remove('border-transparent');
+
+            if (window.MathJax) {
+                try {
+                    MathJax.typesetPromise([target]).catch(err => console.log(err));
+                } catch (e) { }
+            }
+        }
+
+        function revelarIntro() {
+            revelarElemento('resultado-intro');
+            document.getElementById('btn-reveal-intro').classList.add('hidden');
+            startCanvasAnimation();
+        }
+
+        // Motor Matemático JS Avanzado (Canvas suave con Easing y Bordes curvos)
+        function startCanvasAnimation() {
+            const canvas = document.getElementById('anim-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let startTime = null;
+
+            function resize() {
+                canvas.width = canvas.parentElement.clientWidth;
+                canvas.height = canvas.parentElement.clientHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            // Función Helper para Easing (EaseOutQuad)
+            function easeOutQuad(t) { return t * (2 - t); }
+            function easeInOutSine(t) { return -(Math.cos(Math.PI * t) - 1) / 2; }
+
+            // Función Helper para rectángulos con bordes redondeados
+            function roundRect(ctx, x, y, width, height, radius, fillStyle) {
+                if (width < 0) { x += width; width = Math.abs(width); }
+                if (height < 0) { y += height; height = Math.abs(height); }
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.lineTo(x + width - radius, y);
+                ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+                ctx.lineTo(x + width, y + height - radius);
+                ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                ctx.lineTo(x + radius, y + height);
+                ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+                ctx.lineTo(x, y + radius);
+                ctx.quadraticCurveTo(x, y, x + radius, y);
+                ctx.closePath();
+                ctx.fillStyle = fillStyle;
+                ctx.fill();
+            }
+
+            function draw(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const elapsed = (timestamp - startTime) / 1000; // segundos
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const centerX = canvas.width / 2;
+                const baseY = canvas.height * 0.85;
+                const maxH = canvas.height * 0.6;
+                const w = canvas.width * 0.15;
+                const gap = canvas.width * 0.05;
+
+                // Draw Axis line
+                ctx.beginPath();
+                ctx.moveTo(centerX - canvas.width * 0.4, baseY);
+                ctx.lineTo(centerX + canvas.width * 0.4, baseY);
+                ctx.strokeStyle = '#cbd5e1';
+                ctx.lineWidth = 4;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+
+                // BARRA 1: BASE 100 (Estática, aparece con fade o ease)
+                const animB1 = Math.min(1, elapsed / 0.8);
+                const h1 = (100 / 120) * maxH * easeOutQuad(animB1);
+                const x1 = centerX - w * 1.5 - gap;
+                roundRect(ctx, x1, baseY - h1, w, h1, 8, '#94a3b8');
+                ctx.fillStyle = `rgba(51, 65, 85, ${animB1})`;
+                ctx.font = 'bold 22px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('$100', x1 + w / 2, baseY + 35);
+                ctx.fillStyle = `rgba(255, 255, 255, ${animB1})`;
+                ctx.font = 'bold 24px Inter, sans-serif';
+                if (animB1 > 0.5) ctx.fillText('100', x1 + w / 2, baseY - h1 + 30);
+
+                // BARRA 2: AUMENTO +20% (Arranca a los 1seg)
+                if (elapsed > 1.0) {
+                    const animB2 = Math.min(1, (elapsed - 1.0) / 1.2);
+                    const val2 = 100 + 20 * easeInOutSine(animB2);
+                    const h2 = (val2 / 120) * maxH;
+                    const x2 = centerX - w / 2;
+                    roundRect(ctx, x2, baseY - h2, w, h2, 8, '#34d399');
+
+                    ctx.fillStyle = `rgba(15, 118, 110, ${animB2})`;
+                    ctx.font = 'bold 22px Inter, sans-serif';
+                    ctx.fillText('+20%', x2 + w / 2, baseY + 35);
+
+                    ctx.fillStyle = `rgba(2, 44, 34, ${animB2})`;
+                    ctx.font = 'bold 28px Inter, sans-serif';
+                    ctx.fillText(`$${Math.round(val2)}`, x2 + w / 2, baseY - h2 - 15);
+                }
+
+                // BARRA 3: DESCUENTO -20% (Arranca a los 2.5seg)
+                if (elapsed > 2.5) {
+                    const animB3 = Math.min(1, (elapsed - 2.5) / 1.5);
+                    const val3 = 120 - 24 * easeInOutSine(animB3);
+                    const h3 = (val3 / 120) * maxH;
+                    const x3 = centerX + w / 2 + gap;
+
+                    roundRect(ctx, x3, baseY - h3, w, h3, 8, '#f43f5e');
+
+                    ctx.fillStyle = `rgba(159, 18, 57, ${animB3})`;
+                    ctx.font = 'bold 22px Inter, sans-serif';
+                    ctx.fillText('-20%', x3 + w / 2, baseY + 35);
+
+                    ctx.fillStyle = `rgba(136, 19, 55, ${animB3})`;
+                    ctx.font = 'bold 32px Inter, sans-serif';
+                    ctx.fillText(`$${Math.round(val3)}`, x3 + w / 2, baseY - h3 - 15);
+
+                    // Línea de comparación sutil entre barra 1 y barra 3
+                    if (animB3 > 0.8) {
+                        const alpha = (animB3 - 0.8) * 5;
+                        const hTarget = (100 / 120) * maxH;
+                        ctx.beginPath();
+                        ctx.moveTo(x1 + w, baseY - hTarget);
+                        ctx.lineTo(x3 + w, baseY - hTarget);
+                        ctx.strokeStyle = `rgba(15, 23, 42, ${alpha * 0.5})`;
+                        ctx.setLineDash([10, 10]);
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                    }
+                }
+
+                // Terminar animación a los 5s en lugar de reiniciar
+                if (elapsed <= 5.0) {
+                    requestAnimationFrame(draw);
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+    </script>
+</body>
+
+</html>
