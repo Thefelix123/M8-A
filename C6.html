@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geometría 3D: El Prisma - Matemáticas 8º Básico</title>
+    <title>Geometría Espacial: El Mundo de los Poliedros - Matemáticas 8º Básico</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -84,12 +84,6 @@
             background: #22c55e;
         }
 
-        /* SVG Animation */
-        @keyframes reveal-edge {
-            from { stroke-dashoffset: 200; opacity: 0; }
-            to { stroke-dashoffset: 0; opacity: 1; }
-        }
-
     </style>
 </head>
 
@@ -102,12 +96,12 @@
         <!-- SLIDE 1: PORTADA -->
         <div class="slide active p-10 bg-slate-50">
             <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-20">
-                <i data-lucide="box" class="w-40 h-40 text-emerald-800 opacity-90"></i>
+                <i data-lucide="cuboid" class="w-40 h-40 text-emerald-800 opacity-90"></i>
                 <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center">
-                    Geometría 3D: Construyendo el Espacio
+                    Geometría Espacial: Poliedros
                 </h1>
                 <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center">
-                    La Definición Estructural del Prisma
+                    La Estructura Básica del Mundo en 3D
                 </p>
 
                 <div class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-emerald-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md">
@@ -121,67 +115,49 @@
             </div>
         </div>
 
-        <!-- SLIDE 2: INTRODUCCIÓN Y PROBLEMA (Transición 2D a 3D) -->
+        <!-- SLIDE 2: INTRODUCCIÓN Y PROBLEMA (Gancho) -->
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-100 pb-4 shrink-0">
-                <i data-lucide="layers" class="w-14 h-14 text-emerald-800"></i>
-                <h2 class="text-5xl md:text-6xl font-bold text-slate-800">El Nacimiento de la Tercera Dimensión</h2>
+                <i data-lucide="package-open" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl md:text-6xl font-bold text-slate-800">El Problema de Contener el Espacio</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
                 <div class="space-y-8 h-full flex flex-col justify-center pr-4">
                     <p class="text-4xl font-light text-slate-700 leading-relaxed">
-                        Hasta ahora hemos trabajado confinados en un cuaderno plano bidimensional (2D) definiendo polígonos elementales.
+                        Los polígonos planos como triángulos o cuadrados solo abarcan superficie, pero son incapaces de almacenar volumen. El universo requiere objetos tridimensionales.
                     </p>
                     <div class="glass-card p-6 rounded-xl border-l-8 border-emerald-600">
                         <h3 class="text-3xl font-bold text-emerald-700 mb-4 flex items-center gap-3">
-                            <i data-lucide="scan" class="w-8 h-8"></i> La Problemática del Volumen:
+                            <i data-lucide="boxes" class="w-8 h-8"></i> El Nacimiento del Poliedro:
                         </h3>
                         <p class="text-3xl text-slate-700 leading-snug">
-                            ¿Qué ocurre estrictamente si sobreponemos infinitos polígonos idénticos, uno sobre otro, dotándolos de altura en el espacio?
-                        </p>
-                    </div>
-                    <button onclick="revelarElemento('generacion-solido'); iniciarAnimacion3D()" class="mt-4 px-8 py-4 bg-slate-800 text-white rounded-xl text-2xl font-bold hover:bg-slate-700 transition shadow-md w-max">
-                        <i data-lucide="play" class="inline-block w-6 h-6 mr-2 mb-1"></i> Desatar Altura Geométrica
-                    </button>
-
-                    <div id="generacion-solido" class="hidden mt-4 bg-emerald-50 border border-emerald-200 p-6 rounded-xl">
-                        <p class="text-2xl text-emerald-900 leading-relaxed font-bold">
-                            El polígono base, al ser dotado de profundidad, genera un sólido geométrico de Caras Paralelas denominado Prisma.
+                            Si conectamos y cerramos herméticamente múltiples polígonos planos para delimitar un espacio interior, creamos un <strong>Poliedro</strong> (del griego <em>poly</em>: muchas, <em>hedra</em>: caras).
                         </p>
                     </div>
                 </div>
 
                 <div class="h-full w-full flex flex-col items-center justify-center bg-slate-50 rounded-2xl border-2 border-slate-200 p-4 relative overflow-hidden">
-                    <div class="text-2xl font-bold text-slate-400 mb-8 tracking-widest uppercase text-center">De la Base (2D) al Prisma (3D)</div>
+                    <div class="text-2xl font-bold text-slate-400 mb-8 tracking-widest uppercase text-center">Planos vs. Espacio</div>
                     
                     <div class="relative w-full h-full flex justify-center items-center">
-                        <svg viewBox="20 80 160 240" class="w-full h-full max-h-[400px] overflow-visible">
-                            <defs>
-                                <polygon id="base-poly" points="100,250 160,270 140,300 60,300 40,270" />
-                            </defs>
-                            <!-- Bottom Base (always visible) -->
-                            <use href="#base-poly" fill="#047857" stroke="#064e3b" stroke-width="2" />
-                            
-                            <!-- Lateral Faces (Hidden initially) -->
-                            <g id="lat-faces" class="opacity-0 transition-opacity duration-1000">
-                                <!-- Back faces -->
-                                <polygon points="40,270 60,300 60,150 40,120" fill="#a7f3d0" stroke="#059669" stroke-width="1" />
-                                <polygon points="60,300 140,300 140,150 60,150" fill="#6ee7b7" stroke="#059669" stroke-width="1" />
-                                <!-- Front faces -->
-                                <polygon points="100,250 160,270 160,120 100,100" fill="#10b981" stroke="#047857" stroke-width="2" />
-                                <polygon points="40,270 100,250 100,100 40,120" fill="#059669" stroke="#047857" stroke-width="2" />
-                            </g>
-                            
-                            <!-- Vertical Edges (Draw down) -->
-                            <g id="lat-edges" class="hidden">
-                                <line x1="100" y1="100" x2="100" y2="250" stroke="#064e3b" stroke-width="3" stroke-dasharray="150" stroke-dashoffset="150" class="geom-line" />
-                                <line x1="160" y1="120" x2="160" y2="270" stroke="#064e3b" stroke-width="3" stroke-dasharray="150" stroke-dashoffset="150" class="geom-line" />
-                                <line x1="40" y1="120" x2="40" y2="270" stroke="#064e3b" stroke-width="3" stroke-dasharray="150" stroke-dashoffset="150" class="geom-line" />
-                            </g>
-    
-                            <!-- Top Base (moves up) -->
-                            <use href="#base-poly" id="top-base" fill="#34d399" stroke="#064e3b" stroke-width="3" class="transition-transform duration-[1500ms] ease-in-out" style="transform: translateY(0);" />
+                        <svg viewBox="0 0 200 200" class="w-full h-full max-h-[400px] overflow-visible">
+                            <!-- Cubo Transparente -->
+                            <polygon points="50,150 110,150 110,90 50,90" fill="#a7f3d0" stroke="#059669" stroke-width="2" class="opacity-60" />
+                            <polygon points="110,150 150,110 150,50 110,90" fill="#6ee7b7" stroke="#059669" stroke-width="2" class="opacity-60" />
+                            <polygon points="50,90 110,90 150,50 90,50" fill="#10b981" stroke="#047857" stroke-width="2" class="opacity-80" />
+                            <!-- Vértices -->
+                            <circle cx="50" cy="150" r="3" fill="#064e3b" />
+                            <circle cx="110" cy="150" r="3" fill="#064e3b" />
+                            <circle cx="150" cy="110" r="3" fill="#064e3b" />
+                            <circle cx="150" cy="50" r="3" fill="#064e3b" />
+                            <circle cx="90" cy="50" r="3" fill="#064e3b" />
+                            <circle cx="50" cy="90" r="3" fill="#064e3b" />
+                            <circle cx="110" cy="90" r="3" fill="#064e3b" />
+                            <!-- Lineas Ocultas -->
+                            <line x1="50" y1="150" x2="90" y2="110" stroke="#059669" stroke-width="2" stroke-dasharray="4,4" />
+                            <line x1="90" y1="110" x2="150" y2="110" stroke="#059669" stroke-width="2" stroke-dasharray="4,4" />
+                            <line x1="90" y1="110" x2="90" y2="50" stroke="#059669" stroke-width="2" stroke-dasharray="4,4" />
                         </svg>
                     </div>
                 </div>
@@ -192,82 +168,78 @@
         <div class="slide bg-slate-50 p-10 pb-32">
             <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-4 shrink-0">
                 <i data-lucide="book-open" class="w-14 h-14 text-emerald-800"></i>
-                <h2 class="text-5xl font-bold text-slate-800">Taxonomía del Prisma Recto</h2>
+                <h2 class="text-5xl font-bold text-slate-800">Taxonomía del Poliedro</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 mt-6">
-                <!-- DEFINITION RULES -->
+                <!-- DEFINICIONES -->
                 <div class="h-full flex flex-col justify-center space-y-4">
-                    <div class="bg-emerald-50 p-4 rounded-xl border-l-4 border-emerald-600 shadow-sm border border-emerald-200">
-                        <p class="text-xl text-emerald-900 font-bold mb-1 flex items-center gap-2">La Variable $n$</p>
-                        <p class="text-lg text-slate-700 leading-tight">Representa el <strong>número de lados del polígono de la base</strong>. Es el parámetro fundamental para calcular todo lo demás.</p>
+                    <div class="bg-indigo-50 p-4 rounded-xl border-l-8 border-indigo-600 shadow-sm">
+                        <p class="text-2xl text-indigo-900 font-bold mb-1 flex items-center gap-2">1. Caras ($C$)</p>
+                        <p class="text-xl text-slate-700 leading-tight">Son los polígonos planos que encierran el sólido. En un poliedro no hay curvas, solo superficies planas y estrictamente poligonales.</p>
                     </div>
 
-                    <div class="bg-emerald-50 p-4 rounded-xl border-l-8 border-emerald-600 shadow-sm transition-transform hover:scale-[1.02]">
-                        <p class="text-2xl text-emerald-900 font-bold mb-1 flex items-center gap-2">1. Bases Paralelas</p>
-                        <p class="text-xl text-slate-700 leading-tight">Polígonos congruentes y paralelos entre sí. Determinan el prefijo del prisma (ej. Base triangular $\rightarrow$ Prisma Triangular, $n=3$).</p>
+                    <div class="bg-cyan-50 p-4 rounded-xl border-l-8 border-cyan-500 shadow-sm">
+                        <p class="text-2xl text-cyan-900 font-bold mb-1 flex items-center gap-2">2. Aristas ($A$)</p>
+                        <p class="text-xl text-slate-700 leading-tight">Segmentos de línea rectos que se forman exactamente donde dos caras del poliedro se intersectan y unen.</p>
                     </div>
 
-                    <div class="bg-indigo-50 p-4 rounded-xl border-l-8 border-indigo-600 shadow-sm transition-transform hover:scale-[1.02]">
-                        <p class="text-2xl text-indigo-900 font-bold mb-1 flex items-center gap-2">2. Caras Laterales</p>
-                        <p class="text-xl text-slate-700 leading-tight">Superficies que conectan las bases. En prismas rectos siempre son <strong class="text-indigo-800 font-bold">Rectángulos</strong>.</p>
+                    <div class="bg-purple-50 p-4 rounded-xl border-l-8 border-purple-600 shadow-sm">
+                        <p class="text-2xl text-purple-900 font-bold mb-1 flex items-center gap-2">3. Vértices ($V$)</p>
+                        <p class="text-xl text-slate-700 leading-tight">Puntos críticos en el espacio donde tres o más aristas convergen. Son las "esquinas" del cuerpo geométrico.</p>
                     </div>
 
-                    <div class="bg-cyan-50 p-4 rounded-xl border-l-8 border-cyan-500 shadow-sm transition-transform hover:scale-[1.02]">
-                        <p class="text-2xl text-cyan-900 font-bold mb-1 flex items-center gap-2">3. Aristas</p>
-                        <p class="text-xl text-slate-700 leading-tight">Líneas de intersección entre dos caras. Se dividen en aristas basales y aristas laterales.</p>
-                        <p class="text-xl font-mono text-cyan-800 font-bold mt-2 font-bold">$A = 3n$</p>
-                    </div>
-
-                    <div class="bg-purple-50 p-4 rounded-xl border-l-8 border-purple-600 shadow-sm transition-transform hover:scale-[1.02]">
-                        <p class="text-2xl text-purple-900 font-bold mb-1 flex items-center gap-2">4. Vértices</p>
-                        <p class="text-xl text-slate-700 leading-tight">Puntos donde convergen tres o más aristas tridimensionales.</p>
-                        <p class="text-xl font-mono text-purple-800 font-bold mt-2 font-bold">$V = 2n$</p>
+                    <div class="bg-emerald-50 p-4 rounded-xl border-l-8 border-emerald-600 shadow-sm mt-4">
+                        <p class="text-2xl text-emerald-900 font-bold mb-1">El Teorema de Euler</p>
+                        <p class="text-xl text-slate-700 leading-tight">Para cualquier poliedro convexo, existe una simetría universal que vincula estos tres componentes de manera irrompible:</p>
+                        <p class="text-2xl font-mono text-emerald-800 font-bold mt-2 text-center bg-white p-2 rounded-lg border border-emerald-200">$$ C + V = A + 2 $$</p>
                     </div>
                 </div>
 
-                <!-- SVG DIAGRAM INTERACTIVE -->
-                <div class="h-full w-full flex flex-col items-center justify-center bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-md relative overflow-hidden py-10">
+                <!-- DIAGRAMA SVG INTERACTIVO -->
+                <div class="h-full w-full flex flex-col items-center justify-center bg-white rounded-3xl border-2 border-slate-200 p-6 shadow-md relative py-10">
                     <div class="text-center w-full absolute top-6 flex justify-center gap-4 z-10">
-                        <button onclick="resaltarElemento('bases', 'emerald')" class="px-4 py-2 bg-emerald-100 text-emerald-800 font-bold rounded shadow border border-emerald-300 hover:bg-emerald-200">Resaltar Bases</button>
-                        <button onclick="resaltarElemento('laterales', 'indigo')" class="px-4 py-2 bg-indigo-100 text-indigo-800 font-bold rounded shadow border border-indigo-300 hover:bg-indigo-200">Resaltar Caras Lat.</button>
+                        <button onclick="resaltarElementoPoliedro('caras')" class="px-4 py-2 bg-indigo-100 text-indigo-800 font-bold rounded shadow border border-indigo-300 hover:bg-indigo-200">Enfocar Caras</button>
+                        <button onclick="resaltarElementoPoliedro('aristas')" class="px-4 py-2 bg-cyan-100 text-cyan-800 font-bold rounded shadow border border-cyan-300 hover:bg-cyan-200">Enfocar Aristas</button>
+                        <button onclick="resaltarElementoPoliedro('vertices')" class="px-4 py-2 bg-purple-100 text-purple-800 font-bold rounded shadow border border-purple-300 hover:bg-purple-200">Enfocar Vértices</button>
                     </div>
                     
-                    <svg viewBox="0 0 200 240" class="w-full h-full max-h-[400px] mt-12 transition-all duration-500">
-                        <defs>
-                            <polygon id="base-pentagon" points="100,20 160,60 140,110 60,110 40,60" />
-                        </defs>
-                        <!-- Back faces / Hidden lines -->
-                        <polygon points="40,60 60,110 60,210 40,160" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="4,4" class="poligono-prism" />
-                        <polygon points="60,110 140,110 140,210 60,210" fill="#f8fafc" stroke="#94a3b8" stroke-dasharray="4,4" class="poligono-prism" />
-                        <line x1="60" y1="110" x2="60" y2="210" stroke="#94a3b8" stroke-dasharray="4,4" />
-                        
-                        <!-- Base Inferior -->
-                        <polygon points="100,120 160,160 140,210 60,210 40,160" fill="#f1f5f9" stroke="#334155" stroke-width="2" id="geom-base-inf" class="transition-all duration-300" />
-                        
-                        <!-- Front lateral faces -->
-                        <polygon points="100,20 160,60 160,160 100,120" fill="#f8fafc" stroke="#334155" stroke-width="2" id="geom-lat-1" class="transition-all duration-300" />
-                        <polygon points="40,60 100,20 100,120 40,160" fill="#e2e8f0" stroke="#334155" stroke-width="2" id="geom-lat-2" class="transition-all duration-300" />
-                        
-                        <!-- Base Superior -->
-                        <use href="#base-pentagon" fill="#f1f5f9" stroke="#334155" stroke-width="2" id="geom-base-sup" class="transition-all duration-300" />
-                        
-                        <!-- Front Edges (Aristas) -->
-                        <line x1="100" y1="20" x2="100" y2="120" stroke="#334155" stroke-width="2" class="geom-arista" />
-                        <line x1="160" y1="60" x2="160" y2="160" stroke="#334155" stroke-width="2" class="geom-arista" />
-                        <line x1="40" y1="60" x2="40" y2="160" stroke="#334155" stroke-width="2" class="geom-arista" />
-                        
-                        <!-- Vertices Intersections -->
-                        <circle cx="100" cy="20" r="3" fill="#0f172a" />
-                        <circle cx="160" cy="60" r="3" fill="#0f172a" />
-                        <circle cx="40" cy="60" r="3" fill="#0f172a" />
-                        <circle cx="100" cy="120" r="3" fill="#0f172a" />
-                        <circle cx="160" cy="160" r="3" fill="#0f172a" />
-                        <circle cx="40" cy="160" r="3" fill="#0f172a" />
-                        <circle cx="140" cy="210" r="3" fill="#0f172a" />
-                        <circle cx="60" cy="210" r="3" fill="#0f172a" />
+                    <svg viewBox="0 0 200 200" class="w-full h-full max-h-[350px] mt-12 transition-all duration-500">
+                        <!-- Pirámide Cuadrangular O Cubo (Cubo Puesto Isométrico) -->
+                        <g id="poli-caras">
+                            <polygon points="50,150 110,150 110,90 50,90" fill="#f8fafc" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-cara" />
+                            <polygon points="110,150 150,110 150,50 110,90" fill="#f1f5f9" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-cara" />
+                            <polygon points="50,90 110,90 150,50 90,50" fill="#e2e8f0" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-cara" />
+                        </g>
+
+                        <!-- Aristas Visibles -->
+                        <g id="poli-aristas">
+                            <line x1="50" y1="150" x2="110" y2="150" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="110" y1="150" x2="110" y2="90" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="110" y1="150" x2="150" y2="110" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="50" y1="90" x2="110" y2="90" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="50" y1="90" x2="50" y2="150" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="90" y1="50" x2="150" y2="50" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="50" y1="90" x2="90" y2="50" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="110" y1="90" x2="150" y2="50" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                            <line x1="150" y1="50" x2="150" y2="110" stroke="#334155" stroke-width="2" class="transition-all duration-300 poly-arista" />
+                        </g>
+
+                        <!-- Vértices -->
+                        <g id="poli-vertices">
+                            <circle cx="50" cy="150" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <circle cx="110" cy="150" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <circle cx="150" cy="110" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <circle cx="150" cy="50" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <circle cx="90" cy="50" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <circle cx="50" cy="90" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <circle cx="110" cy="90" r="3" fill="#0f172a" class="transition-all duration-300 poly-vertice" />
+                            <!-- El vértice oculto atrás -->
+                            <circle cx="90" cy="110" r="3" fill="#64748b" class="transition-all duration-300 poly-vertice opacity-50" />
+                        </g>
+
                     </svg>
-                    <p class="mt-4 font-mono text-slate-500 font-bold uppercase tracking-widest text-sm">Modelo Desplegado: Prisma Pentagonal</p>
+                    <p class="mt-4 font-mono text-slate-500 font-bold uppercase tracking-widest text-sm">Hexaedro (Cubo)</p>
                 </div>
             </div>
         </div>
@@ -276,53 +248,62 @@
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 border-b-4 border-slate-100 pb-2 shrink-0">
                 <i data-lucide="microscope" class="w-14 h-14 text-emerald-800"></i>
-                <h2 class="text-5xl font-bold text-slate-800">Laboratorio de Análisis: Aislamiento Paramétrico</h2>
+                <h2 class="text-5xl font-bold text-slate-800">Laboratorio Analítico: Conteo Matemático</h2>
             </div>
 
             <div class="flex flex-col gap-4 mt-8 bg-slate-50 p-8 rounded-3xl border-2 border-slate-200 shrink-0 shadow-sm">
                 <p class="text-3xl font-medium text-slate-800 leading-relaxed border-l-8 border-slate-400 pl-6 mx-4">
-                    <strong>Protocolo Analítico:</strong> Para clasificar algebraicamente un prisma y proyectar sus vértices y aristas sin dibujarlo, debemos identificar el valor escalar de <strong>$n$</strong> (cantidad de lados de su base) y aplicar algoritmos de derivación.
+                    <strong>Protocolo de Análisis:</strong> Dado el cuerpo tridimensional presentado a continuación (Pirámide Cuadrangular), determinaremos algebraicamente sus elementos para validar el <strong>Teorema de Euler</strong>.
                 </p>
 
                 <div class="flex justify-around items-center pt-8">
-                    <button onclick="revelarElemento('analisis-paso1')" class="w-full max-w-sm px-8 py-5 bg-slate-800 text-white rounded-xl text-3xl font-bold hover:bg-slate-700 transition shadow flex flex-col items-center gap-2">
-                        <span>Fase 1: Identificación</span>
+                    <button onclick="revelarElementoPaso('analisis-conteo')" class="w-full max-w-sm px-8 py-5 bg-slate-800 text-white rounded-xl text-3xl font-bold hover:bg-slate-700 transition shadow flex flex-col items-center gap-2">
+                        <span>Fase 1: Conteo Táctico</span>
                     </button>
                     <i data-lucide="arrow-right" class="w-10 h-10 text-slate-400 mx-4"></i>
-                    <button onclick="revelarElemento('analisis-paso2')" class="w-full max-w-sm px-8 py-5 bg-teal-800 text-white rounded-xl text-3xl font-bold hover:bg-teal-900 transition shadow flex flex-col items-center gap-2 opacity-50" id="btn-paso2" disabled>
-                        <span>Fase 2: Conteo Formal</span>
+                    <button onclick="revelarElementoPaso('analisis-euler')" class="w-full max-w-sm px-8 py-5 bg-emerald-800 text-white rounded-xl text-3xl font-bold hover:bg-emerald-900 transition shadow flex flex-col items-center gap-2 opacity-50" id="btn-paso-euler" disabled>
+                        <span>Fase 2: Prueba de Euler</span>
                     </button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-1 mt-8 pb-10 px-4">
-                <!-- FASE 1 -->
-                <div id="analisis-paso1" class="hidden flex-col gap-6 bg-white border-4 border-slate-300 rounded-3xl p-8 shadow-md">
-                    <h3 class="text-3xl text-slate-800 font-bold border-b-2 border-slate-100 pb-2">Supuesto Geométrico:</h3>
-                    <p class="text-2xl font-mono text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        Tenemos un "Prisma Octagonal Recto".
-                    </p>
-                    <div class="flex-1 space-y-4 text-2xl text-slate-700 pt-4 leading-relaxed">
-                        <p>El término formal <strong>Octagonal</strong> delinea estrictamente que la base es un paralelogramo extendido de 8 lados conformados.</p>
-                        <p class="text-4xl font-bold font-mono text-emerald-700 bg-emerald-50 p-4 text-center border-2 border-emerald-400 rounded-xl mt-4">$$ n = 8 $$</p>
+                <!-- FASE 1: CONTEO -->
+                <div id="analisis-conteo" class="hidden flex-col gap-6 bg-white border-4 border-slate-300 rounded-3xl p-8 shadow-md">
+                    <div class="flex items-center justify-between border-b-2 border-slate-100 pb-2">
+                        <h3 class="text-3xl text-slate-800 font-bold">Pirámide Cuadrangular</h3>
+                        <!-- Mini SVG representativo de pirámide -->
+                        <svg viewBox="0 0 100 100" class="w-16 h-16">
+                            <polygon points="50,10 80,80 50,90 20,80" fill="#f1f5f9" stroke="#334155" stroke-width="2"/>
+                            <line x1="50" y1="10" x2="50" y2="90" stroke="#334155" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    
+                    <div class="flex-1 space-y-6 text-2xl text-slate-700 pt-4 font-mono">
+                        <div class="flex justify-between items-center bg-indigo-50 p-4 rounded border-l-4 border-indigo-500">
+                            <span>Caras ($C$)</span>
+                            <span class="font-bold text-indigo-800">$1 \text{ base} + 4 \text{ laterales} = 5$</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-cyan-50 p-4 rounded border-l-4 border-cyan-500">
+                            <span>Aristas ($A$)</span>
+                            <span class="font-bold text-cyan-800">$4 \text{ basales} + 4 \text{ laterales} = 8$</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-purple-50 p-4 rounded border-l-4 border-purple-500">
+                            <span>Vértices ($V$)</span>
+                            <span class="font-bold text-purple-800">$4 \text{ basales} + 1 \text{ cúspide} = 5$</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- FASE 2 -->
-                <div id="analisis-paso2" class="hidden flex-col gap-6 bg-white border-4 border-teal-300 rounded-3xl p-8 shadow-md">
-                    <h3 class="text-3xl text-teal-800 font-bold border-b-2 border-slate-100 pb-2">Ejecución del Algoritmo:</h3>
-                    <div class="flex-1 space-y-6 text-2xl text-slate-700 pt-4 font-mono">
-                        <div class="flex justify-between items-center bg-teal-50 p-4 rounded border-l-4 border-teal-500">
-                            <span>Vértices: $\displaystyle V = 2n$</span>
-                            <span class="font-bold text-teal-800">$\displaystyle V = 16$</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-emerald-50 p-4 rounded border-l-4 border-emerald-500">
-                            <span>Aristas: $\displaystyle A = 3n$</span>
-                            <span class="font-bold text-emerald-800">$\displaystyle A = 24$</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-indigo-50 p-4 rounded border-l-4 border-indigo-500">
-                            <span>Caras Totales: $\displaystyle C = n + 2$</span>
-                            <span class="font-bold text-indigo-800">$\displaystyle C = 10$</span>
+                <!-- FASE 2: EULER -->
+                <div id="analisis-euler" class="hidden flex-col gap-6 bg-white border-4 border-emerald-300 rounded-3xl p-8 shadow-md">
+                    <h3 class="text-3xl text-emerald-800 font-bold border-b-2 border-slate-100 pb-2">Validación Conjuntista de Euler</h3>
+                    <div class="flex-1 space-y-4 text-2xl text-slate-700 pt-4 leading-relaxed">
+                        <p>La fórmula exige el equilibrio absoluto: <strong>$C + V = A + 2$</strong></p>
+                        <div class="bg-emerald-50 border-2 border-emerald-400 p-6 rounded-xl mt-6 text-center">
+                            <p class="font-mono text-3xl font-bold mb-4">$$ 5 + 5 = 8 + 2 $$</p>
+                            <p class="font-mono text-4xl font-extrabold text-emerald-800">$$ 10 = 10 $$</p>
+                            <p class="text-emerald-700 font-bold mt-4 uppercase tracking-wider">Demostrado con Éxito</p>
                         </div>
                     </div>
                 </div>
@@ -333,17 +314,17 @@
         <div class="slide bg-slate-50 p-8 pb-32">
             <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
                 <i data-lucide="edit-3" class="w-12 h-12 text-emerald-800"></i>
-                <h2 class="text-4xl font-bold text-slate-800">Desarrollo M1: Proyecciones Estructurales</h2>
+                <h2 class="text-4xl font-bold text-slate-800">Práctica Analítica: Desafíos Tridimensionales</h2>
             </div>
 
             <div class="flex flex-col flex-1 mt-4">
                 <div class="bg-white p-4 rounded-xl border-2 border-slate-200 shadow-sm shrink-0 mb-4 mx-4">
                     <p class="text-2xl font-medium text-slate-800 text-center">
-                        <strong class="text-emerald-700">Instrucción:</strong> Resuelva en su cuaderno el análisis geométrico solicitado, derivando lógicamente cada variable.
+                        <strong class="text-emerald-700">Instrucción:</strong> Resuelva jerárquicamente en su cuaderno, declarando las variables y desarrollando hasta encontrar la solución definitiva.
                     </p>
                 </div>
 
-                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2">
+                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2 scrollable-content">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-max px-4">
                         
                         <!-- NIVEL 1 -->
@@ -354,47 +335,47 @@
                         <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-emerald-400 relative">
                             <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">1</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Un arquitecto diseña un prisma <strong>Pentagonal Recto</strong> usando vidrio para las paredes (caras laterales) y madera para pisos/techos (bases). ¿Cuántas planchas de cada material requiere en total?
+                                Un ingeniero examina un Prisma Triangular (base triángulo). Detalle y clasifique la cantidad exacta de <strong>Caras ($C$)</strong>, <strong>Aristas ($A$)</strong> y <strong>Vértices ($V$)</strong>.
                             </p>
                         </div>
                         
                         <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-emerald-400 relative">
                             <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">2</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Identifique formalmente el polígono base, la cantidad total de caras ($C$) y la variable $n$ de un <strong>Prisma Heptagonal</strong>.
+                                Para el Prisma Triangular anterior, reemplace los valores hallados en el Teorema de Euler y demuestre matemáticamente que la ecuación se equilibra.
                             </p>
                         </div>
 
                         <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-emerald-400 relative">
                             <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">3</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Un prisma tiene en su base un <strong>octágono</strong>. ¿Cuántas <strong>Caras Laterales</strong> rectangulares tiene este sólido tridimensional?
+                                Una Pirámide Pentagonal tiene 1 base (pentágono) y 5 caras triangulares. Determine todas las <strong>Aristas ($A$)</strong> y <strong>Vértices ($V$)</strong> que compondrán su estructura.
                             </p>
                         </div>
                         
                         <!-- NIVEL 2 -->
                         <div class="md:col-span-3 mt-6 mb-2">
-                            <div class="w-full h-2 bg-amber-400 rounded-full shadow-sm"></div>
+                            <div class="w-full h-2 bg-indigo-400 rounded-full shadow-sm"></div>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-amber-400 relative">
-                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">4</span>
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-indigo-500 relative bg-indigo-50/20">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">4</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Dada la existencia de un <strong>Prisma de Base Decagonal</strong> ($n=10$), establezca la cantidad exacta absoluta de <strong class="text-amber-700">Vértices</strong> aplicando el algoritmo universal.
+                                Un poliedro exótico y misterioso indica poseer exactamente <strong class="text-indigo-700">12 caras</strong> y <strong class="text-indigo-700">30 aristas</strong> en total. Apelando al Teorema de Euler, descubra cuántos <strong>Vértices</strong> oculta.
                             </p>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-amber-400 relative">
-                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">5</span>
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-indigo-500 relative bg-indigo-50/20">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">5</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Calcule la sumatoria total del número de <strong class="text-amber-700">Aristas</strong> de un Prisma Triangular más las Aristas de un Prisma Cuadrangular.
+                                ¿Es lógicamente posible mediante la física del espacio que exista un poliedro con <strong>6 caras, 8 aristas y 10 vértices</strong>? Demuestre algebraicamente su veracidad o falsedad.
                             </p>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-amber-400 relative">
-                            <span class="absolute top-2 left-3 font-bold text-amber-600 text-xl font-mono">6</span>
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-indigo-500 relative bg-indigo-50/20">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">6</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Un Prisma Trapezoidal (base trapecio) se somete a inspección. Determine independientemente sus cantidades para: Aristas Totales ($A$), Vértices ($V$) y Caras ($C$).
+                                Un cubo común (6 caras cuadradas) sufre una mutación. Si cortamos (remitimos) de cuajo y de forma transversal y limpia una de sus esquinas. ¿Cuántas Caras, Aristas y Vértices tendrá el poliedro resultante nuevo?
                             </p>
                         </div>
 
@@ -403,24 +384,10 @@
                             <div class="w-full h-2 bg-rose-400 rounded-full shadow-sm"></div>
                         </div>
 
-                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/10">
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/30 md:col-span-3">
                             <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">7</span>
                             <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Operación Vectorial Inversa: Un bloque prismático sometido a escrutinio algorítmico declara un cuerpo con exactamente <strong class="text-rose-700">36 aristas en total</strong>. Identifique el nombre de la figura basal determinando la variable $n$.
-                            </p>
-                        </div>
-                        
-                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/10">
-                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">8</span>
-                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                Se construye un prisma que posee excepcionalmente <strong class="text-rose-700">22 Vértices</strong> en su estructura final. ¿Cuántas caras laterales rectangulares fueron utilizadas para su sellado perimetral?
-                            </p>
-                        </div>
-
-                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-md border-l-8 border-rose-500 relative bg-rose-50/10">
-                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">9</span>
-                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
-                                <strong>Desafío Extremo:</strong> Un prisma desconocido presenta la siguiente anomalía paramétrica: La suma de sus Vértices y sus Caras Totales es exactamente 50. Determine formalmente el valor de $n$.
+                                <strong>Ingeniería Inversa Restringida:</strong> Existe un polígono regular de orden gigante llamado Icosaedro que cuenta con <strong class="text-rose-700">20 caras triangulares puras</strong>. Si cada cara triangular independiente tiene 3 bordes, pero en un sólido cada arista unifica y agrupa a dos caras de forma simultánea, averigüe la cantidad de <strong>Aristas Totales</strong> definitivas del Icosaedro sin recurrir a la fórmula base de Euler y luego, aplique Euler para despejar libremente sus vértices.
                             </p>
                         </div>
 
@@ -433,39 +400,39 @@
         <div class="slide bg-white p-10 pb-32">
             <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
                 <i data-lucide="award" class="w-16 h-16 text-emerald-800"></i>
-                <h2 class="text-6xl font-bold text-slate-800">Desafío Estilo PAES (M1)</h2>
+                <h2 class="text-6xl font-bold text-slate-800">Desafío Analítico (PAES M1)</h2>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
                 <div class="space-y-8 pr-4">
                     <div class="p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl relative shadow-md">
                         <p class="text-3xl font-medium text-slate-800 leading-relaxed mt-2">
-                            Considere un Prisma genérico cualquiera y estrictamente regular, cuya base es un polígono de <strong class="font-mono bg-emerald-100 px-2 rounded">$n$</strong> lados.
+                            Al interpelar estrictamente los principios geométricos que norman a un Poliedro, analice el siguiente enunciado:
                         </p>
-                        <p class="text-3xl font-medium text-slate-800 leading-relaxed mt-6 border-l-4 border-rose-300 pl-4">
-                            De acuerdo a las leyes de geometría de cuerpos sólidos, ¿Cuál de las siguientes afirmaciones es matemáticamente <strong>FALSA</strong> bajo cualquier dominio posible?
+                        <p class="text-3xl font-medium text-slate-800 leading-relaxed mt-6 border-l-4 border-emerald-500 pl-4">
+                            ¿Cuál de las siguientes premisas estructurales es <strong>VERDADERA</strong> para calificar a un cuerpo como Poliedro?
                         </p>
                     </div>
 
                     <div class="space-y-4 text-3xl font-bold text-slate-700 pl-4 font-mono leading-tight" id="opciones-paes">
-                        <p class="cursor-pointer hover:bg-slate-100 p-4 rounded-xl border-4 border-transparent hover:border-slate-300 transition-colors">
-                            A) El número total de caras siempre excede a $n$ en exactamente dos unidades.
-                        </p>
-                        <p class="cursor-pointer hover:bg-slate-100 p-4 rounded-xl border-4 border-transparent hover:border-slate-300 transition-colors">
-                            B) Las cantidades totales de aristas son invariablemente un número impar si la base tiene un número impar de lados.
-                        </p>
                         <p id="alt-correcta" class="cursor-pointer hover:bg-slate-100 p-4 rounded-xl border-4 border-transparent hover:border-slate-300 transition-colors">
-                            C) Existen exactamente $n$ caras rectangulares adyacentes a cada arista basal.
+                            A) Requiere obligatoriamente que sus componentes perimetrales (caras) sean única y absolutamente polígonos planos.
                         </p>
                         <p class="cursor-pointer hover:bg-slate-100 p-4 rounded-xl border-4 border-transparent hover:border-slate-300 transition-colors">
-                            D) Su conteo de vértices es equivalente a multiplicar $n$ por una constante modular de valor 2.
+                            B) Admite al menos una curva periférica siempre que haya dos bases completamente planas conectadas por dicha curva.
+                        </p>
+                        <p class="cursor-pointer hover:bg-slate-100 p-4 rounded-xl border-4 border-transparent hover:border-slate-300 transition-colors">
+                            C) Un cilindro tradicional clasifica enteramente como un Poliedro si observamos exclusivamente su altura y base sólida rectangular.
+                        </p>
+                        <p class="cursor-pointer hover:bg-slate-100 p-4 rounded-xl border-4 border-transparent hover:border-slate-300 transition-colors">
+                            D) El Teorema de Euler exige que existan componentes y sumatorias vacías con resultados de cero absolutos para su equilibrio.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex flex-col h-full justify-center space-y-6">
                     <button onclick="revelarElemento('respuesta-paes')" class="px-8 py-6 bg-emerald-800 text-white rounded-2xl text-4xl font-bold hover:bg-emerald-900 transition shadow-lg w-full">
-                        Desatar Resolución Abstraída
+                        Desatar Resolución Analítica
                     </button>
 
                     <div id="respuesta-paes" class="hidden flex-1 glass-card p-10 rounded-3xl border-4 border-emerald-500 bg-emerald-50 text-center flex flex-col justify-center shadow-lg">
@@ -475,13 +442,13 @@
                                 <i data-lucide="brain-circuit" class="w-10 h-10 text-emerald-600"></i>
                             </p>
                             <div class="font-sans text-2xl text-slate-700 font-medium leading-relaxed mt-4 space-y-6">
-                                <p><strong class="font-bold text-slate-800">A) Verdadera:</strong> Las caras totales son $C = n \text{ (laterales)} + 2 \text{ (bases)}$. Siempre excede a $n$ en 2 unidades.</p>
-                                <p><strong class="font-bold text-slate-800">B) Verdadera:</strong> Las aristas son $A = 3n$. Si $n$ es impar, el producto de un impar por $3$ siempre resulta impar.</p>
                                 <div class="p-6 bg-emerald-50 border-4 border-emerald-500 rounded-xl text-emerald-900 shadow-md">
-                                    <strong class="font-bold text-emerald-800 text-3xl uppercase tracking-wider block mb-2">C) FALSA (Alternativa Correcta)</strong> 
-                                    Cada arista basal es la línea de unión exclusiva entre la base poligonal y <strong>SOLAMENTE UNA</strong> cara lateral rectangular. ¡Bajo ninguna lógica son $n$ caras apoyadas de golpe en la arista!
+                                    <strong class="font-bold text-emerald-800 text-3xl uppercase tracking-wider block mb-2">A) VERDADERA (Alternativa Correcta)</strong> 
+                                    La esencia irrefutable y definición axiomática de todo "poliedro" impone que todas las caras sean caras planas con bordes rectos poligonales. Si hay una sola curva, el cuerpo deja de ser poliedro y pasa a ser un <strong>Cuerpo Redondo</strong>.
                                 </div>
-                                <p><strong class="font-bold text-slate-800">D) Verdadera:</strong> Los vértices son $V = 2n$, equivalente a multiplicar $n$ por el doble constante (2).</p>
+                                <p><strong class="font-bold text-slate-800">B) Falsa:</strong> Si hay una curva, es un Cuerpo Redondo (Ej. cilindro o cono), no un poliedro.</p>
+                                <p><strong class="font-bold text-slate-800">C) Falsa:</strong> El cilindro tiene un contorno lateral curvo circular y continuo (manto). Reprobado.</p>
+                                <p><strong class="font-bold text-slate-800">D) Falsa:</strong> Euler nunca invoca el cero, y un poliedro de tres dimensiones jamás tiene 0 caras, aristas o vértices. $C + V = A + 2$ jamás dará cero en formas cerradas puras.</p>
                             </div>
                         </div>
                     </div>
@@ -494,7 +461,7 @@
     <!-- NAVEGACIÓN INFERIOR -->
     <div class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 z-50 fixed bottom-0">
         <div class="text-slate-500 font-bold text-2xl tracking-widest uppercase">
-            Matemáticas • Clase 6 • Geometría 3D: Prismas
+            Matemáticas • Clase 7 • Geometría Espacial: Poliedros Básicos
         </div>
         <div class="flex gap-6">
             <button onclick="changeSlide(-1)" class="p-5 rounded-full bg-slate-100 border-2 border-slate-300 shadow-sm hover:bg-slate-200 transition-all cursor-pointer">
@@ -537,10 +504,6 @@
                     if (window.MathJax) {
                         MathJax.typesetPromise([el]).catch((err) => console.log(err.message));
                     }
-                    if(id === 'analisis-paso1') {
-                        document.getElementById('btn-paso2').disabled = false;
-                        document.getElementById('btn-paso2').classList.remove('opacity-50');
-                    }
                     if(id === 'respuesta-paes') {
                         const altC = document.getElementById('alt-correcta');
                         if(altC) {
@@ -552,53 +515,32 @@
             }
         }
         
-        function iniciarAnimacion3D() {
-            const topBase = document.getElementById('top-base');
-            const latFaces = document.getElementById('lat-faces');
-            const latEdges = document.getElementById('lat-edges');
-            
-            if(topBase && topBase.style.transform === "translateY(0px)" || topBase.style.transform === "translateY(0)") {
-                topBase.style.transform = "translateY(-150px)";
-                
-                setTimeout(() => {
-                    if(latEdges) {
-                        latEdges.classList.remove('hidden');
-                        const lines = latEdges.querySelectorAll('line');
-                        lines.forEach(l => {
-                            l.style.transition = "stroke-dashoffset 1s ease-out";
-                            // Force reflow
-                            void l.offsetWidth;
-                            l.style.strokeDashoffset = "0";
-                        });
-                    }
-                }, 400);
-
-                setTimeout(() => {
-                    if(latFaces) {
-                        latFaces.classList.remove('opacity-0');
-                    }
-                }, 1000);
+        function revelarElementoPaso(id) {
+            revelarElemento(id);
+            if(id === 'analisis-conteo') {
+                document.getElementById('btn-paso-euler').disabled = false;
+                document.getElementById('btn-paso-euler').classList.remove('opacity-50');
             }
         }
-        
-        function resaltarElemento(tipo, colorBase) {
-            const baseInf = document.getElementById('geom-base-inf');
-            const baseSup = document.getElementById('geom-base-sup');
-            const lat1 = document.getElementById('geom-lat-1');
-            const lat2 = document.getElementById('geom-lat-2');
+
+        function resaltarElementoPoliedro(tipo) {
+            const caras = document.querySelectorAll('.poly-cara');
+            const aristas = document.querySelectorAll('.poly-arista');
+            const vertices = document.querySelectorAll('.poly-vertice');
             
-            // reset all
-            baseInf.style.fill = '#f1f5f9';
-            baseSup.style.fill = '#f1f5f9';
-            lat1.style.fill = '#f8fafc';
-            lat2.style.fill = '#e2e8f0';
+            // Reset
+            caras.forEach(c => { c.style.fill = '#f1f5f9'; c.style.strokeWidth = '2'; c.style.stroke = '#334155'; });
+            aristas.forEach(a => { a.style.strokeWidth = '2'; a.style.stroke = '#334155'; });
+            vertices.forEach(v => { v.style.fill = '#0f172a'; v.style.r = '3'; });
             
-            if(tipo === 'bases') {
-                baseInf.style.fill = '#34d399'; // emerald-400
-                baseSup.style.fill = '#34d399';
-            } else if (tipo === 'laterales') {
-                lat1.style.fill = '#818cf8'; // indigo-400
-                lat2.style.fill = '#818cf8';
+            if(tipo === 'caras') {
+                document.getElementById('poli-caras').children[0].style.fill = '#a5b4fc';
+                document.getElementById('poli-caras').children[1].style.fill = '#818cf8';
+                document.getElementById('poli-caras').children[2].style.fill = '#6366f1';
+            } else if (tipo === 'aristas') {
+                aristas.forEach(a => { a.style.strokeWidth = '4'; a.style.stroke = '#06b6d4'; });
+            } else if (tipo === 'vertices') {
+                vertices.forEach(v => { v.style.fill = '#9333ea'; v.style.r = '6'; });
             }
         }
 
