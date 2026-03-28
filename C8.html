@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>C9</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volumen de Prismas - Matemáticas 8º Básico</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f0fdf4;
+            border-radius: 6px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 6px;
+            border: 2px solid #f0fdf4;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+        
+        /* Animación de Extrusión 3D */
+        .scene-vol {
+            perspective: 1000px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .prism-container {
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(60deg) rotateZ(-45deg);
+            transition: transform 2s ease-in-out;
+            width: 140px;
+            height: 100px;
+        }
+        
+        .layer {
+            position: absolute;
+            width: 140px;
+            height: 100px;
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 2px solid #047857;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.5s, background-color 1.5s;
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+        
+        .layer.base {
+            opacity: 1;
+            background-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 0 15px rgba(4, 120, 87, 0.5);
+        }
+
+        /* Estado Extruido (Volumen) */
+        .extruded.prism-container {
+            transform: rotateX(65deg) rotateZ(-35deg) translateY(40px);
+        }
+
+        .extruded .layer { opacity: 1; }
+        .extruded .layer:nth-child(1) { transform: translateZ(0px); }
+        .extruded .layer:nth-child(2) { transform: translateZ(20px); }
+        .extruded .layer:nth-child(3) { transform: translateZ(40px); }
+        .extruded .layer:nth-child(4) { transform: translateZ(60px); }
+        .extruded .layer:nth-child(5) { transform: translateZ(80px); }
+        .extruded .layer:nth-child(6) { transform: translateZ(100px); }
+        .extruded .layer:nth-child(7) { transform: translateZ(120px); }
+        .extruded .layer:nth-child(8) { 
+            transform: translateZ(140px); 
+            background-color: rgba(16, 185, 129, 0.6);
+        }
+        
+        /* Conectores verticales para dar ilusión de solidez */
+        .wall {
+            position: absolute;
+            background-color: rgba(52, 211, 153, 0.2);
+            border-left: 2px solid #047857;
+            border-right: 2px solid #047857;
+            height: 0px;
+            transition: height 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s;
+            transform-origin: bottom;
+            opacity: 0;
+        }
+
+        .extruded .wall {
+            height: 140px;
+            opacity: 1;
+        }
+
+        .wall-front { width: 140px; bottom: 0; left: 0; transform: rotateX(-90deg) translateZ(0px); }
+        .wall-right { width: 100px; bottom: 0; right: -100px; transform: rotateY(90deg) rotateZ(-90deg) translateZ(0) translateX(-100px); transform-origin: bottom left;}
+    </style>
+</head>
+
+<body class="text-slate-800 select-none h-screen w-screen flex flex-col bg-slate-50">
+
+    <div class="h-4 w-full bg-emerald-800 shrink-0"></div>
+
+    <div id="slide-container" class="flex-1 relative w-full overflow-hidden">
+
+        <div class="slide active p-10 bg-slate-50">
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-20">
+                
+                <div class="relative">
+                    <i data-lucide="box" class="w-40 h-40 text-emerald-800 opacity-90 absolute blur-sm transform scale-110 translate-y-2"></i>
+                    <i data-lucide="box" class="w-40 h-40 text-emerald-800 relative z-10"></i>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight">
+                    Volumen de<br>Prismas
+                </h1>
+                <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center mt-4">
+                    El Espacio Interior
+                </p>
+
+                <div class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-emerald-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md">
+                    <div>
+                        <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-emerald-800 uppercase tracking-wider">SEK CHILE • 8º BÁSICO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="cuboid" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl md:text-6xl font-bold text-slate-800">La Tercera Dimensión</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
+                <div class="space-y-8 h-full flex flex-col justify-center pr-4">
+                    <p class="text-4xl font-light text-slate-700 leading-relaxed border-l-8 border-emerald-600 pl-6 bg-slate-50 py-6 rounded-r-2xl shadow-sm">
+                        Imagina que tomas una figura plana (como una hoja de papel) y la <strong>apilas repetidas veces</strong> hacia arriba. El rastro que deja forma un cuerpo sólido.
+                    </p>
+                    <div class="glass-card p-8 flex flex-col justify-center gap-6 items-center flex-1 rounded-2xl border-t-8 border-slate-800 shadow-md">
+                        <p class="text-2xl text-slate-500 uppercase font-bold tracking-widest border-b-2 border-slate-100 pb-2">
+                            Extrusión Geométrica
+                        </p>
+                        <p class="text-3xl font-medium text-slate-800 text-center leading-snug">
+                            Observa cómo un Área Base ($2D$) se transforma en Volumen ($3D$) al adquirir <strong>Altura</strong>.
+                        </p>
+                        <button id="btn-extrude" onclick="toggleExtrusion()" class="mt-6 px-8 py-5 bg-emerald-800 text-white rounded-xl text-3xl font-bold hover:bg-emerald-700 transition-all shadow flex items-center gap-4 transform hover:scale-105 active:scale-95">
+                            <i data-lucide="chevrons-up" class="w-8 h-8"></i> Proyectar Altura
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="h-full w-full flex flex-col items-center justify-center bg-slate-50 rounded-2xl border-2 border-slate-200 p-4 relative overflow-hidden shadow-inner">
+                    <div class="scene-vol">
+                        <div class="prism-container" id="vol-animation">
+                            <div class="wall wall-front"></div>
+                            <div class="layer base flex items-center justify-center">
+                                <span class="transform rotateX(180deg) text-white font-bold tracking-widest opacity-50">BASE</span>
+                            </div>
+                            <div class="layer"></div>
+                            <div class="layer"></div>
+                            <div class="layer"></div>
+                            <div class="layer"></div>
+                            <div class="layer"></div>
+                            <div class="layer"></div>
+                            <div class="layer flex items-center justify-center">
+                                <span class="transform rotateX(180deg) text-white font-bold tracking-widest opacity-0 transition-opacity duration-1000 delay-500" id="top-label">TAPA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 bg-white min-w-[250px] text-center px-4 py-3 rounded-lg shadow border border-slate-200">
+                        <span id="vol-state-label" class="text-slate-500 font-bold uppercase tracking-widest text-lg">Solo Área Basal (2D)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-slate-50 p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="scale" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Área vs. Volumen</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 mt-8">
+                <div class="glass-card rounded-3xl shadow-lg border-t-[12px] border-indigo-600 bg-white overflow-hidden flex flex-col relative group hover:shadow-xl transition-shadow">
+                    <div class="absolute -right-4 -top-4 bg-indigo-50 rounded-full p-8 opacity-50 group-hover:scale-110 transition-transform">
+                        <i data-lucide="square" class="w-24 h-24 text-indigo-200"></i>
+                    </div>
+                    <div class="p-10 z-10 flex-1 flex flex-col">
+                        <h3 class="text-5xl font-extrabold text-indigo-800 mb-6 font-sans border-b-2 border-indigo-100 pb-4">
+                            ÁREA
+                        </h3>
+                        <ul class="space-y-6 text-3xl text-slate-700 font-medium leading-relaxed flex-1">
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="w-8 h-8 text-indigo-500 shrink-0 mt-1"></i>
+                                Es la medida de la <strong>superficie</strong> o envoltura exterior.
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="w-8 h-8 text-indigo-500 shrink-0 mt-1"></i>
+                                Se mide en unidades cuadradas ($\text{cm}^2, \text{m}^2$).
+                            </li>
+                            <li class="flex items-start gap-4 text-indigo-600 bg-indigo-50 p-4 rounded-xl mt-4 border border-indigo-100">
+                                <i data-lucide="lightbulb" class="w-8 h-8 shrink-0"></i>
+                                <em>Analogía:</em> El papel de regalo necesario para envolver una caja.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-3xl shadow-lg border-t-[12px] border-emerald-600 bg-white overflow-hidden flex flex-col relative group hover:shadow-xl transition-shadow">
+                    <div class="absolute -right-4 -top-4 bg-emerald-50 rounded-full p-8 opacity-50 group-hover:scale-110 transition-transform">
+                        <i data-lucide="box" class="w-24 h-24 text-emerald-200"></i>
+                    </div>
+                    <div class="p-10 z-10 flex-1 flex flex-col">
+                        <h3 class="text-5xl font-extrabold text-emerald-800 mb-6 font-sans border-b-2 border-emerald-100 pb-4">
+                            VOLUMEN
+                        </h3>
+                        <ul class="space-y-6 text-3xl text-slate-700 font-medium leading-relaxed flex-1">
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-500 shrink-0 mt-1"></i>
+                                Es la medida del <strong>espacio tridimensional</strong> que ocupa un cuerpo.
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-500 shrink-0 mt-1"></i>
+                                Se mide en unidades cúbicas ($\text{cm}^3, \text{m}^3$).
+                            </li>
+                            <li class="flex items-start gap-4 text-emerald-700 bg-emerald-50 p-4 rounded-xl mt-4 border border-emerald-100">
+                                <i data-lucide="lightbulb" class="w-8 h-8 shrink-0"></i>
+                                <em>Analogía:</em> La cantidad de agua que cabe dentro de una piscina.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="calculator" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">La Fórmula Universal</h2>
+            </div>
+            
+            <div class="flex flex-col flex-1 h-full gap-8">
+                <div class="bg-slate-50 border-2 border-slate-200 rounded-3xl p-10 shrink-0 shadow-md flex items-center gap-8 border-l-[12px] border-emerald-600">
+                    <div class="flex-1">
+                        <p class="text-4xl text-slate-800 leading-snug font-medium text-justify">
+                            Para calcular el volumen de <strong>CUALQUIER prisma</strong> recto, sin importar la forma de su base, solo necesitamos multiplicar el Área de su Base por la Altura del cuerpo.
+                        </p>
+                    </div>
+                    <div class="bg-white border-2 border-emerald-100 rounded-2xl p-8 flex flex-col min-w-[350px] shadow-sm items-center">
+                        <span class="text-[3rem] font-mono text-emerald-900 font-bold tracking-widest text-center">
+                            $$ V = A_{Base} \cdot h $$
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 flex-1 pb-8">
+                    <div class="glass-card p-10 flex items-center justify-between border-t-8 border-indigo-600 shadow-md relative overflow-hidden h-full">
+                        <div class="z-10 w-1/2">
+                            <h3 class="text-3xl font-bold text-indigo-800 mb-4">Prisma Rectangular</h3>
+                            <p class="text-xl text-slate-600 font-medium">La base es un rectángulo.</p>
+                            <div class="mt-4 bg-indigo-50 p-4 rounded-lg border border-indigo-100">
+                                <span class="text-lg font-mono text-indigo-900">$$ A_{Base} = a \cdot b $$</span>
+                            </div>
+                        </div>
+                        <div class="w-1/2 flex justify-center z-10 shrink-0 relative">
+                            <svg viewBox="0 0 160 160" class="w-48 h-48 drop-shadow-md">
+                                <polygon points="30,120 80,140 130,120 80,100" fill="#818cf8" stroke="#4338ca" stroke-width="2"/>
+                                <polygon points="30,50 80,70 80,140 30,120" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                                <polygon points="80,70 130,50 130,120 80,140" fill="#c7d2fe" stroke="#6366f1" stroke-width="2"/>
+                                <polygon points="30,50 80,70 130,50 80,30" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                                
+                                <line x1="145" y1="50" x2="145" y2="120" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-dasharray="4"/>
+                                <text x="155" y="90" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ef4444">h</text>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-10 flex items-center justify-between border-t-8 border-amber-500 shadow-md relative overflow-hidden h-full">
+                        <div class="z-10 w-1/2">
+                            <h3 class="text-3xl font-bold text-amber-700 mb-4">Prisma Triangular</h3>
+                            <p class="text-xl text-slate-600 font-medium">La base es un triángulo.</p>
+                            <div class="mt-4 bg-amber-50 p-4 rounded-lg border border-amber-100">
+                                <span class="text-lg font-mono text-amber-900">$$ A_{Base} = \frac{b \cdot h_{tri}}{2} $$</span>
+                            </div>
+                        </div>
+                        <div class="w-1/2 flex justify-center z-10 shrink-0 relative">
+                            <svg viewBox="0 0 160 160" class="w-48 h-48 drop-shadow-md">
+                                <polygon points="40,130 120,130 80,100" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+                                <polygon points="40,50 120,50 120,130 40,130" fill="#fef3c7" stroke="#fbbf24" stroke-width="2"/>
+                                <polygon points="120,50 80,20 80,100 120,130" fill="#fde68a" stroke="#fbbf24" stroke-width="2"/>
+                                <polygon points="40,50 120,50 80,20" fill="#fef3c7" stroke="#fbbf24" stroke-width="2"/>
+                                
+                                <line x1="140" y1="50" x2="140" y2="130" stroke="#ef4444" stroke-width="3" stroke-linecap="round" stroke-dasharray="4"/>
+                                <text x="150" y="95" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ef4444">h</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-slate-50 p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
+                <i data-lucide="graduation-cap" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Modelo: Cálculo Paso a Paso</h2>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl flex flex-col flex-1 shadow-md border-t-8 border-emerald-700 mt-6 min-h-0">
+                <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl shadow-sm border-2 border-slate-200 mb-8 shrink-0">
+                    <p class="text-3xl font-medium text-slate-700 leading-relaxed text-left flex-1 border-l-8 border-emerald-400 pl-6 rounded">
+                        Calcula el Volumen de un Prisma Triangular recto. Su base es un triángulo rectángulo con catetos de $3\text{ cm}$ y $4\text{ cm}$. La altura del prisma es de $10\text{ cm}$.
+                    </p>
+                    <div class="w-64 h-40 shrink-0 bg-white rounded-xl border-2 border-slate-300 flex items-center justify-center p-2 shadow-inner">
+                        <svg viewBox="0 0 200 160" class="w-full h-full">
+                            <polygon points="50,130 130,130 50,90" fill="#fcd34d" stroke="#d97706" stroke-width="2"/>
+                            <polygon points="50,40 130,40 130,130 50,130" fill="#fef3c7" stroke="#fbbf24" stroke-width="2"/>
+                            <polygon points="130,40 50,0 50,90 130,130" fill="#fde68a" stroke="#fbbf24" stroke-width="2" opacity="0.5"/>
+                            <polygon points="50,40 130,40 50,0" fill="#fef3c7" stroke="#fbbf24" stroke-width="2"/>
+                            
+                            <line x1="145" y1="40" x2="145" y2="130" stroke="#0f172a" stroke-width="2"/>
+                            <line x1="140" y1="40" x2="150" y2="40" stroke="#0f172a" stroke-width="2"/>
+                            <line x1="140" y1="130" x2="150" y2="130" stroke="#0f172a" stroke-width="2"/>
+                            <text x="155" y="90" font-family="sans-serif" font-size="14" font-weight="bold" fill="#0f172a">10 cm</text>
+                            
+                            <text x="80" y="145" font-family="sans-serif" font-size="14" font-weight="bold" fill="#0f172a">4 cm</text>
+                            <text x="20" y="115" font-family="sans-serif" font-size="14" font-weight="bold" fill="#0f172a">3 cm</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 min-h-[300px]">
+                    <div class="flex flex-col gap-6 justify-center">
+                        <button onclick="revelarElementoModelo('mod-vol1', 'btn-vol1', 'btn-vol2')" id="btn-vol1" class="w-full py-6 bg-slate-800 text-white rounded-2xl text-3xl font-bold hover:bg-slate-700 transition shadow flex items-center justify-center gap-4">
+                            Paso 1: Área de la Base <i data-lucide="triangle" class="w-8 h-8"></i>
+                        </button>
+                        <button onclick="revelarElementoModelo('mod-vol2', 'btn-vol2', 'btn-vol3')" id="btn-vol2" class="w-full py-6 bg-slate-800 text-white rounded-2xl text-3xl font-bold hover:bg-slate-700 transition shadow flex items-center justify-center gap-4 hidden">
+                            Paso 2: Extrusión (Altura) <i data-lucide="chevrons-up" class="w-8 h-8"></i>
+                        </button>
+                        <button onclick="revelarElementoModelo('mod-vol3', 'btn-vol3', null)" id="btn-vol3" class="w-full py-6 bg-emerald-800 text-white rounded-2xl text-3xl font-bold hover:bg-emerald-700 transition shadow flex items-center justify-center gap-4 hidden">
+                            Paso 3: Volumen Total <i data-lucide="box" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border-4 border-slate-200 shadow-inner flex flex-col gap-4 overflow-y-auto">
+                        <div id="mod-vol1" class="hidden glass-card p-6 border-l-8 border-amber-500 rounded-xl">
+                            <p class="text-xl text-amber-700 font-bold uppercase tracking-widest mb-4">1. Área de la Base ($A_{Base}$)</p>
+                            <div class="text-3xl text-slate-700 font-mono">
+                                <p class="text-lg font-sans text-slate-500 mb-2">*Como es un triángulo rectángulo, los catetos actúan como base y altura del triángulo:</p>
+                                $$ A_{Base} = \frac{3 \cdot 4}{2} = \frac{12}{2} $$
+                                <strong>$$ A_{Base} = 6 \text{ cm}^2 $$</strong>
+                            </div>
+                        </div>
+
+                        <div id="mod-vol2" class="hidden glass-card p-6 border-l-8 border-indigo-500 rounded-xl mt-4">
+                            <p class="text-xl text-indigo-800 font-bold uppercase tracking-widest mb-4">2. Multiplicar por Altura ($h$)</p>
+                            <div class="text-3xl text-slate-700 font-mono">
+                                <p class="text-lg font-sans text-slate-500 mb-2">*Tomamos el Área Base y la proyectamos por los 10 cm de altura del prisma:</p>
+                                $$ V = A_{Base} \cdot h $$
+                                $$ V = 6 \text{ cm}^2 \cdot 10 \text{ cm} $$
+                            </div>
+                        </div>
+
+                        <div id="mod-vol3" class="hidden glass-card p-6 border-l-8 border-emerald-500 rounded-xl mt-4 bg-emerald-50">
+                            <p class="text-xl text-emerald-800 font-bold uppercase tracking-widest mb-4">3. Resultado Total</p>
+                            <div class="text-[2.5rem] font-bold text-slate-800 font-mono text-center pb-2">
+                                <div class="bg-emerald-800 text-white inline-block px-12 py-4 rounded-xl shadow-lg border-2 border-emerald-300">
+                                    $$ V = 60 \text{ cm}^3 $$
+                                </div>
+                                <p class="text-lg font-sans text-emerald-700 mt-4">*Recuerda usar unidades cúbicas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-slate-50 p-8 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
+                <i data-lucide="edit-3" class="w-12 h-12 text-emerald-800"></i>
+                <h2 class="text-4xl font-bold text-slate-800">Práctica Independiente</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 mt-4">
+                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2 scrollable-content border-t-2 border-transparent">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-max px-4">
+                        
+                        <div class="md:col-span-2 mt-2 mb-2">
+                            <div class="w-full h-2 bg-emerald-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">1</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                Un acuario tiene forma de prisma rectangular. Su base mide $50 \text{ cm}$ por $20 \text{ cm}$, y tiene una altura de $30 \text{ cm}$. ¿Cuál es su <strong>Volumen Total</strong>?
+                            </p>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">2</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                Una caja de chocolates tiene forma de prisma triangular. El área de su base triangular es de $15 \text{ cm}^2$ y el largo (altura) de la caja es de $20 \text{ cm}$. Calcula el espacio interior de la caja.
+                            </p>
+                        </div>
+                        
+                        <div class="md:col-span-2 mt-6 mb-2">
+                            <div class="w-full h-2 bg-indigo-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-indigo-500 relative bg-indigo-50/20 hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">3</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                <strong>Extrapolación:</strong> Un cilindro funciona bajo la misma lógica ($V = A_{Base} \cdot h$). Si el radio de la base es $4 \text{ m}$ y la altura $10 \text{ m}$. Considera $\pi \approx 3$ y calcula su volumen.
+                            </p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-indigo-500 relative bg-indigo-50/20 hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">4</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                <strong>Análisis Inverso:</strong> Sabemos que el volumen de un cubo perfecto es de $64 \text{ cm}^3$. ¿Cuánto mide exactamente una de sus aristas?
+                            </p>
+                        </div>
+
+                        <div class="md:col-span-2 mt-6 mb-2">
+                            <div class="w-full h-2 bg-rose-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-rose-500 relative bg-rose-50/20 md:col-span-2 hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">5</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                <strong>Desafío Espacial:</strong> Tienes dos envases de jugo. El Envase A tiene una base de $10 \text{ cm}^2$ y altura $15 \text{ cm}$. El Envase B tiene una base de $15 \text{ cm}^2$ y altura $10 \text{ cm}$. Sin hacer el cálculo final, ¿cuál contiene más líquido o son iguales? Explica tu razonamiento geométrico.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="award" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Pregunta de Análisis: Tipo PAES</h2>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12 flex-1 items-stretch relative">
+                <div class="flex flex-col space-y-8 pr-4 h-full">
+                    <div class="p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl relative shadow-md flex-1 overflow-hidden group">
+                        <p class="text-3xl font-medium text-slate-800 leading-relaxed text-justify mt-4 relative z-10">
+                            Un arquitecto diseña un edificio en forma de prisma rectangular con un volumen inicial $V$. <br><br>
+                            Si por regulaciones municipales debe mantener la misma Área de la Base, pero decide <strong>duplicar la altura</strong> del edificio, ¿qué sucederá con el nuevo volumen total del edificio?
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-3xl font-bold text-slate-700 pl-4 font-mono leading-tight">
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer" id="correct-opt-vol">
+                            A) El volumen se duplica ($2V$).
+                        </p>
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            B) El volumen se cuadruplica ($4V$).
+                        </p>
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            C) El volumen se mantiene igual.
+                        </p>
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            D) El volumen aumenta, pero depende de la medida de la base.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative w-full h-full flex flex-col justify-end xl:justify-center">
+                    <button id="btn-reveal-paes-vol" onclick="revelarCierreVolumen()" class="px-8 py-8 bg-emerald-800 text-white rounded-3xl text-4xl font-extrabold hover:bg-emerald-700 transition-all shadow-xl w-full absolute inset-0 m-auto h-[120px] z-20 flex items-center justify-center gap-4 hover:scale-105 active:scale-95">
+                        <i data-lucide="shield-check" class="w-10 h-10"></i> Comprobar
+                    </button>
+
+                    <div id="respuesta-paes-vol" class="absolute inset-0 z-10 hidden w-full h-full">
+                        <div class="h-full w-full bg-white p-10 rounded-3xl border-4 border-emerald-500 flex flex-col text-left shadow-2xl relative overflow-y-auto">
+                            <p class="text-emerald-800 text-3xl font-extrabold border-b-4 border-emerald-100 pb-4 flex items-center justify-between mb-8 shrink-0 uppercase tracking-widest">
+                                Respuesta Correcta Explicada
+                                <i data-lucide="bar-chart-2" class="w-10 h-10 text-emerald-600 bg-emerald-50 p-2 rounded-lg box-content"></i>
+                            </p>
+
+                            <div class="font-sans text-2xl text-slate-700 font-medium leading-relaxed space-y-6">
+                                <div class="p-6 bg-emerald-50 border-4 border-emerald-500 rounded-xl text-emerald-900 shadow-md">
+                                    <strong class="font-bold text-emerald-800 text-3xl uppercase tracking-wider block mb-2">A) VERDADERA</strong> 
+                                    Como el volumen se calcula como $V = A_{Base} \cdot h$, existe una <strong>proporcionalidad directa</strong>. Si el Área Base es constante y multiplicas la altura por 2, el resultado final obligatoriamente se multiplica por 2.
+                                </div>
+                                <p><strong class="font-bold text-slate-800">B) Falsa:</strong> Esto ocurriría si duplicáramos la altura Y TAMBIÉN duplicáramos el área de la base ($2 \cdot 2 = 4$).</p>
+                                <p><strong class="font-bold text-slate-800">D) Falsa:</strong> La proporción se cumple independientemente del valor numérico específico de la base.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 z-50 fixed bottom-0">
+        <div class="text-slate-500 font-bold text-2xl tracking-widest uppercase truncate max-w-[60%] flex gap-4 items-center">
+            <span class="text-emerald-700">M8</span> <span class="text-slate-300">|</span> <span>CLASE 9</span> <span class="text-slate-300">|</span> <span>VOLUMEN Y ESPACIO 3D</span>
+        </div>
+        <div class="flex gap-6">
+            <button onclick="changeSlide(-1)" class="p-5 rounded-full bg-slate-100 border-2 border-slate-300 shadow-sm hover:bg-slate-200 transition-all cursor-pointer">
+                <i data-lucide="chevron-left" class="w-10 h-10 text-slate-800"></i>
+            </button>
+            <button onclick="changeSlide(1)" class="p-5 rounded-full bg-emerald-800 text-white shadow-md hover:bg-emerald-900 transition-all cursor-pointer">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === currentSlide) s.classList.add('active');
+            });
+        }
+
+        function changeSlide(d) {
+            const n = currentSlide + d;
+            if (n >= 0 && n < slides.length) { 
+                currentSlide = n; 
+                updateSlide(); 
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowRight', 'Space', 'Enter'].includes(e.key) && document.activeElement.tagName !== 'BUTTON') changeSlide(1);
+            if (['ArrowLeft', 'Backspace'].includes(e.key) && document.activeElement.tagName !== 'BUTTON') changeSlide(-1);
+        });
+
+        // Animación de Volumen (Fase 2)
+        let isExtruded = false;
+        function toggleExtrusion() {
+            const animation = document.getElementById('vol-animation');
+            const label = document.getElementById('vol-state-label');
+            const topLabel = document.getElementById('top-label');
+            const btn = document.getElementById('btn-extrude');
+            
+            if(!isExtruded) {
+                animation.classList.add('extruded');
+                label.innerHTML = 'Área Base $\\times$ Altura = <span class="text-emerald-600">Volumen (3D)</span>';
+                btn.innerHTML = '<i data-lucide="shrink" class="w-8 h-8"></i> Contraer a 2D';
+                topLabel.classList.remove('opacity-0');
+                topLabel.classList.add('opacity-100');
+            } else {
+                animation.classList.remove('extruded');
+                label.innerHTML = 'Solo Área Basal (2D)';
+                btn.innerHTML = '<i data-lucide="chevrons-up" class="w-8 h-8"></i> Proyectar Altura';
+                topLabel.classList.remove('opacity-100');
+                topLabel.classList.add('opacity-0');
+            }
+            
+            lucide.createIcons();
+            
+            if (window.MathJax) {
+                MathJax.typesetPromise([label]).catch((err) => console.log(err.message));
+            }
+            
+            isExtruded = !isExtruded;
+        }
+
+        // Revelado Mod. Docente Dinámico Encadenable (Fase 3)
+        function revelarElementoModelo(targetId, currentBtnId, nextBtnId) {
+            const target = document.getElementById(targetId);
+            const currentBtn = document.getElementById(currentBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+
+            if (target) {
+                target.classList.remove('hidden');
+                if (window.MathJax) {
+                    MathJax.typesetPromise([target]).catch((err) => console.log(err.message));
+                }
+            }
+            
+            if (currentBtn) {
+                currentBtn.classList.add('hidden');
+            }
+            
+            if (nextBtn) {
+                nextBtn.classList.remove('hidden');
+            }
+        }
+
+        // Ticket PAES Volumen (Fase 4)
+        function revelarCierreVolumen() {
+            const btn = document.getElementById('btn-reveal-paes-vol');
+            const target = document.getElementById('respuesta-paes-vol');
+
+            btn.classList.add('hidden');
+            target.classList.remove('hidden');
+
+            const correctOpt = document.getElementById('correct-opt-vol');
+            correctOpt.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-black', 'shadow-md');
+            correctOpt.classList.remove('border-transparent');
+
+            if (window.MathJax) {
+                try {
+                    MathJax.typesetPromise([target]).catch(err => console.log(err));
+                } catch (e) { }
+            }
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
