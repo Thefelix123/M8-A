@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poliedros Regulares: Sólidos Platónicos - Matemáticas 8º Básico</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                typeset: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .scrollable-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-track {
+            background: #f0fdf4;
+            border-radius: 6px;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 6px;
+            border: 2px solid #f0fdf4;
+        }
+
+        .scrollable-content::-webkit-scrollbar-thumb:hover {
+            background: #22c55e;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800 select-none h-screen w-screen flex flex-col bg-slate-50">
+
+    <div class="h-4 w-full bg-emerald-800 shrink-0"></div>
+
+    <div id="slide-container" class="flex-1 relative w-full overflow-hidden">
+
+        <!-- SLIDE 1: PORTADA -->
+        <div class="slide active p-10 bg-slate-50">
+            <div class="flex-1 flex flex-col items-center justify-center space-y-8 w-full h-full pb-20">
+                <div class="relative">
+                    <i data-lucide="gem" class="w-40 h-40 text-emerald-800 opacity-90 absolute blur-sm transform scale-110 translate-y-2"></i>
+                    <i data-lucide="gem" class="w-40 h-40 text-emerald-800 relative z-10"></i>
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight text-slate-900 uppercase text-center leading-tight">
+                    Sólidos<br>Platónicos
+                </h1>
+                <p class="text-4xl md:text-5xl text-slate-500 font-light tracking-wide text-center mt-4">
+                    La Perfección de los Poliedros Regulares
+                </p>
+
+                <div class="mt-16 p-8 glass-card rounded-2xl border-l-8 border-emerald-800 text-left w-full max-w-5xl flex justify-between items-end shadow-md">
+                    <div>
+                        <p class="text-4xl font-bold text-slate-900">Prof. Luis Quezada</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-3xl font-bold text-emerald-800 uppercase tracking-wider">SEK CHILE • 8º BÁSICO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: INTRODUCCION Y EULER -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-6 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="scan" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl md:text-6xl font-bold text-slate-800">Reglas de Perfección</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 flex-1 items-center">
+                <div class="space-y-8 h-full flex flex-col justify-center pr-4">
+                    <div class="bg-slate-50 p-6 rounded-2xl border-l-8 border-emerald-600 shadow-sm">
+                        <h3 class="text-3xl font-bold text-emerald-800 mb-4">¿Qué los hace "Regulares"?</h3>
+                        <p class="text-2xl text-slate-700 leading-relaxed font-medium">
+                            En un infinito de formas 3D, solo <strong class="text-emerald-700">5 sólidos</strong> cumplen estrictamente estas dos reglas universales:
+                        </p>
+                        <ul class="space-y-4 text-2xl text-slate-600 mt-6 ml-4">
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-500 shrink-0"></i>
+                                Todas sus caras son polígonos regulares idénticos (congruentes).
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle-2" class="w-8 h-8 text-emerald-500 shrink-0"></i>
+                                En cada vértice se une exactamente el mismo número de caras.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="h-full w-full flex flex-col items-center justify-center bg-slate-50 rounded-2xl border-2 border-slate-200 p-4 relative shadow-inner">
+                    <div class="glass-card w-full max-w-lg p-8 rounded-3xl border-t-[10px] border-indigo-600 shadow-xl relative overflow-hidden">
+                        <i data-lucide="infinity" class="absolute -right-6 -top-6 w-32 h-32 text-indigo-50 opacity-50"></i>
+                        <h3 class="text-4xl font-extrabold text-indigo-900 mb-4 text-center border-b border-indigo-100 pb-4 relative z-10">
+                            Teorema de Euler
+                        </h3>
+                        <p class="text-xl text-slate-600 text-center font-medium mb-6 relative z-10">
+                            Para todo poliedro convexo se cumple la relación:
+                        </p>
+                        <div class="text-[3.5rem] font-mono font-bold text-indigo-700 text-center py-6 bg-indigo-50 rounded-2xl border-2 border-indigo-200 shadow-inner relative z-10 leading-none">
+                            $$ C + V = A + 2 $$
+                        </div>
+                        <div class="flex justify-center gap-6 mt-6 text-lg font-bold text-slate-600 uppercase tracking-widest relative z-10">
+                            <span><strong class="text-indigo-800">C</strong>aras</span>
+                            <span><strong class="text-indigo-800">V</strong>értices</span>
+                            <span><strong class="text-indigo-800">A</strong>ristas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 3: CATALOGO PLATONICO -->
+        <div class="slide bg-slate-50 p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-4 shrink-0">
+                <i data-lucide="book-open" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Catálogo de los 5 Sólidos</h2>
+            </div>
+
+            <div class="flex flex-col gap-8 flex-1 mt-6 h-full justify-center">
+                <!-- Fila 1: Tetra, Hexa, Octa -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Tetraedro -->
+                    <div class="glass-card p-6 flex flex-col items-center border-t-8 border-rose-500 rounded-3xl shadow-md hover:shadow-lg transition-transform hover:-translate-y-1">
+                        <div class="h-24 w-24 bg-rose-50 rounded-full flex items-center justify-center mb-4">
+                            <svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
+                                <polygon points="50,10 90,80 10,80" fill="#fda4af" stroke="#e11d48" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,10 50,60 10,80" fill="#fecdd3" stroke="#e11d48" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,10 90,80 50,60" fill="#ffe4e6" stroke="#e11d48" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-slate-800 tracking-wide uppercase">Tetraedro</h3>
+                        <p class="text-lg text-slate-500 font-medium mb-6">Base: Triángulo Eq.</p>
+                        <div class="w-full flex justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 text-center font-mono text-xl">
+                            <div><span class="block text-slate-400 text-sm">Caras</span><span class="font-bold text-rose-600">4</span></div>
+                            <div><span class="block text-slate-400 text-sm">Vértices</span><span class="font-bold text-slate-700">4</span></div>
+                            <div><span class="block text-slate-400 text-sm">Aristas</span><span class="font-bold text-slate-700">6</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hexaedro (Cubo) -->
+                    <div class="glass-card p-6 flex flex-col items-center border-t-8 border-blue-500 rounded-3xl shadow-md hover:shadow-lg transition-transform hover:-translate-y-1">
+                        <div class="h-24 w-24 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                            <svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
+                                <polygon points="50,15 85,35 50,55 15,35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="15,35 50,55 50,85 15,65" fill="#bfdbfe" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,55 85,35 85,65 50,85" fill="#93c5fd" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-slate-800 tracking-wide uppercase">Hexaedro <span class="text-xl text-slate-400 normal-case">(Cubo)</span></h3>
+                        <p class="text-lg text-slate-500 font-medium mb-6">Base: Cuadrado</p>
+                        <div class="w-full flex justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 text-center font-mono text-xl">
+                            <div><span class="block text-slate-400 text-sm">Caras</span><span class="font-bold text-blue-600">6</span></div>
+                            <div><span class="block text-slate-400 text-sm">Vértices</span><span class="font-bold text-slate-700">8</span></div>
+                            <div><span class="block text-slate-400 text-sm">Aristas</span><span class="font-bold text-slate-700">12</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Octaedro -->
+                    <div class="glass-card p-6 flex flex-col items-center border-t-8 border-amber-500 rounded-3xl shadow-md hover:shadow-lg transition-transform hover:-translate-y-1">
+                        <div class="h-24 w-24 bg-amber-50 rounded-full flex items-center justify-center mb-4 relative">
+                            <svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
+                                <polygon points="50,10 80,50 50,90 20,50" fill="#fde68a" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,10 80,50 50,58" fill="#fef3c7" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,10 20,50 50,58" fill="#fcd34d" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,90 80,50 50,58" fill="#fbbf24" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,90 20,50 50,58" fill="#f59e0b" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-slate-800 tracking-wide uppercase">Octaedro</h3>
+                        <p class="text-lg text-slate-500 font-medium mb-6">Base: Triángulo Eq.</p>
+                        <div class="w-full flex justify-between bg-slate-50 p-4 rounded-xl border border-slate-200 text-center font-mono text-xl">
+                            <div><span class="block text-slate-400 text-sm">Caras</span><span class="font-bold text-amber-600">8</span></div>
+                            <div><span class="block text-slate-400 text-sm">Vértices</span><span class="font-bold text-slate-700">6</span></div>
+                            <div><span class="block text-slate-400 text-sm">Aristas</span><span class="font-bold text-slate-700">12</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fila 2: Dodeca, Icosa -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto">
+                    <!-- Dodecaedro -->
+                    <div class="glass-card p-6 flex flex-col items-center border-t-8 border-emerald-500 rounded-3xl shadow-md hover:shadow-lg transition-transform hover:-translate-y-1">
+                        <div class="h-24 w-24 bg-emerald-50 rounded-full flex items-center justify-center mb-4">
+                            <svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
+                                <path d="M 50,4 L 80,14 L 95,40 L 95,64 L 80,90 L 50,100 L 20,90 L 5,64 L 5,40 L 20,14 Z" fill="#d1fae5" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,25 70,40 62,65 38,65 30,40" fill="#6ee7b7" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,4 L 80,14 L 70,40 L 50,25" fill="#34d399" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="80,14 L 95,40 L 95,64 L 62,65 L 70,40" fill="#10b981" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="95,64 L 80,90 L 50,100 L 38,65 L 62,65" fill="#059669" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,100 L 20,90 L 5,64 L 38,65 L 30,40" fill="#047857" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="5,64 L 5,40 L 20,14 L 50,25 L 30,40" fill="#065f46" stroke="#059669" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-slate-800 tracking-wide uppercase">Dodecaedro</h3>
+                        <p class="text-lg text-slate-500 font-medium mb-6">Base: Pentágono Reg.</p>
+                        <div class="w-full flex justify-around bg-slate-50 p-4 rounded-xl border border-slate-200 text-center font-mono text-xl">
+                            <div><span class="block text-slate-400 text-sm">Caras</span><span class="font-bold text-emerald-600">12</span></div>
+                            <div><span class="block text-slate-400 text-sm">Vértices</span><span class="font-bold text-slate-700">20</span></div>
+                            <div><span class="block text-slate-400 text-sm">Aristas</span><span class="font-bold text-slate-700">30</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Icosaedro -->
+                    <div class="glass-card p-6 flex flex-col items-center border-t-8 border-purple-500 rounded-3xl shadow-md hover:shadow-lg transition-transform hover:-translate-y-1">
+                        <div class="h-24 w-24 bg-purple-50 rounded-full flex items-center justify-center mb-4 relative">
+                            <svg viewBox="0 0 100 100" class="w-16 h-16 drop-shadow-md">
+                                <polygon points="50,5 90,28 90,72 50,95 10,72 10,28" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,65 25,35 75,35" fill="#c084fc" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,5 25,35 75,35" fill="#d8b4fe" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="10,72 25,35 50,65" fill="#e9d5ff" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="90,72 75,35 50,65" fill="#a855f7" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,95 10,72 50,65" fill="#9333ea" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="50,95 90,72 50,65" fill="#7e22ce" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="10,28 10,72 25,35" fill="#f3e8ff" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="90,28 90,72 75,35" fill="#e9d5ff" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="10,28 50,5 25,35" fill="#d8b4fe" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                                <polygon points="90,28 50,5 75,35" fill="#c084fc" stroke="#7e22ce" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-extrabold text-slate-800 tracking-wide uppercase">Icosaedro</h3>
+                        <p class="text-lg text-slate-500 font-medium mb-6">Base: Triángulo Eq.</p>
+                        <div class="w-full flex justify-around bg-slate-50 p-4 rounded-xl border border-slate-200 text-center font-mono text-xl">
+                            <div><span class="block text-slate-400 text-sm">Caras</span><span class="font-bold text-purple-600">20</span></div>
+                            <div><span class="block text-slate-400 text-sm">Vértices</span><span class="font-bold text-slate-700">12</span></div>
+                            <div><span class="block text-slate-400 text-sm">Aristas</span><span class="font-bold text-slate-700">30</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SLIDE 4: AREAS Y VOLUMENES -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="calculator" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Área y Volumen</h2>
+            </div>
+            
+            <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-6 mb-8 shadow-sm text-center">
+                <p class="text-2xl text-slate-700">Todas las fórmulas dependen exclusivamente de una sola variable: <strong class="text-emerald-700 bg-emerald-100 px-3 py-1 rounded-md font-mono text-3xl">a</strong> (la longitud de su arista).</p>
+            </div>
+
+            <!-- Tabs/Secciones para Fórmulas -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 overflow-y-auto pr-4 scrollable-content">
+                
+                <!-- Cubo y Tetraedro (Enfoque 8vo) -->
+                <div class="flex flex-col gap-6">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-2 border-b-2 border-slate-200 pb-2">Los Fundamentales (Prioridad 8º)</h3>
+                    
+                    <div class="glass-card p-6 border-l-8 border-blue-500 rounded-2xl shadow-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-2xl font-bold text-blue-800 flex items-center gap-2">
+                                <i data-lucide="square" class="w-6 h-6"></i> Hexaedro (Cubo)
+                            </h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center font-mono text-xl">
+                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                                <span class="block text-slate-500 text-sm font-sans font-bold uppercase tracking-widest mb-2">Área Total</span>
+                                <span class="text-2xl text-slate-800">$$ A = 6a^2 $$</span>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-xl border border-blue-100">
+                                <span class="block text-slate-500 text-sm font-sans font-bold uppercase tracking-widest mb-2">Volumen</span>
+                                <span class="text-2xl text-slate-800">$$ V = a^3 $$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-l-8 border-rose-500 rounded-2xl shadow-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-2xl font-bold text-rose-800 flex items-center gap-2">
+                                <i data-lucide="triangle" class="w-6 h-6"></i> Tetraedro
+                            </h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center font-mono text-xl">
+                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-100 flex flex-col justify-center">
+                                <span class="block text-slate-500 text-sm font-sans font-bold uppercase tracking-widest mb-2">Área Total</span>
+                                <span class="text-2xl text-slate-800">$$ A = \sqrt{3}a^2 $$</span>
+                            </div>
+                            <div class="bg-rose-50 p-4 rounded-xl border border-rose-100 flex flex-col justify-center">
+                                <span class="block text-slate-500 text-sm font-sans font-bold uppercase tracking-widest mb-2">Volumen</span>
+                                <span class="text-2xl text-slate-800">$$ V = \frac{\sqrt{2}}{12}a^3 $$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Los Complejos -->
+                <div class="flex flex-col gap-6">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-2 border-b-2 border-slate-200 pb-2">Extensiones de Cálculo</h3>
+                    
+                    <div class="glass-card p-6 border-l-8 border-amber-500 rounded-2xl shadow-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="text-2xl font-bold text-amber-800 flex items-center gap-2">
+                                <i data-lucide="triangle" class="w-6 h-6 rotate-180"></i> Octaedro
+                            </h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center font-mono text-xl">
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 flex flex-col justify-center">
+                                <span class="text-lg text-slate-800">$$ A = 2\sqrt{3}a^2 $$</span>
+                            </div>
+                            <div class="bg-amber-50 p-3 rounded-xl border border-amber-100 flex flex-col justify-center">
+                                <span class="text-lg text-slate-800">$$ V = \frac{\sqrt{2}}{3}a^3 $$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-l-8 border-emerald-500 rounded-2xl shadow-sm opacity-90 hover:opacity-100 transition-opacity">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xl font-bold text-emerald-800 flex items-center gap-2">
+                                <i data-lucide="pentagon" class="w-5 h-5"></i> Dodecaedro
+                            </h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center font-mono text-sm">
+                            <div class="bg-emerald-50 p-2 rounded-xl">
+                                <span>$$ A = 3\sqrt{25+10\sqrt{5}}a^2 $$</span>
+                            </div>
+                            <div class="bg-emerald-50 p-2 rounded-xl">
+                                <span>$$ V = \frac{15+7\sqrt{5}}{4}a^3 $$</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 border-l-8 border-purple-500 rounded-2xl shadow-sm opacity-90 hover:opacity-100 transition-opacity">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="text-xl font-bold text-purple-800 flex items-center gap-2">
+                                <i data-lucide="hexagon" class="w-5 h-5"></i> Icosaedro <span class="text-xs text-slate-400 font-sans font-normal ml-2">(20 caras triáng.)</span>
+                            </h4>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-center font-mono text-sm">
+                            <div class="bg-purple-50 p-2 rounded-xl flex flex-col justify-center">
+                                <span>$$ A = 5\sqrt{3}a^2 $$</span>
+                            </div>
+                            <div class="bg-purple-50 p-2 rounded-xl flex flex-col justify-center">
+                                <span>$$ V = \frac{5(3+\sqrt{5})}{12}a^3 $$</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- SLIDE 5: EJEMPLOS DE APLICACION -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-100 pb-2 shrink-0">
+                <i data-lucide="microscope" class="w-14 h-14 text-emerald-800"></i>
+                <h2 class="text-5xl font-bold text-slate-800">Desarrollo de Modelos: Ejemplos</h2>
+            </div>
+
+            <div class="glass-card p-8 rounded-3xl flex flex-col flex-1 shadow-md border-t-8 border-emerald-700 mt-6 min-h-0 mx-4">
+                <div class="flex items-center gap-8 bg-slate-50 p-6 rounded-2xl shadow-sm border-2 border-slate-200 mb-8 shrink-0">
+                    <p class="text-3xl font-medium text-slate-700 leading-relaxed text-left flex-1 border-l-8 border-emerald-400 pl-6 rounded">
+                        <strong>Ejemplo Guiado (Cubo):</strong> Una bodega de almacenamiento cúbica perfecta tiene un lado (arista) de $5\text{ metros}$. Calcula cuánto volumen de carga puede guardar en su interior y cuántos metros cuadrados se requieren para cubrir TODAS sus caras con pintura (Área Total).
+                    </p>
+                    <div class="w-64 h-40 shrink-0 bg-white rounded-xl border-2 border-slate-300 flex items-center justify-center p-2 shadow-inner">
+                        <svg viewBox="0 0 100 100" class="w-full h-full text-emerald-600 drop-shadow-md">
+                            <polygon points="50,15 85,35 50,55 15,35" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+                            <polygon points="15,35 50,55 50,85 15,65" fill="#bfdbfe" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+                            <polygon points="50,55 85,35 85,65 50,85" fill="#93c5fd" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+                            <line x1="85" y1="35" x2="85" y2="65" stroke="#1e3a8a" stroke-width="2" stroke-dasharray="2" />
+                            <text x="88" y="55" font-family="sans-serif" font-size="8" font-weight="bold" fill="#1e3a8a">a = 5m</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 flex-1 min-h-[300px]">
+                    <div class="flex flex-col gap-6 justify-center pr-4">
+                        <button onclick="revelarElementoModelo('mod-ej1', 'btn-ej1', 'btn-ej2')" id="btn-ej1" class="w-full py-6 bg-slate-800 text-white rounded-2xl text-3xl font-bold hover:bg-slate-700 transition shadow flex items-center justify-center gap-4">
+                            Paso 1: Detectar variable $a$ <i data-lucide="eye" class="w-8 h-8"></i>
+                        </button>
+                        <button onclick="revelarElementoModelo('mod-ej2', 'btn-ej2', 'btn-ej3')" id="btn-ej2" class="w-full py-6 bg-slate-800 text-white rounded-2xl text-3xl font-bold hover:bg-slate-700 transition shadow flex items-center justify-center gap-4 hidden">
+                            Paso 2: Calcular el Volumen <i data-lucide="box" class="w-8 h-8"></i>
+                        </button>
+                        <button onclick="revelarElementoModelo('mod-ej3', 'btn-ej3', null)" id="btn-ej3" class="w-full py-6 bg-emerald-800 text-white rounded-2xl text-3xl font-bold hover:bg-emerald-700 transition shadow flex items-center justify-center gap-4 hidden">
+                            Paso 3: Calcular Área Total <i data-lucide="paint-bucket" class="w-8 h-8"></i>
+                        </button>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border-4 border-slate-200 shadow-inner flex flex-col gap-4 overflow-y-auto w-full">
+                        <div id="mod-ej1" class="hidden glass-card p-6 border-l-8 border-amber-500 rounded-xl">
+                            <p class="text-xl text-amber-800 font-bold uppercase tracking-widest mb-4">1. Identificar Datos</p>
+                            <div class="text-2xl text-slate-700">
+                                La clave de los sólidos platónicos recae en <strong class="text-amber-700">la arista</strong>. El texto indica explícitamente:
+                                <div class="bg-amber-50 font-mono text-center py-2 mt-4 rounded-lg border border-amber-200">
+                                    <strong>$$ a = 5\text{ m} $$</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="mod-ej2" class="hidden glass-card p-6 border-l-8 border-indigo-500 rounded-xl mt-2">
+                            <p class="text-xl text-indigo-800 font-bold uppercase tracking-widest mb-4">2. Volumen ($V = a^3$)</p>
+                            <div class="text-2xl text-slate-700 font-mono bg-indigo-50 p-2 rounded-lg">
+                                $$ V = (5\text{ m})^3 $$
+                                $$ V = 5 \cdot 5 \cdot 5 $$
+                                <strong class="text-indigo-900 block mt-2 text-center text-3xl">$$ V = 125\text{ m}^3 $$</strong>
+                            </div>
+                        </div>
+
+                        <div id="mod-ej3" class="hidden glass-card p-6 border-l-8 border-emerald-500 rounded-xl mt-2 bg-emerald-50">
+                            <p class="text-xl text-emerald-800 font-bold uppercase tracking-widest mb-4">3. Área Total ($A = 6a^2$)</p>
+                            <div class="text-2xl text-slate-700 font-mono">
+                                $$ A = 6 \cdot (5\text{ m})^2 $$
+                                $$ A = 6 \cdot (25\text{ m}^2) $$
+                                <strong class="text-emerald-900 text-3xl block mt-2 text-center bg-white p-2 rounded border border-emerald-200">$$ A = 150\text{ m}^2 $$</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: PRACTICA INDEPENDIENTE -->
+        <div class="slide bg-slate-50 p-8 pb-32">
+            <div class="flex items-center gap-6 border-b-4 border-slate-200 pb-2 shrink-0">
+                <i data-lucide="edit-3" class="w-12 h-12 text-emerald-800"></i>
+                <h2 class="text-4xl font-bold text-slate-800">Práctica Independiente</h2>
+            </div>
+
+            <div class="flex flex-col flex-1 mt-4">
+                <div class="flex-1 min-h-[400px] overflow-y-auto pr-4 pb-12 mt-2 scrollable-content border-t-2 border-transparent">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-max px-4">
+                        
+                        <div class="md:col-span-2 mt-2 mb-2">
+                            <div class="w-full h-2 bg-emerald-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">1</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                Un dado cúbico perfecto (hexaedro) tiene una arista que mide $3\text{ cm}$. Calcula su <strong>Área Total</strong>.
+                            </p>
+                        </div>
+                        
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">2</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                Usando el mismo dado del ejercicio anterior ($a = 3\text{ cm}$), calcula también su <strong>Volumen</strong>.
+                            </p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-emerald-400 relative hover:shadow-md transition-shadow md:col-span-2">
+                            <span class="absolute top-2 left-3 font-bold text-slate-400 text-xl font-mono">3</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                <strong>Teorema de Euler:</strong> El Icosaedro tiene 20 caras y 12 vértices. Aplica la fórmula ($C + V = A + 2$) para demostrar algebraicamente cuántas aristas ($A$) tiene.
+                            </p>
+                        </div>
+                        
+                        <div class="md:col-span-2 mt-6 mb-2">
+                            <div class="w-full h-2 bg-indigo-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-indigo-500 relative bg-indigo-50/20 hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">4</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                <strong>Análisis Inverso:</strong> Sabemos que el área total de otro cubo es de $150\text{ cm}^2$. Sabiendo que $A = 6a^2$, ¿cuánto mide exactamente la arista de este cubo?
+                            </p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-indigo-500 relative bg-indigo-50/20 hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-indigo-600 text-xl font-mono">5</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                Un estante tiene forma de tetraedro con arista $a = 2\text{ cm}$. Calcula su área considerando que $\sqrt{3} \approx 1,73$ (Expresa el resultado final o déjalo en función de raíz).
+                            </p>
+                        </div>
+
+                        <div class="md:col-span-2 mt-6 mb-2">
+                            <div class="w-full h-2 bg-rose-400 rounded-full shadow-sm"></div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-2xl flex flex-col justify-center shadow-sm border-l-8 border-rose-500 relative bg-rose-50/20 md:col-span-2 hover:shadow-md transition-shadow">
+                            <span class="absolute top-2 left-3 font-bold text-rose-600 text-xl font-mono">6</span>
+                            <p class="text-2xl text-slate-800 font-medium pl-8 py-2">
+                                <strong>Desafío Analítico:</strong> Imagina dos cubos. El Cubo A tiene una arista de $2\text{ cm}$ y el Cubo B tiene el doble (arista de $4\text{ cm}$). Calcula y compara sus volúmenes. ¿Si duplicas la arista, el volumen también se duplica o qué ocurre? Explica.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6: DESAFIO ESTILO PAES -->
+        <div class="slide bg-white p-10 pb-32">
+            <div class="flex items-center gap-6 mb-8 border-b-4 border-slate-100 pb-4 shrink-0">
+                <i data-lucide="award" class="w-16 h-16 text-emerald-800"></i>
+                <h2 class="text-6xl font-bold text-slate-800">Pregunta de Análisis: Tipo PAES</h2>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-12 flex-1 items-stretch relative">
+                <div class="flex flex-col space-y-8 pr-4 h-full">
+                    <div class="p-8 bg-slate-50 border-2 border-slate-200 rounded-2xl relative shadow-md flex-1 overflow-hidden group">
+                        <p class="text-3xl font-medium text-slate-800 leading-relaxed text-justify mt-4 relative z-10">
+                            En un proyecto de arquitectura, se diseña un gran contenedor con forma de <strong>Cubo</strong> (Hexaedro Regular) de volumen base $V$. <br><br>
+                            Si por nuevos requerimientos técnicos, los ingenieros deciden <strong>triplicar la medida de la arista</strong> de este cubo, ¿cuál será el nuevo volumen del contenedor en relación con su volumen inicial?
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 text-3xl font-bold text-slate-700 pl-4 font-mono leading-tight">
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            A) El volumen se triplica ($3V$).
+                        </p>
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            B) El volumen aumenta en $9V$.
+                        </p>
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer" id="correct-opt-paes">
+                            C) El volumen se vuelve $27V$.
+                        </p>
+                        <p class="opt-btn p-5 rounded-xl border-4 border-transparent hover:border-slate-300 hover:bg-slate-50 transition-all cursor-pointer">
+                            D) Solo aumenta un tercio de su volumen actual.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="relative w-full h-full flex flex-col justify-end xl:justify-center">
+                    <button id="btn-reveal-paes" onclick="revelarCierrePAES()" class="px-8 py-8 bg-emerald-800 text-white rounded-3xl text-4xl font-extrabold hover:bg-emerald-700 transition-all shadow-xl w-full absolute inset-0 m-auto h-[120px] z-20 flex items-center justify-center gap-4 hover:scale-105 active:scale-95">
+                        <i data-lucide="shield-check" class="w-10 h-10"></i> Comprobar
+                    </button>
+
+                    <div id="respuesta-paes" class="absolute inset-0 z-10 hidden w-full h-full">
+                        <div class="h-full w-full bg-white p-10 rounded-3xl border-4 border-emerald-500 flex flex-col text-left shadow-2xl relative overflow-y-auto">
+                            <p class="text-emerald-800 text-3xl font-extrabold border-b-4 border-emerald-100 pb-4 flex items-center justify-between mb-8 shrink-0 uppercase tracking-widest">
+                                Respuesta Correcta Explicada
+                                <i data-lucide="bar-chart-2" class="w-10 h-10 text-emerald-600 bg-emerald-50 p-2 rounded-lg box-content"></i>
+                            </p>
+
+                            <div class="font-sans text-2xl text-slate-700 font-medium leading-relaxed space-y-6">
+                                <div class="p-6 bg-emerald-50 border-4 border-emerald-500 rounded-xl text-emerald-900 shadow-md">
+                                    <strong class="font-bold text-emerald-800 text-3xl uppercase tracking-wider block mb-2">C) VERDADERA</strong> 
+                                    La fórmula del volumen de un cubo depende de la arista al cubo: $V = a^3$. Si multiplicamos la arista por 3 (ahora medirá $3a$), el nuevo volumen será:
+                                    <div class="mt-4 bg-white p-4 font-mono font-bold text-center rounded-lg border-2 border-emerald-200">
+                                        $$ V_{nuevo} = (3a)^3 = 3^3 \cdot a^3 = 27 a^3 $$
+                                    </div>
+                                    <p class="mt-4">Por lo tanto, el volumen final es exactamente $27$ veces el volumen inicial $V$.</p>
+                                </div>
+                                <p><strong class="font-bold text-slate-800">A) Falsa:</strong> Ocurriría si la fórmula fuera lineal (crecimiento en una sola dimensión, pero el volumen crece en tres).</p>
+                                <p><strong class="font-bold text-slate-800">B) Falsa:</strong> Esto sería el factor de crecimiento geométrico del el <em>Área</em> base (que crece al cuadrado, $3^2 = 9$), no del volumen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVEGACIÓN INFERIOR -->
+    <div class="h-24 w-full shrink-0 flex justify-between items-center px-12 bg-white border-t-2 border-slate-200 z-50 fixed bottom-0">
+        <div class="text-slate-500 font-bold text-2xl tracking-widest uppercase truncate max-w-[60%] flex gap-4 items-center">
+            <span class="text-emerald-700">M8</span> <span class="text-slate-300">|</span> <span>CLASE 9</span> <span class="text-slate-300">|</span> <span>SÓLIDOS PLATÓNICOS</span>
+        </div>
+        <div class="flex gap-6">
+            <button onclick="changeSlide(-1)" class="p-5 rounded-full bg-slate-100 border-2 border-slate-300 shadow-sm hover:bg-slate-200 transition-all cursor-pointer">
+                <i data-lucide="chevron-left" class="w-10 h-10 text-slate-800"></i>
+            </button>
+            <button onclick="changeSlide(1)" class="p-5 rounded-full bg-emerald-800 text-white shadow-md hover:bg-emerald-900 transition-all cursor-pointer">
+                <i data-lucide="chevron-right" class="w-10 h-10"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if (i === currentSlide) s.classList.add('active');
+            });
+        }
+
+        function changeSlide(d) {
+            const n = currentSlide + d;
+            if (n >= 0 && n < slides.length) { 
+                currentSlide = n; 
+                updateSlide(); 
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowRight', 'Space', 'Enter'].includes(e.key) && document.activeElement.tagName !== 'BUTTON') changeSlide(1);
+            if (['ArrowLeft', 'Backspace'].includes(e.key) && document.activeElement.tagName !== 'BUTTON') changeSlide(-1);
+        });
+
+        // Revelado Dinámico Encadenable (Modelos)
+        function revelarElementoModelo(targetId, currentBtnId, nextBtnId) {
+            const target = document.getElementById(targetId);
+            const currentBtn = document.getElementById(currentBtnId);
+            const nextBtn = document.getElementById(nextBtnId);
+
+            if (target) {
+                target.classList.remove('hidden');
+                if (window.MathJax) {
+                    MathJax.typesetPromise([target]).catch((err) => console.log(err.message));
+                }
+            }
+            
+            if (currentBtn) {
+                currentBtn.classList.add('hidden');
+            }
+            
+            if (nextBtn) {
+                nextBtn.classList.remove('hidden');
+            }
+        }
+
+        // Revelado de Ticket PAES
+        function revelarCierrePAES() {
+            const btn = document.getElementById('btn-reveal-paes');
+            const target = document.getElementById('respuesta-paes');
+
+            btn.classList.add('hidden');
+            target.classList.remove('hidden');
+
+            const correctOpt = document.getElementById('correct-opt-paes');
+            correctOpt.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-black', 'shadow-md');
+            correctOpt.classList.remove('border-transparent');
+
+            if (window.MathJax) {
+                try {
+                    MathJax.typesetPromise([target]).catch(err => console.log(err));
+                } catch (e) { }
+            }
+        }
+    </script>
+</body>
+</html>
